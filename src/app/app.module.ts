@@ -16,13 +16,13 @@ import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    AboutComponent,
-    ContactComponent,
-    CatalogComponent,
-  ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        AboutComponent,
+        ContactComponent,
+        CatalogComponent,
+    ],
     imports: [
         BrowserModule,
         ReactiveFormsModule,
@@ -36,8 +36,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         FontAwesomeModule,
         MDBBootstrapModule.forRoot()
     ],
-  providers: [],
-  bootstrap: [AppComponent]
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 
