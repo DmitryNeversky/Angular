@@ -4,6 +4,9 @@ import {SubcategoriesComponent} from "./subcategories/subcategories.component";
 import {ItemsComponent} from "./items/items.component";
 import {AdminPanelComponent} from "./admin-panel.component";
 import {RouterModule} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CommonModule} from "@angular/common";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
     declarations: [
@@ -13,7 +16,11 @@ import {RouterModule} from "@angular/router";
         AdminPanelComponent
     ],
     imports: [
-        RouterModule
+        RouterModule,
+        ReactiveFormsModule,
+        CommonModule,
+        FontAwesomeModule,
+        FormsModule
     ],
     exports: [
         AdminPanelComponent
