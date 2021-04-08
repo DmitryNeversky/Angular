@@ -1,0 +1,10 @@
+.contacts .social a{
+    font-size: 15pt;
+    margin-right: 10px;
+}
+
+.contacts fa-icon{
+    color: #ffe186;
+    margin-right: 10px;
+    font-weight: bold;
+}
