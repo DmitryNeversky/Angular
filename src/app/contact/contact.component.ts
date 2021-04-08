@@ -1,14 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faEnvelope, faPhone,  } from '@fortawesome/free-solid-svg-icons';
+import { faVk, faInstagram, faWhatsapp, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css', '../styles.css']
+  styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
 
-  faCoffee = faCoffee;
+  public icons = {
+    mark: faMapMarkerAlt,
+    envelope: faEnvelope,
+    phone: faPhone,
+    vk: faVk,
+    instagram: faInstagram,
+    whatsapp: faWhatsapp,
+    twitter: faTwitter
+  }
 
   constructor() { }
 
