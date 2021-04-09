@@ -1,29 +1,23 @@
 import {NgModule} from "@angular/core";
-import {CategoriesComponent} from "./categories/categories.component";
-import {SubcategoriesComponent} from "./subcategories/subcategories.component";
-import {ItemsComponent} from "./items/items.component";
 import {AdminPanelComponent} from "./admin-panel.component";
-import {RouterModule} from "@angular/router";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {SubcategoriesModule} from "./subcategories/subcategories.module";
+import {ItemsModule} from "./items/items.module";
+import {CategoriesModule} from "./categories/categories.module";
+import {AdminPanelRoutingModule} from "./admin-panel-routing.module";
 
 @NgModule({
-    declarations: [
-        CategoriesComponent,
-        SubcategoriesComponent,
-        ItemsComponent,
-        AdminPanelComponent
-    ],
+    declarations: [AdminPanelComponent],
     imports: [
-        RouterModule,
-        ReactiveFormsModule,
         CommonModule,
-        FontAwesomeModule,
-        FormsModule
-    ],
-    exports: [
-        AdminPanelComponent
+
+        CategoriesModule,
+        ItemsModule,
+        SubcategoriesModule,
+
+        AdminPanelRoutingModule,
     ]
 })
-export class AdminPanelModule { }
+export class AdminPanelModule {
+
+}

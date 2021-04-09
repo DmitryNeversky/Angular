@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoryService} from "../../services/category.service";
+import {CategoriesService} from "./categories.service";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
-import {Category} from "../../entities/category";
+import {Category} from "./category";
 import {faTimes, faCheck} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -17,7 +17,7 @@ export class CategoriesComponent implements OnInit {
 
   public addForm: FormGroup;
 
-  constructor(private service: CategoryService) { }
+  constructor(private service: CategoriesService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -28,6 +28,7 @@ export class CategoriesComponent implements OnInit {
 
   private getCategories(){
     this.service.getCategories().subscribe((response: Category[]) => {
+      console.log(response);
       this.categories = response;
     }, error => { console.log(error.message) });
   }

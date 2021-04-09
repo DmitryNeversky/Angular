@@ -1,14 +1,12 @@
-import { Injectable } from '@angular/core';
-import {environment} from "../../environments/environment";
+import {Injectable} from '@angular/core';
+import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Category} from "../entities/category";
+import {Category} from "./category";
 
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CategoryService {
+@Injectable()
+export class CategoriesService {
   private apiBaseUrl = environment.apiBaseUrl;
 
   constructor(private httpClient: HttpClient) {}
