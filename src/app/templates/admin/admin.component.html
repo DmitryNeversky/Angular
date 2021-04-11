@@ -1,15 +1,14 @@
-<div class="container m-0">
+<div class="container m-0 mt-3 min-vw-100">
     <div class="row">
-        <div class="col-md-1">
-            <ul class="list-unstyled">
-                <li><a routerLink="/admin/items">it</a></li>
-                <li><a routerLink="/admin/categories">ct</a></li>
-                <li><a routerLink="/admin/subcategories">subct</a></li>
+        <div class="col-md-2">
+            <ul class="list-unstyled text-center">
+                <li><a class="d-block px-5 py-2 mb-2 bg-main" routerLink="/admin/items">it</a></li>
+                <li><a class="d-block px-5 py-2 mb-2 bg-main" routerLink="/admin/categories">ct</a></li>
+                <li><a class="d-block px-5 py-2 mb-2 bg-main" routerLink="/admin/subcategories">subct</a></li>
             </ul>
         </div>
-        <div class="col-md-10"></div>
-        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
-
-<router-outlet></router-outlet>

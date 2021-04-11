@@ -34,6 +34,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   public onAdd(): void {
+    if(this.categories.find(x => x.name === this.addForm.value.name))
+      return;
     this.service.addCategory(this.addForm.value).subscribe((response: Category) => {
       this.categories.push(response);
     }, error => { console.log(error) });

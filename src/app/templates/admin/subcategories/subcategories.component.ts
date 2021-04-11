@@ -15,18 +15,19 @@ export class SubcategoriesComponent implements OnInit {
 
   public icons = {times: faTimes, check: faCheck}
 
+  public categories: Category[];
+
   public subcategories: Subcategory[];
 
   public addForm: FormGroup;
 
   constructor(private service: SubcategoriesService, private categoryService: CategoriesService) { }
 
-  public categories: Category[];
-
   ngOnInit(): void {
     this.getSubcategories();
     this.addForm = new FormGroup({
-      name: new FormControl()
+      name: new FormControl(),
+      category: new FormControl()
     });
     this.categoryService.getCategories().subscribe(r => {
       this.categories = r;
@@ -35,13 +36,22 @@ export class SubcategoriesComponent implements OnInit {
 
   private getSubcategories(){
     this.service.getSubcategories().subscribe((response: Subcategory[]) => {
-      console.log(response);
       this.subcategories = response;
     }, error => { console.log(error.message) });
   }
 
   public onAdd(): void {
-    this.service.addSubcategory(this.addForm.value).subscribe((response: Subcategory) => {
+    // if(this.subcategories.find(x => x.name === this.addForm.value.name))
+    //   return;
+
+    let subcategory: Subcategory = {
+      name: this.addForm.value.name,
+      categoryId: this.addForm.value.category
+    }
+
+    console.log(subcategory);
+
+    this.service.addSubcategory(subcategory).subscribe((response: Subcategory) => {
       this.subcategories.push(response);
     }, error => { console.log(error) });
   }

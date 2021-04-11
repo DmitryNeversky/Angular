@@ -1,24 +1,23 @@
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-4">
-            <ul class="list-group list-group-flush">
-                <li *ngFor="let category of categories" class="list-group-item d-flex justify-content-between">
-                    <form #updateForm="ngForm">
-                        <input type="hidden" ngModel="{{category.id}}" name="id">
-                        <input class="border-0" name="name" ngModel="{{category.name}}" type="text">
-                    </form>
-                    <div class="d-flex">
-                        <span class="my-auto me-3">{{category.count}}</span>
-                        <button class="rename-button border-0 bg-white mr-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
-                        <button class="remove-button border-0 bg-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(category)"><fa-icon [icon]="icons.times" class="text-danger"></fa-icon></button>
-                    </div>
-                </li>
-            </ul>
-            <form [formGroup]="addForm" (submit)="onAdd()">
-                <input type="text" class="advanced-input" placeholder="Название" formControlName="name">
-                <button type="submit" class="advanced-input">Добавить</button>
-            </form>
+<form class="d-flex" [formGroup]="addForm" (submit)="onAdd()">
+    <input type="text" class="form-control" placeholder="Название" formControlName="name">
+    <button type="submit" class="form-control">Добавить</button>
+</form>
+
+<ul class="list-group list-group-flush w-100">
+    <li class="list-group-item d-flex justify-content-between">
+        <span>Название</span>
+        <span>Связанные подкатегории</span>
+        <span>Операции</span>
+    </li>
+    <li *ngFor="let category of categories" class="list-group-item d-flex justify-content-between">
+        <form #updateForm="ngForm">
+            <input type="hidden" ngModel="{{category.id}}" name="id">
+            <input class="border-0" name="name" ngModel="{{category.name}}" type="text">
+        </form>
+        <span *ngFor="let subcategory of categories">{{subcategory.name}}</span>
+        <div class="d-flex">
+            <button class="rename-button border-0 bg-white mr-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
+            <button class="remove-button border-0 bg-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(category)"><fa-icon [icon]="icons.times" class="text-danger"></fa-icon></button>
         </div>
-        <div class="col-md-8"></div>
-    </div>
-</div>
+    </li>
+</ul>

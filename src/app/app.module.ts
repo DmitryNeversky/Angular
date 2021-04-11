@@ -15,6 +15,7 @@ import {ItemsService} from "./services/items.service";
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+
         AdminModule,
 
         AppRoutingModule,

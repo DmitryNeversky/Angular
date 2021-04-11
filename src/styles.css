@@ -25,7 +25,7 @@ ul{
 }
 
 .content{
-    min-height: 38rem;
+    min-height: 21.5rem;
 }
 
 @media (max-width: 576px) {
@@ -87,4 +87,8 @@ button.advanced-input:hover{
 .accordion-button:focus, .form-select:focus{
     border-color: rgba(0,0,0,.125);
     box-shadow: none;
+}
+
+.bg-main{
+    background: #ffe18699;
 }

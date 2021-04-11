@@ -1,5 +1,5 @@
 export interface Subcategory {
-    id,
+    id?,
     name,
-    count
+    categoryId
 }

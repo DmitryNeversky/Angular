@@ -5,10 +5,10 @@
                 <li *ngFor="let subcategory of subcategories" class="list-group-item d-flex justify-content-between">
                     <form #updateForm="ngForm">
                         <input type="hidden" ngModel="{{subcategory.id}}" name="id">
+                        <input type="hidden" ngModel="{{subcategory.categoryId}}" name="categoryId">
                         <input class="border-0" name="name" ngModel="{{subcategory.name}}" type="text">
                     </form>
                     <div class="d-flex">
-                        <span class="my-auto me-3">{{subcategory.count}}</span>
                         <button class="rename-button border-0 bg-white mr-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
                         <button class="remove-button border-0 bg-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(subcategory)"><fa-icon [icon]="icons.times" class="text-danger"></fa-icon></button>
                     </div>
@@ -17,7 +17,7 @@
             <form [formGroup]="addForm" (submit)="onAdd()">
                 <input type="text" class="advanced-input" placeholder="Название" formControlName="name">
                 <select formControlName="category">
-                    <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+                    <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
                 </select>
                 <button type="submit" class="advanced-input">Добавить</button>
             </form>
