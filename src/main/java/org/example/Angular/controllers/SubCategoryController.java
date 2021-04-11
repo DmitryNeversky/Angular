@@ -27,6 +27,7 @@ public class SubCategoryController {
     @PostMapping("/add")
     public ResponseEntity<SubCategory> addSubCategory(@RequestBody SubCategory subCategory){
 
+        System.out.println(subCategory.toString());
         subCategoryService.addSubCategory(subCategory);
         return new ResponseEntity<>(subCategory, HttpStatus.CREATED);
     }

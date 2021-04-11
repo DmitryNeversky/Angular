@@ -1,7 +1,9 @@
 package org.example.Angular.servies;
 
+import org.example.Angular.entities.Category;
 import org.example.Angular.entities.Item;
 import org.example.Angular.entities.SubCategory;
+import org.example.Angular.repositories.CategoryRepository;
 import org.example.Angular.repositories.SubCategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +15,15 @@ import java.util.stream.Collectors;
 public class SubCategoryService {
 
     private final SubCategoryRepository subCategoryRepository;
+    private final CategoryService categoryService;
 
-    public SubCategoryService(SubCategoryRepository subCategoryRepository) {
+    public SubCategoryService(SubCategoryRepository subCategoryRepository, CategoryService categoryService) {
         this.subCategoryRepository = subCategoryRepository;
+        this.categoryService = categoryService;
     }
 
     public void addSubCategory(SubCategory subCategory){
+        categoryService.addSubCategory(subCategory.getCategoryId(), subCategory);
         subCategoryRepository.save(subCategory);
     }
 
@@ -69,6 +74,7 @@ public class SubCategoryService {
     }
 
     public void updateSubCategory(SubCategory subCategory){
+        System.out.println(subCategory.toString());
         subCategoryRepository.save(subCategory);
     }
 }

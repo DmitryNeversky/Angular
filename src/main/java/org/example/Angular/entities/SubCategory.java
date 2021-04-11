@@ -15,15 +15,14 @@ public class SubCategory {
     @OneToMany(mappedBy = "subCategory")
     private List<Item> itemList;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private Category category;
+    private int categoryId;
 
     public SubCategory() { }
 
-    public SubCategory(String name, List<Item> itemList, Category category) {
+    public SubCategory(String name, List<Item> itemList, int categoryId) {
         this.name = name;
         this.itemList = itemList;
-        this.category = category;
+        this.categoryId = categoryId;
     }
 
     public int getId() {
@@ -46,12 +45,12 @@ public class SubCategory {
         this.itemList = itemList;
     }
 
-    public Category getCategory() {
-        return category;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override
@@ -60,7 +59,7 @@ public class SubCategory {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", itemList=" + itemList +
-                ", category=" + category +
+                ", categoryId=" + categoryId +
                 '}';
     }
 }
