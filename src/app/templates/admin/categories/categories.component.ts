@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoriesService} from "./categories.service";
-import {FormControl, FormGroup, NgForm} from "@angular/forms";
-import {Category} from "./category";
+import {CategoriesService} from "../../../services/categories.service";
+import {Category} from "../../../entities/category";
 import {faTimes, faCheck} from "@fortawesome/free-solid-svg-icons";
+import {FormControl, FormGroup, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-categories',

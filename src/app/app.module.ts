@@ -1,28 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import { AppComponent } from './app.component';
-import { AdminPanelModule } from "./admin-panel/admin-panel.module";
 import { AppRoutingModule } from "./app-routing.module";
-import {AboutModule} from "./about/about.module";
-import {CatalogModule} from "./catalog/catalog.module";
-import {ContactModule} from "./contact/contact.module";
-import {HomeModule} from "./home/home.module";
+import {AdminModule} from "./templates/admin/admin.module";
+import { LoginComponent } from './templates/admin/login/login.component';
+import {CategoriesService} from "./services/categories.service";
+import {SubcategoriesService} from "./services/subcategories.service";
+import {ItemsService} from "./services/items.service";
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, LoginComponent],
     imports: [
         BrowserModule,
-
-        AdminPanelModule,
-        AboutModule,
-        CatalogModule,
-        ContactModule,
-        HomeModule,
+        BrowserAnimationsModule,
+        AdminModule,
 
         AppRoutingModule,
     ],
-    providers: [],
+    providers: [CategoriesService, SubcategoriesService, ItemsService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

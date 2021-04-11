@@ -8,7 +8,7 @@
 
             <div class="col-md-8">
                 <ul class="nav justify-content-end">
-                    <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/">Главная</a></li>
                     <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/catalog">Каталог</a></li>
                     <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/about">О нас</a></li>
                     <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/contact">Контакты</a></li>
@@ -16,15 +16,15 @@
             </div>
 
             <div class="col-md-2 text-center">
-                <a href="#" class="favorite">Желаемое</a>
+                <a routerLink="/admin" class="favorite">Желаемое</a>
             </div>
 
         </div>
     </div>
 </header>
 
-<div class="content">
-    <router-outlet></router-outlet>
+<div class="content" [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
 </div>
 
 <footer>

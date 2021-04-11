@@ -5,7 +5,7 @@ import { faVk, faInstagram, faWhatsapp, faTwitter } from '@fortawesome/free-bran
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  styleUrls: ['./contact.component.css'],
 })
 export class ContactComponent implements OnInit {
 

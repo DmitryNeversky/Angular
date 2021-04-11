@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
-import {Subcategory} from "./subcategory";
-import {SubcategoriesService} from "./subcategories.service";
-import {Category} from "../categories/category";
-import {CategoriesService} from "../categories/categories.service";
+import {Subcategory} from "../../../entities/subcategory";
+import {SubcategoriesService} from "../../../services/subcategories.service";
+import {Category} from "../../../entities/category";
+import {CategoriesService} from "../../../services/categories.service";
 
 @Component({
   selector: 'app-subcategories',
