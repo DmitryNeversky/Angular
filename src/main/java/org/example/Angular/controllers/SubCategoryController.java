@@ -1,6 +1,7 @@
 package org.example.Angular.controllers;
 
 import org.example.Angular.entities.SubCategory;
+import org.example.Angular.servies.CategoryService;
 import org.example.Angular.servies.SubCategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,11 @@ import java.util.List;
 public class SubCategoryController {
 
     private final SubCategoryService subCategoryService;
+    private final CategoryService categoryService;
 
-    public SubCategoryController(SubCategoryService subCategoryService) {
+    public SubCategoryController(SubCategoryService subCategoryService, CategoryService categoryService) {
         this.subCategoryService = subCategoryService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/all")
@@ -26,9 +29,8 @@ public class SubCategoryController {
 
     @PostMapping("/add")
     public ResponseEntity<SubCategory> addSubCategory(@RequestBody SubCategory subCategory){
+        categoryService.addSubCategory(subCategory);
 
-        System.out.println(subCategory.toString());
-        subCategoryService.addSubCategory(subCategory);
         return new ResponseEntity<>(subCategory, HttpStatus.CREATED);
     }
 

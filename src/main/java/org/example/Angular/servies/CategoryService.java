@@ -42,34 +42,14 @@ public class CategoryService {
         return subCategories;
     }
 
-    public void addSubCategory(int categoryId, SubCategory subCategory){
+    public void addSubCategory(SubCategory subCategory){
 
-        Optional<Category> category = categoryRepository.findById(categoryId);
+        Optional<Category> category = categoryRepository.findById(subCategory.getCategoryId());
 
         if(category.isPresent()) {
             category.get().getSubCategoryList().add(subCategory);
         } else {
-            System.out.println("Error, the category with id " + categoryId + " is not found.");
-            return;
-        }
-
-        try {
-            categoryRepository.save(category.get());
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void deleteSubCategory(int categoryId, SubCategory subCategory){
-        Optional<Category> category = categoryRepository.findById(categoryId);
-        if(category.isPresent()){
-            try{
-                category.get().getSubCategoryList().remove(subCategory);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("Error, the category with id " + categoryId + " is not found.");
+            System.out.println("Error, the category with id " + subCategory.getCategoryId() + " is not found.");
             return;
         }
 

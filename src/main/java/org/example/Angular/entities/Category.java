@@ -12,7 +12,7 @@ public class Category {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
     @JoinColumn(name = "categoryId")
     private List<SubCategory> subCategoryList;
 

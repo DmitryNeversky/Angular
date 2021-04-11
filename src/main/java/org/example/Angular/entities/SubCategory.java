@@ -1,5 +1,7 @@
 package org.example.Angular.entities;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class SubCategory {
     @OneToMany(mappedBy = "subCategory")
     private List<Item> itemList;
 
+    @Nullable
     private int categoryId;
 
     public SubCategory() { }
