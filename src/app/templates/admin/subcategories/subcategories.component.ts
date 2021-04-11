@@ -26,6 +26,7 @@ export class SubcategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.getSubcategories();
     this.addForm = new FormGroup({
+      id: new FormControl(),
       name: new FormControl(),
       category: new FormControl()
     });
@@ -41,18 +42,16 @@ export class SubcategoriesComponent implements OnInit {
   }
 
   public onAdd(): void {
-    // if(this.subcategories.find(x => x.name === this.addForm.value.name))
-    //   return;
+    if(this.subcategories.find(x => x.name === this.addForm.value.name))
+      return;
 
     let subcategory: Subcategory = {
       name: this.addForm.value.name,
       categoryId: this.addForm.value.category
     }
 
-    console.log(subcategory);
-
-    this.service.addSubcategory(subcategory).subscribe((response: Subcategory) => {
-      this.subcategories.push(response);
+    this.service.addSubcategory(subcategory).subscribe(() => {
+      this.getSubcategories();
     }, error => { console.log(error) });
   }
 
@@ -63,10 +62,8 @@ export class SubcategoriesComponent implements OnInit {
   }
 
   public onUpdate(updateForm: NgForm): void {
-    console.log(updateForm.value);
     this.service.updateSubcategory(updateForm.value).subscribe( (response: Subcategory) => {
       this.getSubcategories();
-      console.log(response);
     }, error => { console.log(error) });
   }
 }
