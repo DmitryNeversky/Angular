@@ -19,9 +19,4 @@ public class Category {
 
     @OneToMany(mappedBy = "category", cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
     private List<SubCategory> subCategoryList;
-
-    public Category(String name, List<SubCategory> subCategoryList) {
-        this.name = name;
-        this.subCategoryList = subCategoryList;
-    }
 }
