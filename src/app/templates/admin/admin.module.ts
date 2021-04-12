@@ -15,7 +15,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         AdminComponent,
         CategoriesComponent,
         SubcategoriesComponent,
-        ItemsComponent
+        ItemsComponent,
     ],
     imports: [
         CommonModule,

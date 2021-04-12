@@ -20,7 +20,6 @@ export class ItemsService {
   }
 
   public updateItem(item:Item): Observable<Item>{
-    console.log(item);
     return this.httpClient.put<Item>(`${this.apiBaseUrl}/item/update`, item)
   }
 

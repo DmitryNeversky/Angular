@@ -28,7 +28,6 @@ export class CategoriesComponent implements OnInit {
 
   private getCategories(){
     this.service.getCategories().subscribe((response: Category[]) => {
-      console.log(response);
       this.categories = response;
     }, error => { console.log(error.message) });
   }
@@ -48,10 +47,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   public onUpdate(updateForm: NgForm): void {
-    console.log(updateForm.value);
     this.service.updateCategory(updateForm.value).subscribe( (response: Category) => {
       this.getCategories();
-      console.log(response);
     }, error => { console.log(error) });
   }
 }

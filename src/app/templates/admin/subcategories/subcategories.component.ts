@@ -62,8 +62,7 @@ export class SubcategoriesComponent implements OnInit {
   }
 
   public onUpdate(updateForm: NgForm): void {
-    this.service.updateSubcategory(updateForm.value).subscribe( (response: Subcategory) => {
-      this.getSubcategories();
+    this.service.updateSubcategory(updateForm.value).subscribe(() => {
     }, error => { console.log(error) });
   }
 }

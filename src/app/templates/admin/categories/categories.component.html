@@ -1,6 +1,6 @@
 <form class="d-flex" [formGroup]="addForm" (submit)="onAdd()">
-    <input type="text" class="form-control" placeholder="Название" formControlName="name">
-    <button type="submit" class="form-control">Добавить</button>
+    <input type="text" placeholder="Название" formControlName="name">
+    <button type="submit">Добавить</button>
 </form>
 
 <ul class="list-group list-group-flush w-100">
@@ -14,7 +14,7 @@
             <input type="hidden" ngModel="{{category.id}}" name="id">
             <input class="border-0" name="name" ngModel="{{category.name}}" type="text">
         </form>
-        <span *ngFor="let subcategory of categories">{{subcategory.name}}</span>
+        <span *ngFor="let subcategory of category.subCategoryList">{{subcategory.name}}</span>
         <div class="d-flex">
             <button class="rename-button border-0 bg-white mr-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
             <button class="remove-button border-0 bg-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(category)"><fa-icon [icon]="icons.times" class="text-danger"></fa-icon></button>
