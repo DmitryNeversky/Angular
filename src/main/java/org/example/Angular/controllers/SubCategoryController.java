@@ -1,7 +1,6 @@
 package org.example.Angular.controllers;
 
 import org.example.Angular.entities.SubCategory;
-import org.example.Angular.servies.CategoryService;
 import org.example.Angular.servies.SubCategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,24 +13,27 @@ import java.util.List;
 public class SubCategoryController {
 
     private final SubCategoryService subCategoryService;
-    private final CategoryService categoryService;
 
-    public SubCategoryController(SubCategoryService subCategoryService, CategoryService categoryService) {
+    public SubCategoryController(SubCategoryService subCategoryService) {
         this.subCategoryService = subCategoryService;
-        this.categoryService = categoryService;
     }
 
     @GetMapping("/all")
     public List<SubCategory> getSubCategories(){
 
-        return subCategoryService.getAllSubcategories();
+        return subCategoryService.getAllSubCategories();
     }
 
     @PostMapping("/add")
     public ResponseEntity<SubCategory> addSubCategory(@RequestBody SubCategory subCategory){
-        categoryService.addSubCategory(subCategory);
 
-        return new ResponseEntity<>(subCategory, HttpStatus.CREATED);
+        return new ResponseEntity<>(subCategoryService.addSubCategory(subCategory), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<SubCategory> updateSubCategory(@RequestBody SubCategory subCategory){
+
+        return new ResponseEntity<>(subCategoryService.updateSubCategory(subCategory), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{subCategory}")
@@ -39,12 +41,5 @@ public class SubCategoryController {
         subCategoryService.deleteSubCategory(subCategory);
 
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PutMapping("/update")
-    public ResponseEntity<SubCategory> updateSubCategory(@RequestBody SubCategory subCategory){
-        subCategoryService.updateSubCategory(subCategory);
-
-        return new ResponseEntity<>(subCategory, HttpStatus.OK);
     }
 }

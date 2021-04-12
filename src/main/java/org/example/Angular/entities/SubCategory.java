@@ -17,14 +17,10 @@ public class SubCategory {
 
     private String name;
 
-    @OneToMany(mappedBy = "subCategory")
+    @OneToMany(mappedBy = "subCategory", cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
     private List<Item> itemList;
 
-    private int categoryId;
-
-    public SubCategory(String name, List<Item> itemList, int categoryId) {
-        this.name = name;
-        this.itemList = itemList;
-        this.categoryId = categoryId;
-    }
+    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
+    @JoinColumn(name = "category")
+    private Category category;
 }
