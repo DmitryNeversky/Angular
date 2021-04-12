@@ -26,7 +26,14 @@ public class CategoryController {
 
     @PostMapping("/add")
     public ResponseEntity<Category> addCategory(@RequestBody Category category){
+
         return new ResponseEntity<>(categoryService.addCategory(category), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Category> updateCategory(@RequestBody Category category){
+
+        return new ResponseEntity<>(categoryService.updateCategory(category), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{category}")
@@ -34,12 +41,5 @@ public class CategoryController {
         categoryService.deleteCategory(category);
 
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PutMapping("/update")
-    public ResponseEntity<Category> updateCategory(@RequestBody Category category){
-        categoryService.updateCategory(category);
-
-        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 }

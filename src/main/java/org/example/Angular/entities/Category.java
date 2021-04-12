@@ -17,8 +17,7 @@ public class Category {
 
     private String name;
 
-    @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
-    @JoinColumn(name = "categoryId")
+    @OneToMany(mappedBy = "category", cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
     private List<SubCategory> subCategoryList;
 
     public Category(String name, List<SubCategory> subCategoryList) {
