@@ -1,9 +1,14 @@
 package org.example.Angular.entities;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Category {
 
     @Id
@@ -16,39 +21,8 @@ public class Category {
     @JoinColumn(name = "categoryId")
     private List<SubCategory> subCategoryList;
 
-    public Category() { }
-
     public Category(String name, List<SubCategory> subCategoryList) {
         this.name = name;
         this.subCategoryList = subCategoryList;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<SubCategory> getSubCategoryList() {
-        return subCategoryList;
-    }
-
-    public void setSubCategoryList(List<SubCategory> subCategoryList) {
-        this.subCategoryList = subCategoryList;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", subCategoryList=" + subCategoryList +
-                '}';
     }
 }
