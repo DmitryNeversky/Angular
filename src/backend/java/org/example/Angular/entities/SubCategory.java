@@ -1,14 +1,11 @@
 package org.example.Angular.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.example.Angular.other.CategoryDeserializer;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
 public class SubCategory {
 
     @Id
@@ -17,10 +14,44 @@ public class SubCategory {
 
     private String name;
 
-    @OneToMany(mappedBy = "subCategory")
-    private List<Item> itemList;
-
     @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
     @JoinColumn(name = "category")
+    @JsonDeserialize(using = CategoryDeserializer.class)
     private Category category;
+
+    public SubCategory() { }
+
+    public SubCategory(String name, Category category) {
+        this.name = name;
+        this.category = category;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "SubCategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category=" + category +
+                '}';
+    }
 }
