@@ -14,8 +14,7 @@
             <input type="hidden" ngModel="{{category.id}}" name="id">
             <input class="border-0" name="name" ngModel="{{category.name}}" type="text">
         </form>
-        <span *ngFor="let subcategory of category.subCategoryList">{{subcategory.name}}</span>
-        <div class="d-flex">
+        <div class="d-flex" *ngIf="category.id != 1">
             <button class="rename-button border-0 bg-white mr-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
             <button class="remove-button border-0 bg-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(category)"><fa-icon [icon]="icons.times" class="text-danger"></fa-icon></button>
         </div>

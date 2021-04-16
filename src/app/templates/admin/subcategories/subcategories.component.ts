@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
-import {Subcategory} from "../../../entities/subcategory";
+import {Subcategory} from "../../../models/subcategory";
 import {SubcategoriesService} from "../../../services/subcategories.service";
-import {Category} from "../../../entities/category";
+import {Category} from "../../../models/category";
 import {CategoriesService} from "../../../services/categories.service";
 
 @Component({
@@ -25,13 +25,13 @@ export class SubcategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSubcategories();
+    this.categoryService.getCategories().subscribe((response: Category[]) => {
+      this.categories = response;
+    });
+
     this.addForm = new FormGroup({
-      id: new FormControl(),
       name: new FormControl(),
       category: new FormControl()
-    });
-    this.categoryService.getCategories().subscribe(r => {
-      this.categories = r;
     });
   }
 
@@ -44,25 +44,22 @@ export class SubcategoriesComponent implements OnInit {
   public onAdd(): void {
     if(this.subcategories.find(x => x.name === this.addForm.value.name))
       return;
+    if(this.addForm.value.category == null)
+      return;
 
-    let subcategory: Subcategory = {
-      name: this.addForm.value.name,
-      categoryId: this.addForm.value.category
-    }
+    this.service.addSubcategory(this.addForm.value).subscribe((response: Subcategory) => {
+      this.subcategories.push(response);
+    }, error => { console.log(error) });
+  }
 
-    this.service.addSubcategory(subcategory).subscribe(() => {
-      this.getSubcategories();
+  public onUpdate(updateForm: NgForm): void { 
+    this.service.updateSubcategory(updateForm.value).subscribe(() => {
     }, error => { console.log(error) });
   }
 
   public onDelete(subcategory: Subcategory): void {
     this.subcategories.splice(this.subcategories.indexOf(subcategory), 1);
     this.service.deleteSubcategory(subcategory).subscribe( () => {
-    }, error => { console.log(error) });
-  }
-
-  public onUpdate(updateForm: NgForm): void {
-    this.service.updateSubcategory(updateForm.value).subscribe(() => {
     }, error => { console.log(error) });
   }
 }

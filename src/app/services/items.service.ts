@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Item} from "../entities/item";
+import {Item} from "../models/item";
 import {Observable} from "rxjs";
 
 @Injectable()
@@ -12,18 +12,18 @@ export class ItemsService {
   constructor(private httpClient:HttpClient) {}
 
   public getItems(): Observable<Item[]>{
-    return this.httpClient.get<Item[]>(`${this.apiBaseUrl}/item/all`);
+    return this.httpClient.get<Item[]>(`${this.apiBaseUrl}/items/all`);
   }
 
-  public addItem(item:Item): Observable<Item>{
-    return this.httpClient.post<Item>(`${this.apiBaseUrl}/item/add`, item);
+  public addItem(item: Item): Observable<Item>{
+    return this.httpClient.post<Item>(`${this.apiBaseUrl}/items/add`, item);
   }
 
   public updateItem(item:Item): Observable<Item>{
-    return this.httpClient.put<Item>(`${this.apiBaseUrl}/item/update`, item)
+    return this.httpClient.put<Item>(`${this.apiBaseUrl}/items/update`, item)
   }
 
   public deleteItem(itemId:number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.apiBaseUrl}/item/delete-${itemId}`)
+    return this.httpClient.delete<void>(`${this.apiBaseUrl}/items/delete-${itemId}`)
   }
 }

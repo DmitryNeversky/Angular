@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CategoriesService} from "../../../services/categories.service";
-import {Category} from "../../../entities/category";
-import {faTimes, faCheck} from "@fortawesome/free-solid-svg-icons";
+import {Category} from "../../../models/category";
+import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
 
 @Component({
@@ -36,19 +36,20 @@ export class CategoriesComponent implements OnInit {
     if(this.categories.find(x => x.name === this.addForm.value.name))
       return;
     this.service.addCategory(this.addForm.value).subscribe((response: Category) => {
+      console.log(response);
       this.categories.push(response);
+    }, error => { console.log(error) });
+  }
+
+  public onUpdate(updateForm: NgForm): void {
+    this.service.updateCategory(updateForm.value).subscribe( (response: Category) => {
+      this.getCategories(); // Оптимизировать с помощью response
     }, error => { console.log(error) });
   }
 
   public onDelete(category: Category): void {
     this.categories.splice(this.categories.indexOf(category), 1);
     this.service.deleteCategory(category).subscribe( () => {
-    }, error => { console.log(error) });
-  }
-
-  public onUpdate(updateForm: NgForm): void {
-    this.service.updateCategory(updateForm.value).subscribe( (response: Category) => {
-      this.getCategories();
     }, error => { console.log(error) });
   }
 }
