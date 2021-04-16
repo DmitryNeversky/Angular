@@ -1,11 +1,17 @@
 package org.example.Angular.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.Angular.other.CategoryDeserializer;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class SubCategory {
 
     @Id
@@ -14,44 +20,16 @@ public class SubCategory {
 
     private String name;
 
-    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
+    @ManyToOne()
     @JoinColumn(name = "category")
     @JsonDeserialize(using = CategoryDeserializer.class)
     private Category category;
 
-    public SubCategory() { }
+    @JsonBackReference
+    @OneToMany(mappedBy = "subCategory")
+    private List<Item> items;
 
-    public SubCategory(String name, Category category) {
+    public SubCategory(String name) {
         this.name = name;
-        this.category = category;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    @Override
-    public String toString() {
-        return "SubCategory{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", category=" + category +
-                '}';
     }
 }

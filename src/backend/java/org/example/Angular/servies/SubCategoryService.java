@@ -4,7 +4,9 @@ import org.example.Angular.entities.SubCategory;
 import org.example.Angular.repositories.SubCategoryRepository;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SubCategoryService {
@@ -24,10 +26,25 @@ public class SubCategoryService {
     }
 
     public SubCategory updateSubCategory(SubCategory subCategory){
+        if(subCategory.getCategory() == null)
+            return subCategory;
+
         return subCategoryRepository.save(subCategory);
     }
 
     public void deleteSubCategory(SubCategory subCategory){
+        Optional<SubCategory> defaultSubCategory = subCategoryRepository.findById(1);
+        if(!defaultSubCategory.isPresent())
+            return;
+
         subCategoryRepository.delete(subCategory);
+    }
+
+    @PostConstruct
+    public void onInit(){
+        if(subCategoryRepository.findByName("Default").isPresent())
+            return;
+
+        subCategoryRepository.save(new SubCategory("Default"));
     }
 }
