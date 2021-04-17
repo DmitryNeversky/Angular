@@ -16,8 +16,10 @@ export class ItemsComponent implements OnInit {
   public icons = {times: faTimes, check: faCheck}
 
   public items: Item[];
-  public addForm: FormGroup;
   public subCategories: Subcategory[];
+
+  public addForm: FormGroup;
+  public loadImages = [];
 
   constructor(private itemService: ItemsService, private subCategoryService: SubcategoriesService) { }
 
@@ -25,16 +27,57 @@ export class ItemsComponent implements OnInit {
     this.addForm = new FormGroup({
       name: new FormControl(),
       description: new FormControl(),
-      //images: new FormControl(),
+      images: new FormControl(),
       price: new FormControl(),
       subCategory: new FormControl()
     });
-
     this.subCategoryService.getSubcategories().subscribe((response: Subcategory[]) => {
       this.subCategories = response;
     },error => console.log(error));
 
     this.getItems();
+  }
+
+  private dt = new DataTransfer()
+
+  loadImage(event) {
+
+    let component = this;
+
+    if (event.target.files && event.target.files[0]) {
+
+      for(const file of event.target.files){
+
+        let ext = file.name.match(/\.([^\.]+)$/)[1];
+
+        switch (ext) {
+          case 'jpg':
+          case 'jpeg':
+          case 'png':
+            break;
+          default:
+            continue;
+        }
+
+        this.dt.items.add(file)
+
+        let reader = new FileReader();
+
+        reader.onload = function (e){
+          component.loadImages.push(e.target.result);
+        }
+
+        reader.readAsDataURL(file); // convert to base64 string
+      }
+
+      event.target.files = this.dt.files
+    }
+  }
+
+  removeImage(event){
+    this.dt.items.remove(event.target)
+    console.log(this.dt.items)
+    event.target.remove()
   }
 
   private getItems(){
@@ -44,7 +87,6 @@ export class ItemsComponent implements OnInit {
   }
 
   public addItem(){
-    console.log(this.addForm.value);
     this.itemService.addItem(this.addForm.value).subscribe((response: Item) => {
       console.log(response);
       this.items.push(response);

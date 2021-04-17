@@ -4,9 +4,11 @@
             <form [formGroup]="addForm" (submit)="addItem()">
                 <input type="text" class="advanced-input" formControlName="name" placeholder="Название">
                 <textarea class="advanced-input" formControlName="description" placeholder="Описание"></textarea>
-                <input type="file" id="add-item-images" class="advanced-input" accept="image/*" multiple>
+                <input type="file" id="add-item-images" class="advanced-input" formControlName="images" (change)="loadImage($event)" accept="image/*" multiple>
                 <label for="add-item-images">Добавить изображения</label>
-                <div id="images" class="images"></div>
+                <div id="images" class="images">
+                    <img src="{{image}}" class="image" *ngFor="let image of loadImages" (click)="removeImage($event)" alt="load.img">
+                </div>
                 <input type="text" class="advanced-input" formControlName="price" placeholder="Цена">
                 <select formControlName="subCategory">
                     <option *ngFor="let subCategory of subCategories" value="{{subCategory.id}}">{{subCategory.name}}</option>
