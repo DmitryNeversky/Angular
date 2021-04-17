@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.example.Angular.other.SubCategoryDeserializer;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Data
@@ -20,6 +22,13 @@ public class Item {
     private String description;
     private double price;
     private int count;
+
+    @ElementCollection
+    @CollectionTable(name = "idea_images_mapping",
+            joinColumns = {@JoinColumn(name = "idea_id", referencedColumnName = "id")})
+    @MapKeyColumn(name = "image_name")
+    @Column(name = "image_uuid")
+    private Map<String, String> images = new HashMap<>();
 
     @ManyToOne
     @JoinColumn(name = "subCategory")
