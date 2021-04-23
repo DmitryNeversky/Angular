@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,7 +21,7 @@ public class Category {
 
     @JsonBackReference
     @OneToMany(mappedBy = "category")
-    private List<SubCategory> subCategories;
+    private Set<SubCategory> subCategories = new HashSet<>();
 
     public Category(String name) {
         this.name = name;

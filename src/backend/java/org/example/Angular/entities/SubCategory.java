@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import org.example.Angular.other.CategoryDeserializer;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -27,7 +28,7 @@ public class SubCategory {
 
     @JsonBackReference
     @OneToMany(mappedBy = "subCategory")
-    private List<Item> items;
+    private Set<Item> items = new HashSet<>();
 
     public SubCategory(String name) {
         this.name = name;

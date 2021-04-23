@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import org.example.Angular.other.SubCategoryDeserializer;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -23,15 +23,21 @@ public class Item {
     private double price;
     private int count;
 
-    @ElementCollection
-    @CollectionTable(name = "idea_images_mapping",
-            joinColumns = {@JoinColumn(name = "idea_id", referencedColumnName = "id")})
-    @MapKeyColumn(name = "image_name")
-    @Column(name = "image_uuid")
-    private Map<String, String> images = new HashMap<>();
-
     @ManyToOne
     @JoinColumn(name = "subCategory")
     @JsonDeserialize(using = SubCategoryDeserializer.class)
     private SubCategory subCategory;
+
+    @ElementCollection
+    @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "item_id"))
+    @Column(name = "filename")
+    private Set<String> images = new HashSet<>();
+
+    public Item(String name, String description, double price, int count, SubCategory subCategory) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.count = count;
+        this.subCategory = subCategory;
+    }
 }
