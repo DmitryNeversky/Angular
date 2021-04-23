@@ -92,3 +92,38 @@ button.advanced-input:hover{
 .bg-main{
     background: #ffe18699;
 }
+
+#add-item-images{
+    display: none;
+}
+
+#add-item-images + label:hover{
+    cursor: pointer;
+}
+
+.images .image{
+    height: 100px;
+    width: 108px;
+    margin: 5px;
+}
+
+.images .image:hover{
+    cursor: pointer;
+}
+
+.update-button, .remove-button, .open-button{
+    background: none;
+    border: none;
+}
+
+.update-button:not([disabled]){
+    color: #00d24b;
+}
+
+.remove-button{
+    color: red;
+}
+
+.open-button{
+    color: dodgerblue;
+}

@@ -1,46 +1,58 @@
-<div class="container mx-3">
+<div class="container">
     <div class="row">
         <div class="col-md-4">
-            <form [formGroup]="addForm" (submit)="addItem()">
-                <input type="text" class="advanced-input" formControlName="name" placeholder="Название">
-                <textarea class="advanced-input" formControlName="description" placeholder="Описание"></textarea>
-                <input type="file" id="add-item-images" class="advanced-input" formControlName="images" (change)="loadImage($event)" accept="image/*" multiple>
+            <form #addForm="ngForm">
+                <input type="text" class="advanced-input" name="name" ngModel placeholder="Название">
+                <textarea class="advanced-input" name="description" ngModel placeholder="Описание"></textarea>
+                <input type="file" id="add-item-images" class="advanced-input" (change)="addImageLoader.load($event)" accept="image/*" multiple>
                 <label for="add-item-images">Добавить изображения</label>
                 <div id="images" class="images">
-                    <img src="{{image}}" class="image" *ngFor="let image of loadImages" (click)="removeImage($event)" alt="load.img">
+                    <img src="{{image}}" class="image" *ngFor="let image of addImageLoader.loadImages" (click)="addImageLoader.removeImage($event)" alt="load.img">
                 </div>
-                <input type="text" class="advanced-input" formControlName="price" placeholder="Цена">
-                <select formControlName="subCategory">
+                <input type="text" class="advanced-input" name="price" ngModel placeholder="Цена">
+                <input type="text" class="advanced-input" name="count" ngModel placeholder="Кол-Во">
+                <select name="subCategory" ngModel>
                     <option *ngFor="let subCategory of subCategories" value="{{subCategory.id}}">{{subCategory.name}}</option>
                 </select>
-                <button type="submit" class="advanced-input">Добавить</button>
+                <button class="advanced-input" (click)="addItem(addForm)">Добавить</button>
             </form>
         </div>
         <div class="col-md-8">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">Area</th>
-                        <th scope="col">Population</th>
-                        <th scope="col">Population</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of items">
-                        <th scope="row">{{ item.id }}</th>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.count }}</td>
-                        <td>{{ item.price }}</td>
-                        <td>
-                            <button class="rename-button border-0 bg-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" ><fa-icon [icon]="icons.check"></fa-icon></button>
-                            <button class="remove-button border-0 bg-white mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" ><fa-icon [icon]="icons.times" class="text-danger"></fa-icon></button>
-                            <button class="open-button border-0 bg-white" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" >\/</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="row mb-3">
+                <div class="font-weight-bold col-md-1">#</div>
+                <div class="font-weight-bold col-md-3">Название</div>
+                <div class="font-weight-bold col-md-2">Цена</div>
+                <div class="font-weight-bold col-md-2">Кол-во</div>
+                <div class="font-weight-bold col-md-3">Подкатегория</div>
+                <div class="font-weight-bold col-md-1">Операции</div>
+            </div>
+            <form #updateForm="ngForm" class="update-form d-flex row" *ngFor="let item of items">
+                <input type="hidden" name="id" ngModel="{{ item.id }}">
+                <div class="col-md-1"><p>{{ item.id }}</p></div>
+                <div class="col-md-3"><input type="text" class="advanced-input border-bottom" name="name" ngModel="{{ item.name }}"></div>
+                <div class="col-md-2"><input type="text" class="advanced-input border-bottom" name="price" ngModel="{{ item.price }}"></div>
+                <div class="col-md-2"><input type="text" class="advanced-input border-bottom" name="count" ngModel="{{ item.count }}"></div>
+                <div class="col-md-3">
+                    <select name="subCategory" class="advanced-input" ngModel="{{ item.subCategory.id }}">
+                        <option *ngFor="let subCategory of subCategories" value="{{ subCategory.id }}">{{ subCategory.name }}</option>
+                    </select>
+                </div>
+                <div class="col-md-1 d-flex align-items-baseline">
+                    <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="updateItem(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
+                    <button class="remove-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="deleteItem(item)"><fa-icon [icon]="icons.times"></fa-icon></button>
+                    <button class="open-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="openItem($event)"><fa-icon [icon]="icons.open"></fa-icon></button>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-6">
+                        <input type="text" class="advanced-input border-bottom" name="description" ngModel="{{ item.description }}">
+                    </div>
+                    <div class="col-md-6 images">
+                        <input type="file" name="images" ngModel="{{ item.images }}" (change)="updateImageLoader.load($event)">
+                        <img src="{{ image }}" *ngFor="let image of updateImageLoader.loadImages" alt="">
+                        <img src="/assets/images/uploaded/{{ image }}" *ngFor="let image of item.images" (click)="remImage($event, image)" class="image" alt="">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

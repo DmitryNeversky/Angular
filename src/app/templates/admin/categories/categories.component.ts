@@ -48,8 +48,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   public onDelete(category: Category): void {
-    this.categories.splice(this.categories.indexOf(category), 1);
     this.service.deleteCategory(category).subscribe( () => {
+      this.categories.splice(this.categories.indexOf(category), 1);
     }, error => { console.log(error) });
   }
 }

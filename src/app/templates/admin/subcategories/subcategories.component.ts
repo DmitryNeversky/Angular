@@ -58,8 +58,8 @@ export class SubcategoriesComponent implements OnInit {
   }
 
   public onDelete(subcategory: Subcategory): void {
-    this.subcategories.splice(this.subcategories.indexOf(subcategory), 1);
     this.service.deleteSubcategory(subcategory).subscribe( () => {
+      this.subcategories.splice(this.subcategories.indexOf(subcategory), 1);
     }, error => { console.log(error) });
   }
 }

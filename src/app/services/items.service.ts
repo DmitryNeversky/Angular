@@ -15,15 +15,16 @@ export class ItemsService {
     return this.httpClient.get<Item[]>(`${this.apiBaseUrl}/items/all`);
   }
 
-  public addItem(item: Item): Observable<Item>{
-    return this.httpClient.post<Item>(`${this.apiBaseUrl}/items/add`, item);
+  public addItem(formData: FormData): Observable<Item>{
+    return this.httpClient.post<Item>(`${this.apiBaseUrl}/items/add`, formData);
   }
 
-  public updateItem(item:Item): Observable<Item>{
-    return this.httpClient.put<Item>(`${this.apiBaseUrl}/items/update`, item)
+  public updateItem(id: number, formData: FormData): Observable<Item>{
+    console.log(id);
+    return this.httpClient.put<Item>(`${this.apiBaseUrl}/items/update/${id}`, formData)
   }
 
   public deleteItem(itemId:number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.apiBaseUrl}/items/delete-${itemId}`)
+    return this.httpClient.delete<void>(`${this.apiBaseUrl}/items/delete/${itemId}`)
   }
 }
