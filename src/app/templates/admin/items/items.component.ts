@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ItemsService} from "../../../services/items.service";
+import {ItemService} from "../../../services/item.service";
 import {Item} from "../../../models/item";
 import {Subcategory} from "../../../models/subcategory";
-import {SubcategoriesService} from "../../../services/subcategories.service";
-import {faCheck, faChevronDown, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {SubcategoryService} from "../../../services/subcategory.service";
 import {NgForm} from "@angular/forms";
-import {ImageLoader} from "../other/ImageLoader";
 
 @Component({
   selector: 'app-items',
@@ -14,29 +12,24 @@ import {ImageLoader} from "../other/ImageLoader";
 })
 export class ItemsComponent implements OnInit {
 
-  public icons = {times: faTimes, check: faCheck, open: faChevronDown}
-
   public items: Item[];
   public subCategories: Subcategory[];
   public loadImages = [];
-  public addImageLoader: ImageLoader;
-  public updateImageLoader: ImageLoader;
 
-  constructor(private itemService: ItemsService, private subCategoryService: SubcategoriesService) { }
+  public dataTransfer: DataTransfer = new DataTransfer();
+
+  constructor(private itemService: ItemService, private subCategoryService: SubcategoryService) { }
 
   ngOnInit(): void {
-    this.subCategoryService.getSubcategories().subscribe((response: Subcategory[]) => {
+    this.subCategoryService.getAll().subscribe((response: Subcategory[]) => {
       this.subCategories = response;
     },error => console.log(error));
-
-    this.addImageLoader = new ImageLoader();
-    this.updateImageLoader = new ImageLoader();
 
     this.getItems();
   }
 
   private getItems(){
-    this.itemService.getItems().subscribe((response: Item[]) => {
+    this.itemService.getAll().subscribe((response: Item[]) => {
       this.items = response;
     }, error => console.log(error));
   }
@@ -51,54 +44,50 @@ export class ItemsComponent implements OnInit {
     formData.append('count', form.value.count);
     formData.append('subCategory', form.value.subCategory);
 
-    for (let i = 0; i < this.addImageLoader.dataTransfer.files.length; i++)
-      formData.append('images', this.addImageLoader.dataTransfer.files[i]);
+    for (let i = 0; i < this.dataTransfer.files.length; i++)
+      formData.append('images', this.dataTransfer.files[i]);
 
-    this.itemService.addItem(formData).subscribe((response: Item) => {
+    this.itemService.add(formData).subscribe((response: Item) => {
       this.items.push(response);
     }, error => console.log(error));
   }
 
-  deleteItem(item: Item) {
-    this.itemService.deleteItem(item.id).subscribe(() => {
-      this.items.splice(this.items.indexOf(item), 1);
-    }, error => console.log(error));
-  }
+  load(event) {
 
-  public removeImagesList: string[] = [];
+    let component = this;
 
-  remImage(event, image){
-    if(event.target.hasAttribute('remove')) {
-      event.target.removeAttribute('remove');
-      this.removeImagesList = this.removeImagesList.filter(x => x != image);
-      event.target.style.opacity = '1';
-    } else {
-      event.target.setAttribute('remove', null);
-      this.removeImagesList.push(image);
-      event.target.style.opacity = '0.5';
+    if (event.target.files && event.target.files[0]) {
+
+      for(const file of event.target.files){
+
+        let ext = file.name.match(/\.([^\.]+)$/)[1];
+
+        switch (ext) {
+          case 'jpg':
+          case 'jpeg':
+          case 'png':
+            break;
+          default:
+            continue;
+        }
+
+        this.dataTransfer.items.add(file);
+
+        let reader = new FileReader();
+
+        reader.onload = function (e){
+          component.loadImages.push(e.target.result);
+        }
+
+        reader.readAsDataURL(file); // convert to base64 string
+      }
+
+      event.target.files = this.dataTransfer.files;
     }
   }
 
-  updateItem(form: NgForm) {
-
-    let formData = new FormData();
-
-    formData.append('name', form.value.name);
-    formData.append('description', form.value.description);
-    formData.append('price', form.value.price);
-    formData.append('count', form.value.count);
-    formData.append('subCategory', form.value.subCategory);
-    this.removeImagesList.forEach(x => formData.append('removeImages', x));
-    for (let i = 0; i < this.updateImageLoader.dataTransfer.files.length; i++)
-      formData.append('addImages', this.updateImageLoader.dataTransfer.files[i]);
-
-    this.itemService.updateItem(form.value.id, formData).subscribe((response: Item) => {
-      console.log(response);
-      this.items.push(response);
-    }, error => console.log(error));
-  }
-
-  openItem(event){
-    event.target.style.transform = 'rotate(180deg)';
+  removeImage(event){
+    this.dataTransfer.items.remove(event.target);
+    event.target.remove();
   }
 }

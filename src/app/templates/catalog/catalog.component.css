@@ -5,3 +5,7 @@
 .catalog .card{
     box-shadow: 0 0 15px -5px rgba(0, 0, 0, .2);
 }
+
+.catalog .card img{
+    max-height: 284px;
+}

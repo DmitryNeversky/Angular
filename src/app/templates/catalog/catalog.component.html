@@ -44,10 +44,12 @@
             <!--Categories-->
 
             <div class="col-md-2 categories border-end">
-<!--                <ul class="nav flex-column mb-3" th:each="category: ${categories}">-->
-<!--                    <li class="fw-bold"><a href="#" th:text="${category.name}"></a></li>-->
-<!--                    <li class="ms-3" th:each="subcategory: ${subcategories}"><a href="#" th:text="${subcategory.name}"></a></li>-->
-<!--                </ul>-->
+                <ul class="nav flex-column mb-3" *ngFor="let category of categories">
+                    <li class="font-weight-bold"><a href="#">{{ category.name }}</a></li>
+                    <li class="ml-3" *ngFor="let subCategory of subCategories">
+                        <a href="#">{{ subCategory.name }}</a>
+                    </li>
+                </ul>
             </div>
 
             <!--Items-->
@@ -55,18 +57,19 @@
             <div class="col-md-10">
                 <div class="row">
 
-<!--                    <div class="col-md-4" th:each="item: ${items}">-->
-<!--                        <div class="card">-->
-<!--                            <img src="/static/images/door.jpg" alt="img.item">-->
-<!--                            <div class="p-3">-->
-<!--                                <p class="fw-bold" th:text="${item.name}">Арарати</p>-->
-<!--                                <p class="text-black-50" th:text="${item.description}">Произведено в германии. Одобрено странами ЕС.</p>-->
-<!--                                <p class="text-black-50 h5 mb-4" th:text="${item.price}">99$</p>-->
-<!--                                <a class="float-start" href="#">Смотреть</a>-->
-<!--                                <a class="float-end" href="#"><i class="fas fa-heart"></i></a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <div class="col-md-4" *ngFor="let item of items">
+                        <div class="card">
+                            <img src="{{ '../../assets/images/uploaded/' + item.images[0] }}" alt="img.item">
+                            <div class="p-3">
+                                <p class="fw-bold">{{ item.name }}</p>
+                                <p class="text-black-50">{{ item.description }}</p>
+                                <p class="text-black-50 h5 mb-4">{{ item.price }}</p>
+                                <p class="text-black-50 h5 mb-4">{{ item.count }}</p>
+                                <a class="float-start" href="#">Смотреть</a>
+                                <a class="float-end" href="#"><i class="fas fa-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

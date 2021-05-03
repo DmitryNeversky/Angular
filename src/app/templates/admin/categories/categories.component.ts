@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoriesService} from "../../../services/categories.service";
+import {CategoryService} from "../../../services/category.service";
 import {Category} from "../../../models/category";
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
@@ -17,7 +17,7 @@ export class CategoriesComponent implements OnInit {
 
   public addForm: FormGroup;
 
-  constructor(private service: CategoriesService) { }
+  constructor(private service: CategoryService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -27,7 +27,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   private getCategories(){
-    this.service.getCategories().subscribe((response: Category[]) => {
+    this.service.getAll().subscribe((response: Category[]) => {
       this.categories = response;
     }, error => { console.log(error.message) });
   }
@@ -35,20 +35,20 @@ export class CategoriesComponent implements OnInit {
   public onAdd(): void {
     if(this.categories.find(x => x.name === this.addForm.value.name))
       return;
-    this.service.addCategory(this.addForm.value).subscribe((response: Category) => {
+    this.service.add(this.addForm.value).subscribe((response: Category) => {
       console.log(response);
       this.categories.push(response);
     }, error => { console.log(error) });
   }
 
   public onUpdate(updateForm: NgForm): void {
-    this.service.updateCategory(updateForm.value).subscribe( (response: Category) => {
+    this.service.update(updateForm.value).subscribe( (response: Category) => {
       this.getCategories(); // Оптимизировать с помощью response
     }, error => { console.log(error) });
   }
 
   public onDelete(category: Category): void {
-    this.service.deleteCategory(category).subscribe( () => {
+    this.service.delete(category).subscribe( () => {
       this.categories.splice(this.categories.indexOf(category), 1);
     }, error => { console.log(error) });
   }

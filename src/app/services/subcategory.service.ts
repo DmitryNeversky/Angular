@@ -5,24 +5,24 @@ import {Observable} from "rxjs";
 import {Subcategory} from "../models/subcategory";
 
 @Injectable()
-export class SubcategoriesService {
+export class SubcategoryService {
   private apiBaseUrl = environment.apiBaseUrl;
 
   constructor(private httpClient: HttpClient) {}
 
-  public getSubcategories(): Observable<Subcategory[]>{
+  public getAll(): Observable<Subcategory[]>{
     return this.httpClient.get<Subcategory[]>(`${this.apiBaseUrl}/subcategories/all`);
   }
 
-  public addSubcategory(subcategory: Subcategory): Observable<Subcategory>{
+  public add(subcategory: Subcategory): Observable<Subcategory>{
     return this.httpClient.post<Subcategory>(`${this.apiBaseUrl}/subcategories/add`, subcategory);
   }
 
-  public updateSubcategory(subcategory: Subcategory): Observable<Subcategory>{
+  public update(subcategory: Subcategory): Observable<Subcategory>{
     return this.httpClient.put<Subcategory>(`${this.apiBaseUrl}/subcategories/update`, subcategory);
   }
 
-  public deleteSubcategory(subcategory: Subcategory): Observable<void> {
+  public delete(subcategory: Subcategory): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiBaseUrl}/subcategories/delete/${subcategory.id}`);
   }
 }
