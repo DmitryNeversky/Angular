@@ -30,6 +30,7 @@ export class CatalogComponent implements OnInit {
   getCategories(){
     this.categoryService.getAll().subscribe((response: Category[]) => {
       this.categories = response;
+      console.log(this.categories)
     }, error => { console.log(error) });
   }
   getSubCategories(){
