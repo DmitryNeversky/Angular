@@ -44,10 +44,10 @@
             <!--Categories-->
 
             <div class="col-md-2 categories border-end">
-                <ul class="nav flex-column mb-3" *ngFor="let category of categories">
-                    <li class="font-weight-bold"><a href="#">{{ category.name }}</a></li>
-                    <li class="ml-3" *ngFor="let subCategory of subCategories">
-                        <a href="#">{{ subCategory.name }}</a>
+                <ul class="nav flex-column mb-5" *ngFor="let category of categories">
+                    <li class="font-weight-bold text-black-50"><a href="{{ category.name }}">{{ category.name }}</a></li>
+                    <li class="text-light" *ngFor="let subCategory of subCategories">
+                        <a *ngIf="subCategory.category.id == category.id" href="{{ subCategory.name }}">{{ subCategory.name }}</a>
                     </li>
                 </ul>
             </div>

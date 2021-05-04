@@ -1,0 +1,28 @@
+<form #updateForm="ngForm" class="update-form d-flex row">
+    <input type="hidden" name="id" ngModel="{{ item.id }}">
+    <div class="col-md-1"><p>{{ item.id }}</p></div>
+    <div class="col-md-3"><input type="text" class="advanced-input border-bottom" name="name" ngModel="{{ item.name }}"></div>
+    <div class="col-md-2"><input type="text" class="advanced-input border-bottom" name="price" ngModel="{{ item.price }}"></div>
+    <div class="col-md-2"><input type="text" class="advanced-input border-bottom" name="count" ngModel="{{ item.count }}"></div>
+    <div class="col-md-3">
+        <select name="subCategory" class="advanced-input" ngModel="{{ item.subCategory.id }}">
+            <option *ngFor="let subCategory of subCategories" value="{{ subCategory.id }}">{{ subCategory.name }}</option>
+        </select>
+    </div>
+    <div class="col-md-1 d-flex align-items-baseline">
+        <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="updateItem(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
+        <button class="remove-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="deleteItem(item)"><fa-icon [icon]="icons.times"></fa-icon></button>
+        <button class="open-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="openItem($event)"><fa-icon [icon]="icons.open"></fa-icon></button>
+    </div>
+    <div class="col-md-12 row">
+        <div class="col-md-6">
+            <input type="text" class="advanced-input border-bottom" name="description" ngModel="{{ item.description }}">
+        </div>
+        <div class="col-md-6 images">
+            <input type="file" id="add-image" class="advanced-input d-none" (change)="load($event)" accept="image/*" multiple>
+            <label for="add-image">Добавить изображения</label>
+            <img src="{{ image }}" *ngFor="let image of loadImages" class="image" (click)="removeImage($event)" alt="">
+            <img src="/assets/images/uploaded/{{ image }}" *ngFor="let image of item.images" (click)="remImage($event, image)" class="image" alt="">
+        </div>
+    </div>
+</form>
