@@ -38,8 +38,7 @@ export class SubcategoriesComponent implements OnInit {
   private getSubcategories(){
     this.service.getAll().subscribe((response: Subcategory[]) => {
       this.subcategories = response;
-
-      response.forEach(x => console.log(x));
+      console.log(this.subcategories);
     }, error => { console.log(error.message) });
   }
 
