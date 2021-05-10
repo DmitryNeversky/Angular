@@ -21,12 +21,18 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category addCategory(Category category){
-        return categoryRepository.save(category);
+    public Category addCategory(String name){
+        return categoryRepository.save(new Category(name));
     }
 
-    public Category updateCategory(Category category){
-        return categoryRepository.save(category);
+    public Category updateCategory(int id, String name){
+        Optional<Category> category = categoryRepository.findById(id);
+        if(!category.isPresent())
+            return null;
+
+        category.get().setName(name);
+
+        return categoryRepository.save(category.get());
     }
 
     public void deleteCategory(Category category){

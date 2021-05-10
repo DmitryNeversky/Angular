@@ -1,5 +1,6 @@
 package org.example.Angular.controllers;
 
+import org.example.Angular.entities.Category;
 import org.example.Angular.entities.SubCategory;
 import org.example.Angular.servies.SubCategoryService;
 import org.springframework.http.HttpStatus;
@@ -25,9 +26,10 @@ public class SubCategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<SubCategory> addSubCategory(@RequestBody SubCategory subCategory){
+    public ResponseEntity<SubCategory> addSubCategory(@RequestParam String name,
+                                                      @RequestParam Category category){
 
-        return new ResponseEntity<>(subCategoryService.addSubCategory(subCategory), HttpStatus.CREATED);
+        return new ResponseEntity<>(subCategoryService.addSubCategory(name, category), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")

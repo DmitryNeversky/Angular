@@ -85,7 +85,7 @@ public class ItemService {
                 try {
                     Path path = Paths.get(UPLOAD_IMAGE_PATH + fileName);
                     Files.copy(pair.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-                    item.getImages().add(fileName);
+                    item.addImage(fileName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

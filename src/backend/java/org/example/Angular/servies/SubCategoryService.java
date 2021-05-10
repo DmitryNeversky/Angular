@@ -1,5 +1,6 @@
 package org.example.Angular.servies;
 
+import org.example.Angular.entities.Category;
 import org.example.Angular.entities.SubCategory;
 import org.example.Angular.repositories.SubCategoryRepository;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,9 @@ public class SubCategoryService {
         return subCategoryRepository.findAll();
     }
 
-    public SubCategory addSubCategory(SubCategory subCategory){
+    public SubCategory addSubCategory(String name, Category category){
+        SubCategory subCategory = new SubCategory(name, category);
+
         return subCategoryRepository.save(subCategory);
     }
 
@@ -37,6 +40,7 @@ public class SubCategoryService {
         if(!defaultSubCategory.isPresent())
             return;
 
+        subCategory.getItems().forEach(item -> item.setSubCategory(defaultSubCategory.get()));
         subCategoryRepository.delete(subCategory);
     }
 

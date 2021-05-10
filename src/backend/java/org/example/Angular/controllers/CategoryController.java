@@ -25,15 +25,17 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Category> addCategory(@RequestBody Category category){
+    public ResponseEntity<Category> addCategory(@RequestParam String name){
 
-        return new ResponseEntity<>(categoryService.addCategory(category), HttpStatus.CREATED);
+        return new ResponseEntity<>(categoryService.addCategory(name), HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Category> updateCategory(@RequestBody Category category){
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Category> updateCategory(
+            @PathVariable int id,
+            @RequestParam(required = false) String name){
 
-        return new ResponseEntity<>(categoryService.updateCategory(category), HttpStatus.OK);
+        return new ResponseEntity<>(categoryService.updateCategory(id, name), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{category}")
