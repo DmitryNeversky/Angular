@@ -25,7 +25,7 @@ const routes: Routes = [
     {
         path: 'admin',
         data: { animation: 'admin' },
-        loadChildren: () => import('./templates/admin/admin.module').then(m => m.AdminModule)
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
     }
 ]
 

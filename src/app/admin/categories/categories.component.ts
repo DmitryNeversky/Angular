@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoryService} from "../../../services/category.service";
-import {Category} from "../../../models/category";
+import {CategoryService} from "../../services/category.service";
+import {Category} from "../../models/category";
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
 
@@ -29,20 +29,27 @@ export class CategoriesComponent implements OnInit {
   private getCategories(){
     this.service.getAll().subscribe((response: Category[]) => {
       this.categories = response;
+      response.forEach(x => console.log(x));
     }, error => { console.log(error.message) });
   }
 
   public onAdd(): void {
     if(this.categories.find(x => x.name === this.addForm.value.name))
       return;
-    this.service.add(this.addForm.value).subscribe((response: Category) => {
-      console.log(response);
+
+    let formData = new FormData();
+    formData.append('name', this.addForm.value.name);
+
+    this.service.add(formData).subscribe((response: Category) => {
       this.categories.push(response);
     }, error => { console.log(error) });
   }
 
   public onUpdate(updateForm: NgForm): void {
-    this.service.update(updateForm.value).subscribe( (response: Category) => {
+    let formData = new FormData();
+    formData.append('name', updateForm.value.name);
+
+    this.service.update(updateForm.value.id, formData).subscribe( (response: Category) => {
       this.getCategories(); // Оптимизировать с помощью response
     }, error => { console.log(error) });
   }

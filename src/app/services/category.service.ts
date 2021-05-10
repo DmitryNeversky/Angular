@@ -15,12 +15,12 @@ export class CategoryService {
     return this.httpClient.get<Category[]>(`${this.apiBaseUrl}/categories/all`);
   }
 
-  public add(category: Category): Observable<Category>{
-    return this.httpClient.post<Category>(`${this.apiBaseUrl}/categories/add`, category);
+  public add(formData: FormData): Observable<Category>{
+    return this.httpClient.post<Category>(`${this.apiBaseUrl}/categories/add`, formData);
   }
 
-  public update(category: Category): Observable<Category>{
-    return this.httpClient.put<Category>(`${this.apiBaseUrl}/categories/update`, category);
+  public update(id: number, formData: FormData): Observable<Category>{
+    return this.httpClient.put<Category>(`${this.apiBaseUrl}/categories/update/${id}`, formData);
   }
 
   public delete(category: Category): Observable<void> {

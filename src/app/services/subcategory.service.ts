@@ -14,8 +14,8 @@ export class SubcategoryService {
     return this.httpClient.get<Subcategory[]>(`${this.apiBaseUrl}/subcategories/all`);
   }
 
-  public add(subcategory: Subcategory): Observable<Subcategory>{
-    return this.httpClient.post<Subcategory>(`${this.apiBaseUrl}/subcategories/add`, subcategory);
+  public add(formData: FormData): Observable<Subcategory>{
+    return this.httpClient.post<Subcategory>(`${this.apiBaseUrl}/subcategories/add`, formData);
   }
 
   public update(subcategory: Subcategory): Observable<Subcategory>{

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
-import {Subcategory} from "../../../models/subcategory";
-import {SubcategoryService} from "../../../services/subcategory.service";
-import {Category} from "../../../models/category";
-import {CategoryService} from "../../../services/category.service";
+import {Subcategory} from "../../models/subcategory";
+import {SubcategoryService} from "../../services/subcategory.service";
+import {Category} from "../../models/category";
+import {CategoryService} from "../../services/category.service";
 
 @Component({
   selector: 'app-subcategories',
@@ -38,6 +38,8 @@ export class SubcategoriesComponent implements OnInit {
   private getSubcategories(){
     this.service.getAll().subscribe((response: Subcategory[]) => {
       this.subcategories = response;
+
+      response.forEach(x => console.log(x));
     }, error => { console.log(error.message) });
   }
 
@@ -47,7 +49,11 @@ export class SubcategoriesComponent implements OnInit {
     if(this.addForm.value.category == null)
       return;
 
-    this.service.add(this.addForm.value).subscribe((response: Subcategory) => {
+    let formData = new FormData();
+    formData.append('name', this.addForm.value.name);
+    formData.append('category', this.addForm.value.category);
+
+    this.service.add(formData).subscribe((response: Subcategory) => {
       this.subcategories.push(response);
     }, error => { console.log(error) });
   }
