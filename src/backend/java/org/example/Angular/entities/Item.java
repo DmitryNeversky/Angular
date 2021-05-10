@@ -1,7 +1,5 @@
 package org.example.Angular.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,8 +16,7 @@ public class Item {
     private double price;
     private int count;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JsonManagedReference
+    @ManyToOne
     private SubCategory subCategory;
 
     @ElementCollection

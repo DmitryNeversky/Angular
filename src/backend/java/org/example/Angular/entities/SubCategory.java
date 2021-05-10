@@ -1,13 +1,17 @@
 package org.example.Angular.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonIdentityInfo(
+        property = "id",
+        generator = ObjectIdGenerators.PropertyGenerator.class
+)
 public class SubCategory {
 
     @Id
@@ -17,12 +21,9 @@ public class SubCategory {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    @JsonManagedReference
     private Category category;
 
     @OneToMany(mappedBy = "subCategory")
-    @JsonBackReference
     private Set<Item> items = new HashSet<>();
 
 //  Constructors
@@ -73,6 +74,7 @@ public class SubCategory {
         return "SubCategory{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", category=" + category +
                 ", items=" + items +
                 '}';
     }
