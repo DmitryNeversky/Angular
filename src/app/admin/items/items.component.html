@@ -17,17 +17,17 @@
                 <button class="advanced-input" (click)="addItem(addForm)">Добавить</button>
             </form>
         </div>
-        <div class="col-md-8">
-            <div class="row mb-3">
+        <div class="col-md-8 pt-2">
+            <div class="row">
                 <div class="font-weight-bold col-md-1">#</div>
-                <div class="font-weight-bold col-md-3">Название</div>
+                <div class="font-weight-bold col-md-2">Название</div>
                 <div class="font-weight-bold col-md-2">Цена</div>
                 <div class="font-weight-bold col-md-2">Кол-во</div>
                 <div class="font-weight-bold col-md-3">Подкатегория</div>
-                <div class="font-weight-bold col-md-1">Операции</div>
+                <div class="font-weight-bold col-md-2">Операции</div>
             </div>
-            <div>
-                <app-item *ngFor="let item of items" [item]="item"></app-item>
+            <div class="my-2" *ngFor="let item of items">
+                <app-item [item]="item"></app-item>
             </div>
         </div>
     </div>

@@ -1,0 +1,37 @@
+import {Component, Input, OnInit} from '@angular/core';
+import {NgForm} from "@angular/forms";
+import {Category} from "../../../models/category";
+import {CategoryService} from "../../../services/category.service";
+import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
+
+@Component({
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css']
+})
+export class CategoryComponent implements OnInit {
+
+  public icons = {times: faTimes, check: faCheck}
+
+  @Input()
+  public category: Category;
+
+  constructor(private categoryService: CategoryService) { }
+
+  ngOnInit(): void {
+  }
+
+  public onUpdate(updateForm: NgForm): void {
+    let formData = new FormData();
+    formData.append('name', updateForm.value.name);
+
+    this.categoryService.update(updateForm.value.id, formData).subscribe( () => {
+    }, error => { console.log(error) });
+  }
+
+  public onDelete(category: Category): void {
+    this.categoryService.delete(category).subscribe( () => {
+      // event.target.remove
+    }, error => { console.log(error) });
+  }
+}

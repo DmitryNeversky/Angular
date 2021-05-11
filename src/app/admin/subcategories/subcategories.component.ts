@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
-import {FormControl, FormGroup, NgForm} from "@angular/forms";
+import {NgForm} from "@angular/forms";
 import {Subcategory} from "../../models/subcategory";
 import {SubcategoryService} from "../../services/subcategory.service";
 import {Category} from "../../models/category";
@@ -19,8 +19,6 @@ export class SubcategoriesComponent implements OnInit {
 
   public subcategories: Subcategory[];
 
-  public addForm: FormGroup;
-
   constructor(private service: SubcategoryService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
@@ -28,43 +26,26 @@ export class SubcategoriesComponent implements OnInit {
     this.categoryService.getAll().subscribe((response: Category[]) => {
       this.categories = response;
     });
-
-    this.addForm = new FormGroup({
-      name: new FormControl(),
-      category: new FormControl()
-    });
   }
 
   private getSubcategories(){
     this.service.getAll().subscribe((response: Subcategory[]) => {
       this.subcategories = response;
-      console.log(this.subcategories);
     }, error => { console.log(error.message) });
   }
 
-  public onAdd(): void {
-    if(this.subcategories.find(x => x.name === this.addForm.value.name))
+  public onAdd(addForm: NgForm): void {
+    if(this.subcategories.find(x => x.name === addForm.value.name))
       return;
-    if(this.addForm.value.category == null)
+    if(addForm.value.category == null)
       return;
 
     let formData = new FormData();
-    formData.append('name', this.addForm.value.name);
-    formData.append('category', this.addForm.value.category);
+    formData.append('name', addForm.value.name);
+    formData.append('category', addForm.value.category);
 
     this.service.add(formData).subscribe((response: Subcategory) => {
       this.subcategories.push(response);
-    }, error => { console.log(error) });
-  }
-
-  public onUpdate(updateForm: NgForm): void { 
-    this.service.update(updateForm.value).subscribe(() => {
-    }, error => { console.log(error) });
-  }
-
-  public onDelete(subcategory: Subcategory): void {
-    this.service.delete(subcategory).subscribe( () => {
-      this.subcategories.splice(this.subcategories.indexOf(subcategory), 1);
     }, error => { console.log(error) });
   }
 }

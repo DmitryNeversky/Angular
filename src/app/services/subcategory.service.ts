@@ -18,8 +18,8 @@ export class SubcategoryService {
     return this.httpClient.post<Subcategory>(`${this.apiBaseUrl}/subcategories/add`, formData);
   }
 
-  public update(subcategory: Subcategory): Observable<Subcategory>{
-    return this.httpClient.put<Subcategory>(`${this.apiBaseUrl}/subcategories/update`, subcategory);
+  public update(id: number, formData: FormData): Observable<Subcategory>{
+    return this.httpClient.put<Subcategory>(`${this.apiBaseUrl}/subcategories/update/${id}`, formData);
   }
 
   public delete(subcategory: Subcategory): Observable<void> {

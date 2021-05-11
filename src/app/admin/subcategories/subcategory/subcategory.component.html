@@ -1,0 +1,17 @@
+<form #updateForm="ngForm" class="update-form d-flex row">
+    <input type="hidden" ngModel="{{subCategory.id}}" name="id">
+    <div class="col-md-1">{{subCategory.id}}</div>
+    <div class="col-md-3"><input name="name" class="w-100 border-0" ngModel="{{subCategory.name}}" type="text"></div>
+    <div class="col-md-4">
+        <a href="#" *ngFor="let item of subCategory.items">{{item.name}},&#8194;</a>
+    </div>
+    <div class="col-md-2">
+        <select [ngModel]="subCategory.category.id" name="category" *ngIf="subCategory.id != 1">
+            <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
+        </select>
+    </div>
+    <div class="col-md-2 d-flex align-items-baseline" *ngIf="subCategory.id != 1">
+        <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
+        <button class="remove-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(subCategory)"><fa-icon [icon]="icons.times"></fa-icon></button>
+    </div>
+</form>

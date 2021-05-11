@@ -10,6 +10,8 @@ import {SubcategoriesComponent} from "./subcategories/subcategories.component";
 import {ItemsComponent} from "./items/items.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ItemComponent} from "./items/item/item.component";
+import {CategoryComponent} from "./categories/category/category.component";
+import {SubcategoryComponent} from "./subcategories/subcategory/subcategory.component";
 
 @NgModule({
     declarations: [
@@ -17,6 +19,8 @@ import {ItemComponent} from "./items/item/item.component";
         CategoriesComponent,
         SubcategoriesComponent,
         ItemsComponent,
+        CategoryComponent,
+        SubcategoryComponent,
         ItemComponent
     ],
     imports: [

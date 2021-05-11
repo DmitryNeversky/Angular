@@ -25,6 +25,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
         FontAwesomeModule,
     ],
     providers: [CategoryService, SubcategoryService, ItemService],
+    exports: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {

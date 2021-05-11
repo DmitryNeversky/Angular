@@ -101,7 +101,6 @@ export class ItemComponent implements OnInit {
       formData.append('addImages', this.dataTransfer.files[i]);
 
     this.itemService.update(form.value.id, formData).subscribe((response: Item) => {
-      console.log(response);
       // this.items.push(response);
     }, error => console.log(error));
   }
