@@ -29,11 +29,15 @@ public class SubCategoryService {
         return subCategoryRepository.save(subCategory);
     }
 
-    public SubCategory updateSubCategory(SubCategory subCategory){
-        if(subCategory.getCategory() == null)
-            return subCategory;
+    public SubCategory updateSubCategory(int id, String name, Category category){
+        Optional<SubCategory> subCategory = subCategoryRepository.findById(id);
+        if(!subCategory.isPresent())
+            return null;
 
-        return subCategoryRepository.save(subCategory);
+        subCategory.get().setName(name);
+        subCategory.get().setCategory(category);
+
+        return subCategoryRepository.save(subCategory.get());
     }
 
     public void deleteSubCategory(SubCategory subCategory){
