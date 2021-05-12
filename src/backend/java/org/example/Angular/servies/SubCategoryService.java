@@ -19,7 +19,7 @@ public class SubCategoryService {
     }
 
     public List<SubCategory> getAllSubCategories(){
-        subCategoryRepository.findAll().forEach(System.out::println);
+
         return subCategoryRepository.findAll();
     }
 
