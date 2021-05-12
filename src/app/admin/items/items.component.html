@@ -4,10 +4,10 @@
             <form #addForm="ngForm">
                 <input type="text" class="advanced-input" name="name" ngModel placeholder="Название">
                 <textarea class="advanced-input" name="description" ngModel placeholder="Описание"></textarea>
-                <input type="file" id="add-item-images" class="advanced-input" (change)="load($event)" accept="image/*" multiple>
+                <input type="file" id="add-item-images" class="advanced-input" (change)="imageLoader.load($event)" accept="image/*" multiple>
                 <label for="add-item-images">Добавить изображения</label>
                 <div id="images" class="images">
-                    <img src="{{image}}" class="image" *ngFor="let image of loadImages" (click)="removeImage($event)" alt="load.img">
+                    <img src="{{image}}" class="image" *ngFor="let image of imageLoader.loadImages" (click)="imageLoader.removeImage($event)" alt="load.img">
                 </div>
                 <input type="text" class="advanced-input" name="price" ngModel placeholder="Цена">
                 <input type="text" class="advanced-input" name="count" ngModel placeholder="Кол-Во">

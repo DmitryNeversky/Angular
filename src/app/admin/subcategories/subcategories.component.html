@@ -3,6 +3,11 @@
         <div class="col-md-4">
             <form #addForm="ngForm">
                 <input type="text" class="advanced-input" placeholder="Название" name="name">
+<!--                <input type="file" id="add-item-images" class="advanced-input" (change)="imageLoader.load($event, true)" accept="image/*">-->
+<!--                <label for="add-item-images">Добавить изображение</label>-->
+<!--                <div class="images">-->
+<!--                    <img src="{{image}}" class="image" *ngFor="let image of imageLoader.loadImages" (click)="imageLoader.removeImage($event)" alt="load.img">-->
+<!--                </div>-->
                 <select name="category" ngModel>
                     <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                 </select>

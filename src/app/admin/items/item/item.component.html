@@ -19,10 +19,10 @@
             <input type="text" class="border-0" name="description" ngModel="{{ item.description }}">
         </div>
         <div class="col-md-6 images">
-            <input type="file" id="add-image" class="advanced-input d-none" (change)="load($event)" accept="image/*" multiple>
+            <input type="file" id="add-image" class="advanced-input d-none" (change)="imageLoader.load($event)" accept="image/*" multiple>
             <label for="add-image">Добавить изображения</label>
-            <img src="{{ image }}" *ngFor="let image of loadImages" class="image" (click)="removeImage($event)" alt="">
-            <img src="/assets/images/uploaded/{{ image }}" *ngFor="let image of item.images" (click)="remImage($event, image)" class="image" alt="">
+            <img src="{{ image }}" *ngFor="let image of imageLoader.loadImages" class="image" (click)="imageLoader.removeImage($event)" alt="">
+            <img src="/assets/images/uploaded/{{ image }}" *ngFor="let image of item.images" (click)="imageLoader.remImage($event, image)" class="image" alt="">
         </div>
     </div>
 </form>

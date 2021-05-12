@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CategoryService} from "../../services/category.service";
 import {Category} from "../../models/category";
 import {NgForm} from "@angular/forms";
+import {ImageLoader} from "../../shared/ImageLoader";
 
 @Component({
   selector: 'app-categories',
@@ -11,6 +12,7 @@ import {NgForm} from "@angular/forms";
 export class CategoriesComponent implements OnInit {
 
   public categories: Category[];
+  public imageLoader = new ImageLoader();
 
   constructor(private service: CategoryService) { }
 
@@ -30,6 +32,7 @@ export class CategoriesComponent implements OnInit {
 
     let formData = new FormData();
     formData.append('name', addForm.value.name);
+    // formData.append('preview', this.imageLoader.dataTransfer.files[0]);
 
     this.service.add(formData).subscribe((response: Category) => {
       this.categories.push(response);

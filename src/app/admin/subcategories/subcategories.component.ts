@@ -5,6 +5,7 @@ import {Subcategory} from "../../models/subcategory";
 import {SubcategoryService} from "../../services/subcategory.service";
 import {Category} from "../../models/category";
 import {CategoryService} from "../../services/category.service";
+import {ImageLoader} from "../../shared/ImageLoader";
 
 @Component({
   selector: 'app-subcategories',
@@ -16,8 +17,8 @@ export class SubcategoriesComponent implements OnInit {
   public icons = {times: faTimes, check: faCheck}
 
   public categories: Category[];
-
   public subcategories: Subcategory[];
+  public imageLoader: ImageLoader = new ImageLoader();
 
   constructor(private service: SubcategoryService, private categoryService: CategoryService) { }
 
@@ -43,6 +44,7 @@ export class SubcategoriesComponent implements OnInit {
     let formData = new FormData();
     formData.append('name', addForm.value.name);
     formData.append('category', addForm.value.category);
+    // formData.append('preview', this.imageLoader.dataTransfer.files[0]);
 
     this.service.add(formData).subscribe((response: Subcategory) => {
       this.subcategories.push(response);
