@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {Subcategory} from "../../../models/subcategory";
 import {SubcategoryService} from "../../../services/subcategory.service";
@@ -17,6 +17,9 @@ export class SubcategoryComponent implements OnInit {
 
   @Input()
   public subCategory: Subcategory;
+
+  @Output()
+  public subCategoryEmitter: EventEmitter<Subcategory> = new EventEmitter<Subcategory>();
 
   public categories: Category[];
 
@@ -38,7 +41,7 @@ export class SubcategoryComponent implements OnInit {
 
   public onDelete(subCategory: Subcategory): void {
     this.subCategoryService.delete(subCategory).subscribe( () => {
-      // event.target.remove
+      this.subCategoryEmitter.emit(subCategory);
     }, error => { console.log(error) });
   }
 }

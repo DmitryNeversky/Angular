@@ -50,4 +50,8 @@ export class ItemsComponent implements OnInit {
       this.items.push(response);
     }, error => console.log(error));
   }
+
+  removeItem(item: Item){
+    this.items.splice(this.items.indexOf(item), 1);
+  }
 }

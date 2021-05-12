@@ -20,7 +20,7 @@ export class ItemComponent implements OnInit {
   public item: Item;
 
   @Output()
-  private itemEvent = new EventEmitter<Item>();
+  private itemEmitter: EventEmitter<Item> = new EventEmitter<Item>();
 
   public subCategories: Subcategory[];
   public imageLoader = new ImageLoader();
@@ -46,18 +46,17 @@ export class ItemComponent implements OnInit {
     for (let i = 0; i < this.imageLoader.dataTransfer.files.length; i++)
       formData.append('addImages', this.imageLoader.dataTransfer.files[i]);
 
-    this.itemService.update(form.value.id, formData).subscribe((response: Item) => {
-      // this.items.push(response);
+    this.itemService.update(form.value.id, formData).subscribe(() => {
+    }, error => console.log(error));
+  }
+
+  deleteItem(item: Item) {
+    this.itemService.delete(item.id).subscribe(() => {
+      this.itemEmitter.emit(item);
     }, error => console.log(error));
   }
 
   openItem(event){
     event.target.style.transform = 'rotate(180deg)';
-  }
-
-  deleteItem(item: Item) {
-    this.itemService.delete(item.id).subscribe(() => {
-      
-    }, error => console.log(error));
   }
 }

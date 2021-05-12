@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {Category} from "../../../models/category";
 import {CategoryService} from "../../../services/category.service";
@@ -17,12 +17,14 @@ export class CategoryComponent implements OnInit {
   @Input()
   public category: Category;
 
+  @Output()
+  public categoryEmitter: EventEmitter<Category> = new EventEmitter<Category>();
+
   public imageLoader = new ImageLoader();
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public onUpdate(updateForm: NgForm): void {
     let formData = new FormData();
@@ -36,7 +38,7 @@ export class CategoryComponent implements OnInit {
 
   public onDelete(category: Category): void {
     this.categoryService.delete(category).subscribe( () => {
-      // event.target.remove
+      this.categoryEmitter.emit(category);
     }, error => { console.log(error) });
   }
 }

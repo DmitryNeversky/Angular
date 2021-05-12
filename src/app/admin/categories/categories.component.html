@@ -19,7 +19,7 @@
                 <div class="font-weight-bold col-md-2">Операции</div>
             </div>
             <div class="my-2" *ngFor="let category of categories">
-                <app-category [category]="category"></app-category>
+                <app-category (categoryEmitter)="removeCategory(category)" [category]="category"></app-category>
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@
                 <div class="font-weight-bold col-md-2">Операции</div>
             </div>
             <div class="my-2" *ngFor="let subcategory of subcategories">
-                <app-subcategory [subCategory]="subcategory"></app-subcategory>
+                <app-subcategory (subCategoryEmitter)="removeSubCategory(subcategory)" [subCategory]="subcategory"></app-subcategory>
             </div>
         </div>
     </div>

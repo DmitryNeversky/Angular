@@ -50,4 +50,8 @@ export class SubcategoriesComponent implements OnInit {
       this.subcategories.push(response);
     }, error => { console.log(error) });
   }
+
+  removeSubCategory(subCategory: Subcategory){
+    this.subcategories.splice(this.subcategories.indexOf(subCategory), 1);
+  }
 }

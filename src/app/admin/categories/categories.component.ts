@@ -38,4 +38,8 @@ export class CategoriesComponent implements OnInit {
       this.categories.push(response);
     }, error => { console.log(error) });
   }
+
+  removeCategory(category: Category){
+    this.categories.splice(this.categories.indexOf(category, 1));
+  }
 }

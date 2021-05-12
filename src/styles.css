@@ -127,3 +127,5 @@ button.advanced-input:hover{
 .open-button{
     color: dodgerblue;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
