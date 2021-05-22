@@ -1,0 +1,31 @@
+header{
+    position: fixed;
+    width: 100%;
+    padding: 2%;
+    background-color: white;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    transition: .3s;
+}
+
+header:hover{
+    background-color: #fff;
+}
+
+header .logo img{
+    width: 80%;
+}
+
+header .favorite{
+    padding: 5% 10%;
+    background-color: #ffe18699;
+}
+
+.stick_header{
+    background-color: #fffffff5;
+    padding: 1%;
+}
+
+.active{
+    border-bottom: 2px solid rgb(255,225,134);
+}

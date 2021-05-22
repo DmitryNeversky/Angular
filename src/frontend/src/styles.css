@@ -24,6 +24,10 @@ ul{
     padding: 0;
 }
 
+.content{
+    min-height: 21.5rem;
+}
+
 @media (max-width: 576px) {
     header .logo img{
         width: 30%;
@@ -33,6 +37,14 @@ ul{
 .bg-dark{
     /*background-color: #0000007a !important;*/
     background-color: #00000052 !important;
+}
+
+.nav-link{
+    color: #8e7b59cf;
+}
+
+.nav-link:hover, .nav-link:active, .nav-link:focus{
+    color: #FFE186FF;
 }
 
 .fs-7{
@@ -83,4 +95,50 @@ button.advanced-input:hover{
 .accordion-button:focus, .form-select:focus{
     border-color: rgba(0,0,0,.125);
     box-shadow: none;
+}
+
+.bg-main{
+    background: #ffe18699;
+}
+
+#add-item-images{
+    display: none;
+}
+
+#add-item-images + label:hover{
+    cursor: pointer;
+}
+
+.images .image{
+    height: 100px;
+    width: 108px;
+    margin: 5px;
+}
+
+.images .image:hover{
+    cursor: pointer;
+}
+
+.update-button, .remove-button, .open-button{
+    background: none;
+    border: none;
+}
+
+.update-button:not([disabled]){
+    color: #00d24b;
+}
+
+.remove-button{
+    color: red;
+}
+
+.open-button{
+    color: dodgerblue;
+}
+
+.error-label{
+    position: absolute;
+    top: -15px;
+    font-size: 10pt;
+    color: #de0000;
 }

@@ -1,0 +1,18 @@
+<form #updateForm="ngForm" class="update-form d-flex row">
+    <input type="hidden" name="id" ngModel="{{category.id}}">
+    <div class="col-md-1">{{category.id}}</div>
+    <div class="col-md-3"><input type="text" class="w-100 border-0" name="name" ngModel="{{category.name}}"></div>
+    <div class="col-md-6 d-flex">
+        <a href="#" *ngFor="let subCategory of category.subCategories">{{subCategory.name}},&nbsp;</a>
+    </div>
+    <div class="d-flex col-md-2 align-items-baseline" *ngIf="category.id != 1">
+        <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
+        <button class="remove-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(category)"><fa-icon [icon]="icons.times"></fa-icon></button>
+    </div>
+<!--    <div class="col-md-12 images">-->
+<!--        <input type="file" id="add-image" class="advanced-input d-none" (change)="imageLoader.load($event, true)" accept="image/*">-->
+<!--        <label for="add-image">Сменить изображение</label> Допилить смену изображения -->
+<!--        <img src="{{ image }}" *ngFor="let image of imageLoader.loadImages" class="image" (click)="imageLoader.removeImage($event)" alt="">-->
+<!--        <img src="/assets/images/uploaded/{{ preview }}" *ngFor="let preview of category.preview" (click)="imageLoader.remImage($event, image)" class="image" alt="">-->
+<!--    </div>-->
+</form>

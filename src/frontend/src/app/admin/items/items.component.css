@@ -1,0 +1,12 @@
+.images .image{
+    height: 100px;
+    width: 106px;
+    margin: 5px;
+}
+
+.update-form .advanced-input{
+    margin: 0;
+    background: none;
+    height: auto;
+    padding: 0 5px;
+}

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:4000'
+  apiBaseUrl: 'http://localhost:4000',
+  resourcePath: '/home/koshey/IdeaProjects/Angular/src/frontend/src/assets/'
 };
 
 /*

@@ -1,42 +1,32 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
-import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AdminPanelModule } from "./admin-panel/admin-panel.module";
-import { AdminPanelRoutingModule } from "./admin-panel/admin-panel-routing.module";
-import { HomeComponent } from './home/home.component';
-import { AppRoutingModule } from "./app-routing.module";
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { CatalogComponent } from './catalog/catalog.component';
-import { MDBBootstrapModule } from "angular-bootstrap-md";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from "./app-routing.module";
+import {AdminModule} from "./admin/admin.module";
+import {LoginComponent} from './admin/login/login.component';
+import {CategoryService} from "./services/category.service";
+import {SubcategoryService} from "./services/subcategory.service";
+import {ItemService} from "./services/item.service";
+import {FormsModule} from "@angular/forms";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {HeaderComponent} from './shared/components/header/header.component';
+import {FooterComponent} from './shared/components/footer/footer.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        AboutComponent,
-        ContactComponent,
-        CatalogComponent,
-    ],
+    declarations: [AppComponent, LoginComponent, HeaderComponent, FooterComponent],
     imports: [
         BrowserModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        NgbModule,
-        FormsModule,
-        AdminPanelModule,
-        AdminPanelRoutingModule,
+        BrowserAnimationsModule,
+
+        AdminModule,
+
         AppRoutingModule,
-        NgbCarouselModule,
+        FormsModule,
         FontAwesomeModule,
-        MDBBootstrapModule.forRoot()
     ],
-    providers: [],
+    providers: [CategoryService, SubcategoryService, ItemService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

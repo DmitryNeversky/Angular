@@ -1,0 +1,92 @@
+<section class="catalog my-5">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 mb-5">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Navbar</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Dropdown
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                </li>
+                            </ul>
+                            <form class="d-flex">
+                                <input [(ngModel)]="search" name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                            <input type="text" [(ngModel)]="min" placeholder="Min">
+                            <input type="text" [(ngModel)]="max" placeholder="Max">
+                            <input type="checkbox" [(ngModel)]="available">
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <!--Categories-->
+
+            <div class="col-md-2 categories border-end">
+                <ul class="nav flex-column mb-5" *ngFor="let category of categories">
+                    <li class="font-weight-bold text-black-50"><a href="{{ category.name }}">{{ category.name }}</a></li>
+                    <li class="text-light" *ngFor="let subCategory of category.subCategories">
+                        <a href="{{ subCategory.name }}">{{ subCategory.name }}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Items-->
+
+            <div class="col-md-10">
+                <div class="row">
+
+                    <div class="col-md-4" *ngFor="let item of items | searchFilter: search | priceFilter: min: max">
+                        <div class="card">
+                            <img *ngIf="item.images[0] != null" src="{{ '../../assets/images/uploaded/' + item.images[0] }}" alt="img.item">
+                            <img *ngIf="item.images[0] == null" src="../../assets/images/preview.jpg" alt="img.item">
+                            <div class="p-3">
+                                <p class="fw-bold">{{ item.name }}</p>
+                                <p class="text-black-50">{{ item.description }}</p>
+                                <p class="text-black-50 h5 mb-4">{{ item.price }}</p>
+                                <p class="text-black-50 h5 mb-4">{{ item.count }}</p>
+                                <a class="float-start" href="#">Смотреть</a>
+                                <a class="float-end" href="#"><i class="fas fa-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</section>
