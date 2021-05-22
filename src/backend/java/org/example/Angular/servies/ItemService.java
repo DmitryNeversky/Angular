@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -30,6 +31,12 @@ public class ItemService {
 
     public List<Item> getItems(){
         return itemRepository.findAll();
+    }
+
+    public Item getItem(int id){
+        Optional<Item> item = itemRepository.findById(id);
+
+        return item.orElse(null);
     }
 
     public Item add(Item item, List<MultipartFile> images){

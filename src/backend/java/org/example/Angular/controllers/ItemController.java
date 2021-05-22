@@ -27,6 +27,11 @@ public class ItemController {
         return new ResponseEntity<>(itemService.getItems(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Item> getItem(@PathVariable int id){
+        return new ResponseEntity<>(itemService.getItem(id), HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Item> addItem(
             @RequestParam(required = false) String name,

@@ -23,6 +23,12 @@ public class SubCategoryService {
         return subCategoryRepository.findAll();
     }
 
+    public SubCategory getSubCategory(int id){
+        Optional<SubCategory> subCategory = subCategoryRepository.findById(id);
+
+        return subCategory.orElse(null);
+    }
+
     public SubCategory addSubCategory(String name, Category category){
         SubCategory subCategory = new SubCategory(name, category);
 

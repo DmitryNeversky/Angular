@@ -25,6 +25,12 @@ public class SubCategoryController {
         return subCategoryService.getAllSubCategories();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<SubCategory> getSubCategory(@PathVariable int id){
+
+        return new ResponseEntity<>(subCategoryService.getSubCategory(id), HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<SubCategory> addSubCategory(@RequestParam String name,
                                                       @RequestParam Category category){

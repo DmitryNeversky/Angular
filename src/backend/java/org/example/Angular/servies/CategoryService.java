@@ -1,10 +1,13 @@
 package org.example.Angular.servies;
 
 import org.example.Angular.entities.Category;
+import org.example.Angular.entities.Item;
+import org.example.Angular.entities.SubCategory;
 import org.example.Angular.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,26 @@ public class CategoryService {
 
     public List<Category> getAllCategories(){
         return categoryRepository.findAll();
+    }
+
+    public Category getCategory(int id){
+        Optional<Category> category = categoryRepository.findById(id);
+
+        return category.orElse(null);
+    }
+
+    public List<Item> getItemsByCategoryId(int id){
+        Optional<Category> category = categoryRepository.findById(id);
+        if(!category.isPresent())
+            return null;
+
+        List<Item> list = new ArrayList<>();
+
+        for(SubCategory pair : category.get().getSubCategories()){
+            list.addAll(pair.getItems());
+        }
+
+        return list;
     }
 
     public Category addCategory(String name){
