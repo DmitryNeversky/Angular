@@ -1,6 +1,12 @@
-<div *ngIf="category">
-    <p *ngFor="let subCategory of category.subCategories">
-        <a [routerLink]="['./', subCategory.name]">{{subCategory.name}}</a>
-    </p>
+<div class="row">
+    <div class="col-md-4 category" *ngFor="let subcategory of category.subCategories">
+        <a [routerLink]="['./', subcategory.name]">
+            <div class="card text-white">
+                <img src="assets/images/door.jpg" class="card-img" alt="door.img">
+                <div class="card-img-overlay bg-dark">
+                    <h3 class="card-title">{{ subcategory.name }}</h3>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
-<h1>??</h1>

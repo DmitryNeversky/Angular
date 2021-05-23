@@ -11,10 +11,10 @@ import {Item} from "../../../models/item";
 })
 export class ItemsComponent implements OnInit {
 
-  public search: string;
-  public min: number;
-  public max: number;
-  public available: boolean;
+  public search: string = "";
+  public min: number = 0;
+  public max: number = 0;
+  public available: boolean = false;
 
   public items: Item[];
 
