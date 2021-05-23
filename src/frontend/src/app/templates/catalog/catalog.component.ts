@@ -11,11 +11,6 @@ import {CategoryService} from "../../services/category.service";
 })
 export class CatalogComponent implements OnInit {
 
-  public search: string = '';
-  public min: number = 0;
-  public max: number = 0;
-  public available: boolean = false;
-
   public categories: Category[] = [];
   public subCategories: Subcategory[] = [];
   public items: Item[] = [];
