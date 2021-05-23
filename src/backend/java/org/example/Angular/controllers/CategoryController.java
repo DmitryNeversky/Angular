@@ -1,7 +1,7 @@
 package org.example.Angular.controllers;
 
 import org.example.Angular.entities.Category;
-import org.example.Angular.servies.CategoryService;
+import org.example.Angular.services.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +24,10 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategory(@PathVariable int id){
+    @GetMapping("/{name}")
+    public ResponseEntity<Category> getCategory(@PathVariable String name){
 
-        return new ResponseEntity<>(categoryService.getCategory(id), HttpStatus.OK);
+        return new ResponseEntity<>(categoryService.getCategoryByName(name), HttpStatus.OK);
     }
 
     @PostMapping("/add")

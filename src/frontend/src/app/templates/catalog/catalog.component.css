@@ -9,3 +9,7 @@
 .catalog .card img{
     max-height: 284px;
 }
+
+.active-link{
+    color: #ffe186;
+}

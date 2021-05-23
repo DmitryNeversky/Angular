@@ -1,0 +1,6 @@
+<div *ngIf="category">
+    <p *ngFor="let subCategory of category.subCategories">
+        <a [routerLink]="['./', subCategory.name]">{{subCategory.name}}</a>
+    </p>
+</div>
+<h1>??</h1>

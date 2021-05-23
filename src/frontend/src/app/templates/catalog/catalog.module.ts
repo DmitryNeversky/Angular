@@ -6,9 +6,13 @@ import {SearchFilterPipe} from "../../pipes/search-filter.pipe";
 import {FormsModule} from "@angular/forms";
 import {PriceFilterPipe} from "../../pipes/price-filter.pipe";
 import {AvailableFilterPipe} from "../../pipes/available-filter.pipe";
+import {CategoriesComponent} from './categories/categories.component';
+import {SubcategoriesComponent} from './subcategories/subcategories.component';
+import {ItemsComponent} from './items/items.component';
+import {ProductComponent} from './product/product.component';
 
 @NgModule({
-    declarations: [CatalogComponent, SearchFilterPipe, PriceFilterPipe, AvailableFilterPipe],
+    declarations: [CatalogComponent, SearchFilterPipe, PriceFilterPipe, AvailableFilterPipe, CategoriesComponent, SubcategoriesComponent, ItemsComponent, ProductComponent],
     imports: [CommonModule, CatalogRoutingModule, FormsModule],
     providers: [],
     exports: [SearchFilterPipe, PriceFilterPipe, AvailableFilterPipe]

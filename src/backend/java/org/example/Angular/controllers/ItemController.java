@@ -2,7 +2,7 @@ package org.example.Angular.controllers;
 
 import org.example.Angular.entities.Item;
 import org.example.Angular.entities.SubCategory;
-import org.example.Angular.servies.ItemService;
+import org.example.Angular.services.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

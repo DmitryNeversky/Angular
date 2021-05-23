@@ -1,4 +1,4 @@
-package org.example.Angular.servies;
+package org.example.Angular.services;
 
 import org.example.Angular.entities.Item;
 import org.example.Angular.repositories.ItemRepository;

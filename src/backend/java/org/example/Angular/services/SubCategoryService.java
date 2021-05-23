@@ -1,4 +1,4 @@
-package org.example.Angular.servies;
+package org.example.Angular.services;
 
 import org.example.Angular.entities.Category;
 import org.example.Angular.entities.SubCategory;
@@ -23,8 +23,8 @@ public class SubCategoryService {
         return subCategoryRepository.findAll();
     }
 
-    public SubCategory getSubCategory(int id){
-        Optional<SubCategory> subCategory = subCategoryRepository.findById(id);
+    public SubCategory getSubCategoryByName(String name){
+        Optional<SubCategory> subCategory = subCategoryRepository.findByName(name);
 
         return subCategory.orElse(null);
     }

@@ -1,4 +1,4 @@
-package org.example.Angular.servies;
+package org.example.Angular.services;
 
 import org.example.Angular.entities.Category;
 import org.example.Angular.entities.Item;
@@ -26,6 +26,12 @@ public class CategoryService {
 
     public Category getCategory(int id){
         Optional<Category> category = categoryRepository.findById(id);
+
+        return category.orElse(null);
+    }
+
+    public Category getCategoryByName(String name){
+        Optional<Category> category = categoryRepository.findByName(name);
 
         return category.orElse(null);
     }

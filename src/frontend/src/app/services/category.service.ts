@@ -15,6 +15,10 @@ export class CategoryService {
     return this.httpClient.get<Category[]>(`${this.apiBaseUrl}/categories/all`);
   }
 
+  public getByName(name: string): Observable<Category> {
+    return this.httpClient.get<Category>(`${this.apiBaseUrl}/categories/${name}`);
+  }
+
   public add(formData: FormData): Observable<Category>{
     return this.httpClient.post<Category>(`${this.apiBaseUrl}/categories/add`, formData);
   }

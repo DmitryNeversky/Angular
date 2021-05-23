@@ -2,7 +2,7 @@ package org.example.Angular.controllers;
 
 import org.example.Angular.entities.Category;
 import org.example.Angular.entities.SubCategory;
-import org.example.Angular.servies.SubCategoryService;
+import org.example.Angular.services.SubCategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +25,10 @@ public class SubCategoryController {
         return subCategoryService.getAllSubCategories();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<SubCategory> getSubCategory(@PathVariable int id){
+    @GetMapping("/{name}")
+    public ResponseEntity<SubCategory> getSubCategory(@PathVariable String name){
 
-        return new ResponseEntity<>(subCategoryService.getSubCategory(id), HttpStatus.OK);
+        return new ResponseEntity<>(subCategoryService.getSubCategoryByName(name), HttpStatus.OK);
     }
 
     @PostMapping("/add")
