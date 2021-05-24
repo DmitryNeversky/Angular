@@ -40,7 +40,7 @@ export class CategoriesComponent implements OnInit {
 
     let formData = new FormData();
     formData.append('name', this.addForm.value.name);
-    // formData.append('preview', this.imageLoader.dataTransfer.files[0]);
+    formData.append('image', this.imageLoader.dataTransfer.files[0]);
 
     this.service.add(formData).subscribe((response: Category) => {
       this.categories.push(response);

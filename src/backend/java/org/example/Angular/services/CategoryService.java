@@ -4,15 +4,24 @@ import org.example.Angular.entities.Category;
 import org.example.Angular.entities.Item;
 import org.example.Angular.entities.SubCategory;
 import org.example.Angular.repositories.CategoryRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CategoryService {
+
+    @Value("${upload.image.path}")
+    private String UPLOAD_IMAGE_PATH;
 
     private final CategoryRepository categoryRepository;
 
@@ -50,14 +59,40 @@ public class CategoryService {
         return list;
     }
 
-    public Category addCategory(String name){
-        return categoryRepository.save(new Category(name));
+    public Category addCategory(String name, MultipartFile image){
+        Category category = new Category(name);
+
+        if(image != null){
+            String fileName = UUID.randomUUID() + "-" + image.getOriginalFilename();
+
+            try {
+                image.transferTo(Paths.get(UPLOAD_IMAGE_PATH + fileName));
+                category.setImage(fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return categoryRepository.save(category);
     }
 
-    public Category updateCategory(int id, String name){
+    public Category updateCategory(int id, String name, MultipartFile image){
         Optional<Category> category = categoryRepository.findById(id);
         if(!category.isPresent())
             return null;
+
+        if(image != null) {
+            try {
+                Files.deleteIfExists(Paths.get(UPLOAD_IMAGE_PATH + category.get().getImage()));
+
+                String fileName = UUID.randomUUID() + image.getOriginalFilename();
+                image.transferTo(Paths.get(UPLOAD_IMAGE_PATH + fileName));
+
+                category.get().setImage(fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         category.get().setName(name);
 
@@ -68,6 +103,12 @@ public class CategoryService {
         Optional<Category> defaultCategory = categoryRepository.findById(1);
         if(!defaultCategory.isPresent())
             return;
+
+        try {
+            Files.deleteIfExists(Paths.get(UPLOAD_IMAGE_PATH + category.getImage()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         category.getSubCategories().forEach(x -> x.setCategory(defaultCategory.get()));
         categoryRepository.delete(category);

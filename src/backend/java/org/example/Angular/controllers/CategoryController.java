@@ -5,6 +5,7 @@ import org.example.Angular.services.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ public class CategoryController {
     }
 
     @GetMapping("/all")
-    public List<Category> getCategories(){
+    public ResponseEntity<List<Category>> getCategories(){
 
-        return categoryService.getAllCategories();
+        return new ResponseEntity<>(categoryService.getAllCategories(), HttpStatus.OK);
     }
 
     @GetMapping("/{name}")
@@ -31,17 +32,19 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Category> addCategory(@RequestParam String name){
+    public ResponseEntity<Category> addCategory(@RequestParam String name,
+                                                @RequestParam(required = false) MultipartFile image){
 
-        return new ResponseEntity<>(categoryService.addCategory(name), HttpStatus.CREATED);
+        return new ResponseEntity<>(categoryService.addCategory(name, image), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Category> updateCategory(
             @PathVariable int id,
-            @RequestParam(required = false) String name){
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) MultipartFile image){
 
-        return new ResponseEntity<>(categoryService.updateCategory(id, name), HttpStatus.OK);
+        return new ResponseEntity<>(categoryService.updateCategory(id, name, image), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{category}")

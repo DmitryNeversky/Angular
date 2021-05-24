@@ -21,6 +21,7 @@ public class Category {
     private int id;
 
     private String name;
+    private String image;
 
     @OneToMany(mappedBy = "category")
     private Set<SubCategory> subCategories = new HashSet<>();
@@ -31,6 +32,11 @@ public class Category {
 
     public Category(String name) {
         this.name = name;
+    }
+
+    public Category(String name, String image) {
+        this.name = name;
+        this.image = image;
     }
 
 //  Getters & Setters
@@ -45,6 +51,14 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Set<SubCategory> getSubCategories() {

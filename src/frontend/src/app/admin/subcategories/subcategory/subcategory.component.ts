@@ -5,6 +5,7 @@ import {SubcategoryService} from "../../../services/subcategory.service";
 import {NgForm} from "@angular/forms";
 import {Category} from "../../../models/category";
 import {CategoryService} from "../../../services/category.service";
+import {ImageLoader} from "../../../shared/ImageLoader";
 
 @Component({
   selector: 'app-subcategory',
@@ -23,6 +24,8 @@ export class SubcategoryComponent implements OnInit {
 
   public categories: Category[] = [];
 
+  public imageLoader = new ImageLoader();
+
   constructor(private subCategoryService: SubcategoryService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
@@ -33,7 +36,11 @@ export class SubcategoryComponent implements OnInit {
 
   public onUpdate(updateForm: NgForm): void {
     let formData = new FormData();
+
     formData.append('name', updateForm.value.name);
+    formData.append('category', updateForm.value.category);
+    if(this.imageLoader.dataTransfer.files[0] != null)
+      formData.append('image', this.imageLoader.dataTransfer.files[0]);
 
     this.subCategoryService.update(updateForm.value.id, formData).subscribe( () => {
     }, error => { console.log(error) });

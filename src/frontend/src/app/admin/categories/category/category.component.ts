@@ -30,7 +30,8 @@ export class CategoryComponent implements OnInit {
     let formData = new FormData();
 
     formData.append('name', updateForm.value.name);
-    // formData.append('preview', this.imageLoader.dataTransfer.files[0]);
+    if(this.imageLoader.dataTransfer.files[0] != null)
+      formData.append('image', this.imageLoader.dataTransfer.files[0]);
 
     this.categoryService.update(updateForm.value.id, formData).subscribe( () => {
     }, error => { console.log(error) });

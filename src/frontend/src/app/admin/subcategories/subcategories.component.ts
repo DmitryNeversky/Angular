@@ -53,7 +53,7 @@ export class SubcategoriesComponent implements OnInit {
 
     formData.append('name', this.addForm.value.name);
     formData.append('category', this.addForm.value.category);
-    // formData.append('preview', this.imageLoader.dataTransfer.files[0]);
+    formData.append('preview', this.imageLoader.dataTransfer.files[0]);
 
     this.service.add(formData).subscribe((response: Subcategory) => {
       this.subcategories.push(response);

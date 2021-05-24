@@ -6,9 +6,14 @@
         <a href="#" *ngFor="let item of subCategory.items">{{item.name}},&#8194;</a>
     </div>
     <div class="col-md-2">
-        <select [ngModel]="subCategory.category.id" name="category" *ngIf="subCategory.id != 1">
-            <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
+        <select name="category" ngModel="{{subCategory.category.id}}" *ngIf="subCategory.id != 1">
+            <option *ngFor="let category of categories" ngValue="{{category.id}}">{{ category.name }}</option>
         </select>
+    </div>
+    <input type="file" id="add-item-image" class="advanced-input" (change)="imageLoader.load($event, true)" accept="image/*">
+    <label for="add-item-image">Сменить изображение</label>
+    <div class="images">
+        <img src="{{image}}" class="image" *ngFor="let image of imageLoader.loadImages" (click)="imageLoader.removeImage($event)" alt="load.img">
     </div>
     <div class="col-md-2 d-flex align-items-baseline" *ngIf="subCategory.id != 1">
         <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>

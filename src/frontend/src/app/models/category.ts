@@ -4,6 +4,7 @@ export class Category {
     private _id: number = 0;
     private _name: string = "";
     private _subCategories: Subcategory[] = [];
+    private _image: string = "";
 
     constructor(name: string) {
         this._name = name;
@@ -31,5 +32,13 @@ export class Category {
 
     set subCategories(value: Subcategory[]) {
         this._subCategories = value;
+    }
+
+    get image(): string {
+        return this._image;
+    }
+
+    set image(value: string) {
+        this._image = value;
     }
 }

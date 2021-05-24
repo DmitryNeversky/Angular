@@ -19,6 +19,7 @@ public class SubCategory {
     private int id;
 
     private String name;
+    private String image;
 
     @ManyToOne
     private Category category;
@@ -51,6 +52,14 @@ public class SubCategory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Category getCategory() {

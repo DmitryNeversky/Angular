@@ -6,6 +6,7 @@ import org.example.Angular.services.SubCategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -33,17 +34,19 @@ public class SubCategoryController {
 
     @PostMapping("/add")
     public ResponseEntity<SubCategory> addSubCategory(@RequestParam String name,
-                                                      @RequestParam Category category){
+                                                      @RequestParam Category category,
+                                                      @RequestParam(required = false) MultipartFile image){
 
-        return new ResponseEntity<>(subCategoryService.addSubCategory(name, category), HttpStatus.CREATED);
+        return new ResponseEntity<>(subCategoryService.addSubCategory(name, category, image), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<SubCategory> updateSubCategory(@PathVariable int id,
                                                          @RequestParam String name,
-                                                         @RequestParam Category category){
+                                                         @RequestParam Category category,
+                                                         @RequestParam(required = false) MultipartFile image){
 
-        return new ResponseEntity<>(subCategoryService.updateSubCategory(id, name, category), HttpStatus.OK);
+        return new ResponseEntity<>(subCategoryService.updateSubCategory(id, name, category, image), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{subCategory}")

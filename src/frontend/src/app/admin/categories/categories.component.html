@@ -3,11 +3,11 @@
         <div class="col-md-4">
             <form [formGroup]="addForm" (ngSubmit)="onAdd()">
                 <input type="text" id="name" class="advanced-input" placeholder="Название" formControlName="name">
-<!--                <input type="file" id="add-item-images" class="advanced-input" (change)="imageLoader.load($event, true)" accept="image/*">-->
-<!--                <label for="add-item-images">Добавить изображение</label>-->
-<!--                <div class="images">-->
-<!--                    <img src="{{image}}" class="image" *ngFor="let image of imageLoader.loadImages" (click)="imageLoader.removeImage($event)" alt="load.img">-->
-<!--                </div>-->
+                <input type="file" id="add-item-images" class="advanced-input" (change)="imageLoader.load($event, true)" accept="image/*">
+                <label for="add-item-images">Добавить изображение</label>
+                <div class="images">
+                    <img src="{{image}}" class="image" *ngFor="let image of imageLoader.loadImages" (click)="imageLoader.removeImage($event)" alt="load.img">
+                </div>
                 <button type="submit" class="advanced-input">Добавить</button>
             </form>
         </div>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryService} from "../../services/category.service";
 import {Category} from "../../models/category";
+import {AppSettingsService} from "../../services/app-settings.service";
 
 @Component({
   selector: 'app-home',
@@ -9,14 +10,26 @@ import {Category} from "../../models/category";
 })
 export class HomeComponent implements OnInit {
 
-  public categories: Category[];
+  public homeCollectionSize: number = 3;
+  public categories: Category[] = [];
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private settingsService: AppSettingsService) { }
 
   ngOnInit() {
-    this.categoryService.getAll().subscribe((response => {
-      this.categories = response;
-    }));
+    this.loadSettings();
+    this.loadCategories();
   }
 
+  loadCategories(){
+    this.categoryService.getAll().subscribe((response: Category[]) => {
+      this.categories = response;
+      this.categories.splice(this.homeCollectionSize);
+    }, error => console.log(error));
+  }
+
+  loadSettings(){
+    this.settingsService.getHomeCollectionSize().subscribe((response: number) => {
+      this.homeCollectionSize = response;
+    }, error => console.log(error));
+  }
 }
