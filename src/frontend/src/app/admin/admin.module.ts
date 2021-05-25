@@ -20,7 +20,7 @@ import {SubcategoryComponent} from "./subcategories/subcategory/subcategory.comp
         ItemsComponent,
         CategoryComponent,
         SubcategoryComponent,
-        ItemComponent
+        ItemComponent,
     ],
     imports: [
         CommonModule,

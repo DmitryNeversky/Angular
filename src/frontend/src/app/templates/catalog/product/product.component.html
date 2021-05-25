@@ -1,8 +1,14 @@
-<div class="container mt-5">
+<div class="container my-5">
     <div class="row">
-        <p>{{item.name}}</p>
-        <p>{{item.description}}</p>
-        <p>{{item.price}}</p>
-        <p>{{item.count}}</p>
+        <div class="col-md-4">
+            <img *ngIf="item.images[0] != null" src="{{ '../../assets/images/uploaded/' + item.images[0] }}" alt="img.item">
+            <img *ngIf="item.images[0] == null" src="assets/images/preview.jpg" alt="img.item">
+        </div>
+        <div class="col-md-8">
+            <p class="fs-3">{{item.name}}</p>
+            <p class=""><span class="fw-bolder">Цена: </span>{{item.price}} руб.</p>
+            <p class=""><span class="fw-bolder">Наличие: </span>{{item.count}}</p>
+            <p class=""><span class="fw-bolder">Описание: </span>{{item.description}}</p>
+        </div>
     </div>
 </div>

@@ -13,6 +13,7 @@ import {FormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HeaderComponent} from './shared/components/header/header.component';
 import {FooterComponent} from './shared/components/footer/footer.component';
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
     declarations: [AppComponent, LoginComponent, HeaderComponent, FooterComponent],
@@ -21,6 +22,7 @@ import {FooterComponent} from './shared/components/footer/footer.component';
         BrowserAnimationsModule,
 
         AdminModule,
+        SharedModule,
 
         AppRoutingModule,
         FormsModule,

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryService} from "../../services/category.service";
 import {Category} from "../../models/category";
-import {AppSettingsService} from "../../services/app-settings.service";
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   public homeCollectionSize: number = 3;
   public categories: Category[] = [];
 
-  constructor(private categoryService: CategoryService, private settingsService: AppSettingsService) { }
+  constructor(private categoryService: CategoryService, private settingsService: SettingsService) { }
 
   ngOnInit() {
     this.loadSettings();
