@@ -33,10 +33,32 @@ export class ItemsComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.subcategoryService.getByName(params.subcategory).subscribe((response: Subcategory) => {
         this.items = response.items;
+        this.initPagination();
+        this.goIndex(0);
       })
     });
 
     this.preload = false;
+  }
+
+  public pageIndex: number = 0;
+  public pageSize: number = 3;
+  public pages: number[] = [];
+
+  initPagination(){
+    for(let i = 0; i < this.items.length / this.pageSize; i++){
+      this.pages.push(i);
+    }
+  }
+
+  arr: Item[] = [];
+
+  goIndex(index: number){
+    this.pageIndex = index;
+    this.arr = [];
+    for(let i = 0; i < this.pageSize; i++){
+      this.arr.push(this.items[index * this.pageSize + i]);
+    }
   }
 
 }

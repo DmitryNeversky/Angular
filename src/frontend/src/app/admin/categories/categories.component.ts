@@ -14,7 +14,6 @@ export class CategoriesComponent implements OnInit {
   public categories: Category[] = [];
   public imageLoader = new ImageLoader();
 
-  // @ts-ignore
   public addForm: FormGroup;
 
   constructor(private service: CategoryService) { }

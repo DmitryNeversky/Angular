@@ -15,7 +15,7 @@ export class CategoryComponent implements OnInit {
   public icons = {times: faTimes, check: faCheck}
 
   @Input()
-  public category: Category | undefined;
+  public category: Category;
 
   @Output()
   public categoryEmitter: EventEmitter<Category> = new EventEmitter<Category>();

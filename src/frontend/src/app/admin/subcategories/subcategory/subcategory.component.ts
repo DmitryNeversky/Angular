@@ -4,7 +4,6 @@ import {Subcategory} from "../../../models/subcategory";
 import {SubcategoryService} from "../../../services/subcategory.service";
 import {NgForm} from "@angular/forms";
 import {Category} from "../../../models/category";
-import {CategoryService} from "../../../services/category.service";
 import {ImageLoader} from "../../../shared/ImageLoader";
 
 @Component({
@@ -22,16 +21,15 @@ export class SubcategoryComponent implements OnInit {
   @Output()
   public subCategoryEmitter: EventEmitter<Subcategory> = new EventEmitter<Subcategory>();
 
-  public categories: Category[] = [];
+  @Input()
+  public categories: Category[];
 
   public imageLoader = new ImageLoader();
 
-  constructor(private subCategoryService: SubcategoryService, private categoryService: CategoryService) { }
+  constructor(private subCategoryService: SubcategoryService) { }
 
   ngOnInit(): void {
-    this.categoryService.getAll().subscribe((response: Category[]) => {
-      this.categories = response;
-    }, error => console.log(error));
+
   }
 
   public onUpdate(updateForm: NgForm): void {

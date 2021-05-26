@@ -11,6 +11,7 @@ export class SubcategoryService {
   constructor(private httpClient: HttpClient) {}
 
   public getAll(): Observable<Subcategory[]>{
+    console.log("1");
     return this.httpClient.get<Subcategory[]>(`${this.apiBaseUrl}/subcategories/all`);
   }
 

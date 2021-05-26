@@ -24,7 +24,6 @@ export class ItemService {
   }
 
   public update(id: number, formData: FormData): Observable<Item>{
-    console.log(id);
     return this.httpClient.put<Item>(`${this.apiBaseUrl}/items/update/${id}`, formData)
   }
 
