@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Item} from "../../models/item";
-import {Subcategory} from "../../models/subcategory";
 import {Category} from "../../models/category";
 import {CategoryService} from "../../services/category.service";
 
@@ -12,8 +10,6 @@ import {CategoryService} from "../../services/category.service";
 export class CatalogComponent implements OnInit {
 
   public categories: Category[] = [];
-  public subCategories: Subcategory[] = [];
-  public items: Item[] = [];
 
   constructor(private categoryService: CategoryService) { }
 

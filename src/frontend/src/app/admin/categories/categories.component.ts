@@ -3,6 +3,7 @@ import {CategoryService} from "../../services/category.service";
 import {Category} from "../../models/category";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ImageLoader} from "../../shared/ImageLoader";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-categories',
@@ -16,20 +17,14 @@ export class CategoriesComponent implements OnInit {
 
   public addForm: FormGroup;
 
-  constructor(private service: CategoryService) { }
+  constructor(private service: CategoryService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getCategories();
+    this.categories = this.activatedRoute.snapshot.data.categories;
 
     this.addForm = new FormGroup({
       name: new FormControl('', [Validators.minLength(2), Validators.maxLength(17), Validators.required])
     });
-  }
-
-  private getCategories(){
-    this.service.getAll().subscribe((response: Category[]) => {
-      this.categories = response;
-    }, error => { console.log(error.message) });
   }
 
   onAdd(){

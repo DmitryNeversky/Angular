@@ -5,6 +5,7 @@ import {Subcategory} from "../../models/subcategory";
 import {SubcategoryService} from "../../services/subcategory.service";
 import {NgForm} from "@angular/forms";
 import {ImageLoader} from "../../shared/ImageLoader";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-items',
@@ -17,20 +18,16 @@ export class ItemsComponent implements OnInit {
   public subCategories: Subcategory[] = [];
   public imageLoader = new ImageLoader();
 
-  constructor(private itemService: ItemService, private subCategoryService: SubcategoryService) { }
+  constructor(private itemService: ItemService,
+              private subCategoryService: SubcategoryService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.items = this.activatedRoute.snapshot.data.items;
+    // this.activatedRoute.data.subscribe(data => { this.items = data.items });
     this.subCategoryService.getAll().subscribe((response: Subcategory[]) => {
       this.subCategories = response;
     },error => console.log(error));
-
-    this.getAll();
-  }
-
-  private getAll(){
-    this.itemService.getAll().subscribe((response: Item[]) => {
-      this.items = response;
-    }, error => console.log(error));
   }
 
   public addItem(form: NgForm){

@@ -13,9 +13,10 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HeaderComponent} from './shared/components/header/header.component';
 import {FooterComponent} from './shared/components/footer/footer.component';
 import {SharedModule} from "./shared/shared.module";
+import {PaginatorPipe} from './pipes/paginator.pipe';
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent, FooterComponent],
+    declarations: [AppComponent, HeaderComponent, FooterComponent, PaginatorPipe],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

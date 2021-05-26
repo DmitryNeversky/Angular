@@ -6,6 +6,7 @@ import {SubcategoryService} from "../../services/subcategory.service";
 import {Category} from "../../models/category";
 import {CategoryService} from "../../services/category.service";
 import {ImageLoader} from "../../shared/ImageLoader";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-subcategories',
@@ -20,13 +21,14 @@ export class SubcategoriesComponent implements OnInit {
   public subcategories: Subcategory[] = [];
   public imageLoader: ImageLoader = new ImageLoader();
 
-  // @ts-ignore
   public addForm: FormGroup;
 
-  constructor(private service: SubcategoryService, private categoryService: CategoryService) { }
+  constructor(private service: SubcategoryService,
+              private categoryService: CategoryService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getSubcategories();
+    this.subcategories = this.activatedRoute.snapshot.data.subCategories;
 
     this.addForm = new FormGroup({
       name: new FormControl('', [Validators.minLength(2), Validators.maxLength(17), Validators.required]),
@@ -36,12 +38,6 @@ export class SubcategoriesComponent implements OnInit {
     this.categoryService.getAll().subscribe((response: Category[]) => {
       this.categories = response;
     });
-  }
-
-  private getSubcategories(){
-    this.service.getAll().subscribe((response: Subcategory[]) => {
-      this.subcategories = response;
-    }, error => { console.log(error.message) });
   }
 
   public onAdd(): void {
