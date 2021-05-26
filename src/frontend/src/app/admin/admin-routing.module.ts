@@ -4,33 +4,25 @@ import {AdminComponent} from "./admin.component";
 import {CategoriesComponent} from "./categories/categories.component";
 import {SubcategoriesComponent} from "./subcategories/subcategories.component";
 import {ItemsComponent} from "./items/items.component";
-import {LoginComponent} from "./login/login.component";
+import {AuthGuard} from "../auth.guard";
 
 const routes: Routes = [
     {
         path: 'admin',
         component: AdminComponent,
+        canActivateChild: [AuthGuard],
         children: [
             {
-                path: '',
-                redirectTo: '/admin/login',
-                pathMatch: 'full'
-            },
-            {
-                path: 'login',
-                component: LoginComponent
-            },
-            {
                 path: 'categories',
-                component: CategoriesComponent
+                component: CategoriesComponent,
             },
             {
                 path: 'subcategories',
-                component: SubcategoriesComponent
+                component: SubcategoriesComponent,
             },
             {
                 path: 'items',
-                component: ItemsComponent
+                component: ItemsComponent,
             },
         ]
     }

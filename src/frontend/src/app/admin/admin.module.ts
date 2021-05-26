@@ -11,6 +11,8 @@ import {ItemsComponent} from "./items/items.component";
 import {ItemComponent} from "./items/item/item.component";
 import {CategoryComponent} from "./categories/category/category.component";
 import {SubcategoryComponent} from "./subcategories/subcategory/subcategory.component";
+import {AuthService} from "../services/auth.service";
+import {AuthGuard} from "../auth.guard";
 
 @NgModule({
     declarations: [
@@ -32,6 +34,10 @@ import {SubcategoryComponent} from "./subcategories/subcategory/subcategory.comp
 
         AdminRoutingModule,
     ],
+    providers: [
+        AuthService,
+        AuthGuard
+    ]
 })
 export class AdminModule {
 

@@ -84,6 +84,10 @@ button.advanced-input:hover{
     background-color: #ffe186;
 }
 
+.advanced-input:focus-visible{
+    outline: none;
+}
+
 .family-montserrat{
     font-family: "Montserrat", sans-serif;
 }
@@ -141,4 +145,8 @@ button.advanced-input:hover{
     top: -15px;
     font-size: 10pt;
     color: #de0000;
+}
+
+.btn:focus{
+    box-shadow: none;
 }

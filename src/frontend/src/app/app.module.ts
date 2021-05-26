@@ -5,7 +5,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {AdminModule} from "./admin/admin.module";
-import {LoginComponent} from './admin/login/login.component';
 import {CategoryService} from "./services/category.service";
 import {SubcategoryService} from "./services/subcategory.service";
 import {ItemService} from "./services/item.service";
@@ -16,7 +15,7 @@ import {FooterComponent} from './shared/components/footer/footer.component';
 import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, HeaderComponent, FooterComponent],
+    declarations: [AppComponent, HeaderComponent, FooterComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

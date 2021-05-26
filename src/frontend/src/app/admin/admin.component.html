@@ -1,9 +1,18 @@
-<ul class="nav justify-content-end mb-5">
-    <li class="nav-item"><a class="nav-link" routerLink="/admin/whole">Общее</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink="/admin/categories">Категории</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink="/admin/subcategories">Подкатегории</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink="/admin/items">Продукты</a></li>
-    <li class="nav-item"><a class="nav-link ml-5" routerLink="/">Выйти</a></li>
-</ul>
+
+<div class="text-center my-3" *ngIf="!authService.isAuthenticated()">
+    <p class="fs-2">Авторизация</p>
+    <input type="text" class="w-50 advanced-input" #password><br>
+    <button class="w-25 advanced-input" (click)="authService.login(password.value)">LogIn</button>
+</div>
+
+<ng-template [ngIf]="authService.isAuthenticated()">
+    <ul class="nav justify-content-end mb-5">
+        <li class="nav-item"><a class="nav-link" routerLink="/admin/whole">Общее</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/admin/categories">Категории</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/admin/subcategories">Подкатегории</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/admin/items">Продукты</a></li>
+        <li class="nav-item"><button class="btn nav-link ml-5" (click)="authService.logout()">Выйти</button></li>
+    </ul>
+</ng-template>
 
 <router-outlet></router-outlet>
