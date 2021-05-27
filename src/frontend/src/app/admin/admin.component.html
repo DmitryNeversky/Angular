@@ -1,18 +1,68 @@
-
-<div class="text-center my-3" *ngIf="!authService.isAuth">
+<div class="text-center mt-5" *ngIf="!authService.isAuth">
     <p class="fs-2">Авторизация</p>
-    <input type="text" class="w-50 advanced-input" #password><br>
-    <button class="w-25 advanced-input" (click)="authService.login(password.value)">LogIn</button>
+    <input type="text" class="w-50 advanced-input text-center font-monospace" #password><br>
+    <button class="w-25 advanced-input" (click)="authService.login(password.value)">Подтвердить</button>
 </div>
 
 <ng-template [ngIf]="authService.isAuth">
-    <ul class="nav justify-content-end mb-5">
-        <li class="nav-item"><a class="nav-link" routerLink="/admin/whole">Общее</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/admin/categories">Категории</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/admin/subcategories">Подкатегории</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/admin/items">Продукты</a></li>
-        <li class="nav-item"><button class="btn nav-link ml-5" (click)="authService.logout()">Выйти</button></li>
-    </ul>
+
+    <header>
+        <ul class="nav justify-content-end mb-5">
+            <li class="nav-item"><a class="nav-link" routerLink="/admin">Общее</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/categories">Категории</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/subcategories">Подкатегории</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/admin/items">Продукты</a></li>
+            <li class="nav-item"><button class="btn nav-link ml-5" (click)="authService.logout()">Выйти</button></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+                    <input type="text" id="name" class="advanced-input" placeholder="Название" formControlName="name">
+                    <input type="file" id="add-category-image" class="d-none" (change)="categoryImageLoader.load($event, true)" accept="image/*">
+                    <label for="add-category-image">Добавить изображение</label>
+                    <div class="images">
+                        <img src="{{image}}" class="image" *ngFor="let image of categoryImageLoader.loadImages" (click)="categoryImageLoader.removeImage($event)" alt="load.img">
+                    </div>
+                    <button type="submit" class="advanced-input">Добавить</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form [formGroup]="subCategoryForm" (ngSubmit)="addSubCategory()">
+                    <input type="text" class="advanced-input" placeholder="Название" formControlName="name">
+                    <input type="file" id="add-subcategory-image" class="d-none" (change)="subCategoryImageLoader.load($event, true)" accept="image/*">
+                    <label for="add-subcategory-image">Добавить изображение</label>
+                    <div class="images">
+                        <img src="{{image}}" class="image" *ngFor="let image of subCategoryImageLoader.loadImages" (click)="subCategoryImageLoader.removeImage($event)" alt="load.img">
+                    </div>
+                    <select formControlName="category">
+                        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                    </select>
+                    <button type="submit" class="advanced-input">Добавить</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form [formGroup]="itemForm" (ngSubmit)="addItem()">
+                    <input type="text" class="advanced-input" formControlName="name" placeholder="Название">
+                    <textarea class="advanced-input" formControlName="description" placeholder="Описание"></textarea>
+                    <input type="file" id="add-item-images" class="d-none" (change)="itemImageLoader.load($event)" accept="image/*" multiple>
+                    <label for="add-item-images">Добавить изображения</label>
+                    <div id="images" class="images">
+                        <img src="{{image}}" class="image" *ngFor="let image of itemImageLoader.loadImages" (click)="itemImageLoader.removeImage($event)" alt="load.img">
+                    </div>
+                    <input type="text" class="advanced-input" formControlName="price" placeholder="Цена">
+                    <input type="text" class="advanced-input" formControlName="count" placeholder="Кол-Во">
+                    <select formControlName="subCategory">
+                        <option *ngFor="let subCategory of subCategories" value="{{subCategory.id}}">{{subCategory.name}}</option>
+                    </select>
+                    <button class="advanced-input">Добавить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </ng-template>
 
 <router-outlet></router-outlet>

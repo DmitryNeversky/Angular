@@ -10,10 +10,11 @@ import {CategoriesComponent} from './categories/categories.component';
 import {SubcategoriesComponent} from './subcategories/subcategories.component';
 import {ItemsComponent} from './items/items.component';
 import {ProductComponent} from './product/product.component';
+import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
     declarations: [CatalogComponent, SearchFilterPipe, PriceFilterPipe, AvailableFilterPipe, CategoriesComponent, SubcategoriesComponent, ItemsComponent, ProductComponent],
-    imports: [CommonModule, CatalogRoutingModule, FormsModule],
+    imports: [CommonModule, CatalogRoutingModule, FormsModule, SharedModule],
     providers: [],
     exports: [SearchFilterPipe, PriceFilterPipe, AvailableFilterPipe]
 })

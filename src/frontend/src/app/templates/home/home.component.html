@@ -1,73 +1,73 @@
-<div class="content">
+<app-header></app-header>
 
-    <section class="banner">
-        <div id="banner" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="assets/images/doors.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/images/wallpaper.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/images/boardroom.png" class="d-block w-100" alt="...">
-                </div>
+<section class="banner">
+    <div id="banner" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="assets/images/doors.jpg" class="d-block w-100" alt="...">
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#banner" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#banner" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <div class="carousel-item">
+                <img src="assets/images/wallpaper.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="assets/images/boardroom.png" class="d-block w-100" alt="...">
+            </div>
         </div>
-    </section>
+        <button class="carousel-control-prev" type="button" data-bs-target="#banner" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#banner" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
 
-    <section class="home-categories my-5">
-        <div class="container">
-            <div class="home-title">
-                <p class="h3">Наша коллекция</p>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4" *ngFor="let category of categories">
-                    <a [routerLink]="['./', category.name]">
-                        <div class="card text-white">
-                            <img src="../../../assets/images/door.jpg" class="card-img" alt="door.img">
-                            <div class="card-img-overlay bg-dark">
-                                <h3 class="card-title">{{ category.name }}</h3>
-                            </div>
+<section class="home-categories my-5">
+    <div class="container">
+        <div class="home-title">
+            <p class="h3">Наша коллекция</p>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4" *ngFor="let category of categories">
+                <a [routerLink]="['./', category.name]">
+                    <div class="card text-white">
+                        <img src="../../../assets/images/door.jpg" class="card-img" alt="door.img">
+                        <div class="card-img-overlay bg-dark">
+                            <h3 class="card-title">{{ category.name }}</h3>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="home-about my-5 bg-silver">
-        <div class="container">
-            <div class="row">
-                <div class="col-6 col-md-6 m-auto">
-                    <p class="h3">Немного о нас</p>
-                    <p class="h5">Я и мои товарищи...</p>
-                </div>
-                <div class="col-6 col-md-6">
-                    <img src="../../../assets/images/women.jpeg" class="d-block" alt="img.rector">
-                </div>
+<section class="home-about my-5 bg-silver">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-6 m-auto">
+                <p class="h3">Немного о нас</p>
+                <p class="h5">Я и мои товарищи...</p>
+            </div>
+            <div class="col-6 col-md-6">
+                <img src="../../../assets/images/women.jpeg" class="d-block" alt="img.rector">
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="home-popular my-5">
-        <div class="container">
-            <div class="home-title d-flex justify-content-between">
-                <p class="h3 float-start">Часто смотрят</p>
-                <p class="h5 float-end">Просмотреть</p>
-            </div>
-            <div class="home-slider">
-
-            </div>
+<section class="home-popular my-5">
+    <div class="container">
+        <div class="home-title d-flex justify-content-between">
+            <p class="h3 float-start">Часто смотрят</p>
+            <p class="h5 float-end">Просмотреть</p>
         </div>
-    </section>
+        <div class="home-slider">
 
-</div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
 
-  private _isAuth: boolean = false;
+  constructor(private router: Router) {}
+
+  private _isAuth: boolean = true;
   private password: string = "1001";
 
   get isAuth(): boolean {
@@ -17,6 +20,7 @@ export class AuthService {
 
   logout(){
     this._isAuth = false;
+    this.router.navigate(['/']);
   }
 
   isAuthenticated(): Promise<boolean>{
