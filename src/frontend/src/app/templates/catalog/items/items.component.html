@@ -18,9 +18,21 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-2 mb-2">
+            <ul class="d-flex list-unstyled justify-content-between size-list">
+                <li (click)="pageSize = 8" [ngClass]="pageSize == 8 ? 'active-page-size' : ''">8</li>
+                <li (click)="pageSize = 12" [ngClass]="pageSize == 12 ? 'active-page-size' : ''">12</li>
+                <li (click)="pageSize = 16" [ngClass]="pageSize == 16 ? 'active-page-size' : ''">16</li>
+                <li (click)="pageSize = 20" [ngClass]="pageSize == 20 ? 'active-page-size' : ''">20</li>
+            </ul>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+
     <div class="col-sm-12">
-        <div class="row">
-            <div class="col-sm-4" *ngFor="let item of paginatedItems">
+        <div class="row gy-3">
+            <div class="col-sm-3" *ngFor="let item of paginatedItems">
                 <ng-template [ngIf]="item != null">
                     <div class="card">
                         <img *ngIf="item.images[0] != null" class="preview" src="{{ '../../assets/images/uploaded/' + item.images[0] }}" alt="img.item">

@@ -43,7 +43,7 @@ export class ItemsComponent implements OnInit {
   }
 
   public pageIndex: number = 0;
-  public pageSize: number = 3;
+  public pageSize: number = 8;
   public pages: number[] = [];
 
   initPagination(array: Item[]){
@@ -85,6 +85,10 @@ export class ItemsComponent implements OnInit {
       this.filteredItems = this.filteredItems.filter(x => x.count > 0);
 
     this.goIndex(0);
+  }
+
+  setPageSize(event: any){
+    this.pageSize = event.target.firstChild.data;
   }
 
 }

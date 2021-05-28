@@ -10,15 +10,15 @@
     max-height: 284px;
 }
 
-.active-link{
-    color: #ffe186;
-}
-
 .open-button{
     position: fixed;
     top: 96px;
-    color: rgba(214, 148, 0, 0.44);
-    background: #ffe186;
+    color: white;
+    background: #ffe18699;
     border-radius: 0 0 25px 0;
     padding: 10px 15px;
+}
+
+.offcanvas-start{
+    width: 280px;
 }
