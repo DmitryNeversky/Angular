@@ -1,56 +1,61 @@
 <div class="row">
 
-    <div class="col-md-12 mb-5">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <input [(ngModel)]="search" name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <input type="text" [(ngModel)]="min" placeholder="Min">
-                    <input type="text" [(ngModel)]="max" placeholder="Max">
-                    <input type="checkbox" [(ngModel)]="available">
-                </div>
+    <div class="row g-4 mb-4 justify-content-sm-around">
+        <div class="col-sm-4">
+            <input type="text" class="advanced-input" [(ngModel)]="search" placeholder="Search">
+        </div>
+        <div class="col-sm-2">
+            <input type="text" class="advanced-input" [(ngModel)]="min" placeholder="Min">
+        </div>
+        <div class="col-sm-2">
+            <input type="text" class="advanced-input" [(ngModel)]="max" placeholder="Max">
+        </div>
+        <div class="col-sm-1">
+            <input type="checkbox" class="advanced-input" [(ngModel)]="available">
+        </div>
+        <div class="col-sm-2">
+            <button class="advanced-input" (click)="filter()">Ok</button>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-4" *ngFor="let item of paginatedItems">
+                <ng-template [ngIf]="item != null">
+                    <div class="card">
+                        <img *ngIf="item.images[0] != null" class="preview" src="{{ '../../assets/images/uploaded/' + item.images[0] }}" alt="img.item">
+                        <img *ngIf="item.images[0] == null" class="preview" src="assets/images/preview.jpg" alt="img.item">
+                        <div class="p-3">
+                            <p class="fw-bold">{{ item.name }}</p>
+                            <p class="text-black-50">{{ item.description }}</p>
+                            <p class="text-black-50 h5 mb-4">{{ item.price }}</p>
+                            <p class="text-black-50 h5 mb-4">{{ item.count }}</p>
+                            <a class="float-start" [routerLink]="[item.id]">Смотреть</a>
+                            <a class="float-end" href="#"><i class="fas fa-heart"></i></a>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 mt-5">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <button class="page-link btn" [disabled]="pageIndex == 0" (click)="goIndex(pageIndex - 1)"><</button>
+                </li>
+                <li class="page-item" *ngFor="let page of pages">
+                    <button class="page-link btn"
+                            [ngStyle]="pageIndex == page ? {background: '#d6ecffa3'} : {background: 'white'}"
+                            (click)="goIndex(page)">{{page + 1}}
+                    </button>
+                </li>
+                <li class="page-item">
+                    <button class="page-link btn" [disabled]="pageIndex == pages.length - 1" (click)="goIndex(pageIndex + 1)">></button>
+                </li>
+            </ul>
         </nav>
     </div>
-
-    <div class="col-md-4" *ngFor="let item of arr | searchFilter: search | searchFilter: search | priceFilter: min: max">
-        <ng-template [ngIf]="item != null">
-            <div class="card">
-                <img *ngIf="item.images[0] != null" src="{{ '../../assets/images/uploaded/' + item.images[0] }}" alt="img.item">
-                <img *ngIf="item.images[0] == null" src="assets/images/preview.jpg" alt="img.item">
-                <div class="p-3">
-                    <p class="fw-bold">{{ item.name }}</p>
-                    <p class="text-black-50">{{ item.description }}</p>
-                    <p class="text-black-50 h5 mb-4">{{ item.price }}</p>
-                    <p class="text-black-50 h5 mb-4">{{ item.count }}</p>
-                    <a class="float-start" [routerLink]="[item.id]">Смотреть</a>
-                    <a class="float-end" href="#"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-        </ng-template>
-    </div>
-
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <ng-template [ngIf]="pageIndex != 0">
-                <li class="page-item">
-                    <button class="page-link btn" (click)="goIndex(pageIndex - 1)"><</button>
-                </li>
-            </ng-template>
-            <li class="page-item" *ngFor="let page of pages">
-                <button class="page-link btn"
-                        [ngStyle]="pageIndex == page ? {background: '#d6ecffa3'} : {background: 'white'}"
-                        (click)="goIndex(page)">{{page + 1}}</button>
-            </li>
-            <ng-template [ngIf]="pageIndex != pages.length - 1">
-                <li class="page-item">
-                    <button class="page-link btn" (click)="goIndex(pageIndex + 1)">></button>
-                </li>
-            </ng-template>
-        </ul>
-    </nav>
-
-    <ng-template #preloader><h1>Loading...</h1></ng-template>
-    <ng-template #empty><p class="fw-bold">Ой, кажется список пустой :(</p></ng-template>
 
 </div>

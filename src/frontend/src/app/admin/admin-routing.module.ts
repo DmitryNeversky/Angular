@@ -8,6 +8,7 @@ import {AuthGuard} from "../auth.guard";
 import {ItemsResolver} from "../shared/resolvers/items.resolver";
 import {SubcategoriesResolver} from "../shared/resolvers/subcategories.resolver";
 import {CategoriesResolver} from "../shared/resolvers/categories.resolver";
+import {GeneralComponent} from "./general/general.component";
 
 const routes: Routes = [
     {
@@ -15,6 +16,10 @@ const routes: Routes = [
         component: AdminComponent,
         canActivateChild: [AuthGuard],
         children: [
+            {
+                path: 'general',
+                component: GeneralComponent
+            },
             {
                 path: 'categories',
                 component: CategoriesComponent,

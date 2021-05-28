@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {Category} from "../../../models/category";
 import {CategoryService} from "../../../services/category.service";
-import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faChevronDown, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {ImageLoader} from "../../../shared/ImageLoader";
 
 @Component({
@@ -12,7 +12,9 @@ import {ImageLoader} from "../../../shared/ImageLoader";
 })
 export class CategoryComponent implements OnInit {
 
-  public icons = {times: faTimes, check: faCheck}
+  public expanded: boolean = false;
+
+  public icons = {times: faTimes, check: faCheck, open: faChevronDown}
 
   @Input()
   public category: Category;

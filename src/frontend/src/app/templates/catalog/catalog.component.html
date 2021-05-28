@@ -1,37 +1,23 @@
 <app-header></app-header>
 
 <section class="catalog content">
-    <div class="container">
-        <div class="row">
 
-            <!--Breadcrumb-->
+    <button class="btn btn-primary open-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        <fa-icon [icon]="icons.menu"></fa-icon>
+    </button>
 
-            <div class="col-md-12 mb-5">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    </ol>
-                </nav>
-            </div>
-
-            <!--Sidebar-->
-
-            <div class="col-md-2 categories border-end">
-                <ul class="nav flex-column mb-5" *ngFor="let category of categories">
-                    <li class="fw-bold"><a [routerLink]="[category.name]" routerLinkActive="active-link">{{ category.name }}</a></li>
-                    <li class="fw-light" *ngFor="let subCategory of category.subCategories">
-                        <a [routerLink]="[category.name, subCategory.name]" routerLinkActive="active-link">{{ subCategory.name }}</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!--Content-->
-
-            <div class="col-md-10">
-                <router-outlet></router-outlet>
-            </div>
-
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Каталог</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+        <div class="offcanvas-body">
+            <app-sidebar [categories]="categories"></app-sidebar>
+        </div>
+    </div>
+
+    <div class="container z-1">
+        <router-outlet></router-outlet>
     </div>
 </section>
 

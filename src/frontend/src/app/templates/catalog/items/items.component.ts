@@ -33,7 +33,8 @@ export class ItemsComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.subcategoryService.getByName(params.subcategory).subscribe((response: Subcategory) => {
         this.items = response.items;
-        this.initPagination();
+        this.filteredItems = response.items;
+        this.initPagination(this.items);
         this.goIndex(0);
       })
     });
@@ -45,20 +46,45 @@ export class ItemsComponent implements OnInit {
   public pageSize: number = 3;
   public pages: number[] = [];
 
-  initPagination(){
-    for(let i = 0; i < this.items.length / this.pageSize; i++){
+  initPagination(array: Item[]){
+    this.pages = [];
+    for(let i = 0; i < array.length / this.pageSize; i++){
       this.pages.push(i);
     }
   }
 
-  arr: Item[] = [];
+  paginatedItems: Item[] = []
 
   goIndex(index: number){
     this.pageIndex = index;
-    this.arr = [];
+    this.paginatedItems = [];
     for(let i = 0; i < this.pageSize; i++){
-      this.arr.push(this.items[index * this.pageSize + i]);
+        this.paginatedItems.push(this.filteredItems[index * this.pageSize + i]);
     }
+    this.initPagination(this.filteredItems);
+  }
+
+  filteredItems: Item[] = [];
+
+  filter(){
+    this.filteredItems = this.items;
+
+    if(this.search.trim() != '')
+      this.filteredItems = this.filteredItems.filter(x => x.name.includes(this.search));
+
+    if(this.min == 0 && this.max != 0)
+      this.filteredItems = this.filteredItems.filter(x => x.price <= this.max)
+
+    if(this.min != 0 && this.max == 0)
+      this.filteredItems = this.filteredItems.filter(x => x.price >= this.min)
+
+    if(this.min != 0 && this.max != 0)
+      this.filteredItems = this.filteredItems.filter(x => x.price >= this.min && x.price <= this.max)
+
+    if(this.available)
+      this.filteredItems = this.filteredItems.filter(x => x.count > 0);
+
+    this.goIndex(0);
   }
 
 }

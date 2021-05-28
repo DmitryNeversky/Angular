@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Category} from "../../models/category";
 import {CategoryService} from "../../services/category.service";
+import {faBars} from "@fortawesome/free-solid-svg-icons/faBars";
 
 @Component({
   selector: 'app-catalog',
@@ -8,6 +9,8 @@ import {CategoryService} from "../../services/category.service";
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
+
+  public icons = {menu: faBars}
 
   public categories: Category[] = [];
 
@@ -22,4 +25,6 @@ export class CatalogComponent implements OnInit {
       this.categories = response;
     }, error => { console.log(error) });
   }
+
+  public openedMenu: boolean = false;
 }

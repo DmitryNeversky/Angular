@@ -13,6 +13,7 @@ import {CategoryComponent} from "./categories/category/category.component";
 import {SubcategoryComponent} from "./subcategories/subcategory/subcategory.component";
 import {AuthService} from "../services/auth.service";
 import {AuthGuard} from "../auth.guard";
+import {GeneralComponent} from './general/general.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import {AuthGuard} from "../auth.guard";
         CategoryComponent,
         SubcategoryComponent,
         ItemComponent,
+        GeneralComponent,
     ],
     imports: [
         CommonModule,

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-4">
             <form [formGroup]="addForm" (ngSubmit)="onAdd()">
                 <input type="text" id="name" class="advanced-input" placeholder="Название" formControlName="name">
                 <input type="file" id="add-item-images" class="advanced-input" (change)="imageLoader.load($event, true)" accept="image/*">
@@ -14,13 +14,13 @@
                 <button type="submit" class="advanced-input">Добавить</button>
             </form>
         </div>
-        <div class="col-md-8 pt-2">
+        <div class="col-sm-8 pt-2">
             <div class="row">
-                <div class="font-weight-bold col-md-1">#</div>
-                <div class="font-weight-bold col-md-3">Название</div>
-                <div class="font-weight-bold col-md-4">Связанные товары</div>
-                <div class="font-weight-bold col-md-2">Категория</div>
-                <div class="font-weight-bold col-md-2">Операции</div>
+                <div class="font-weight-bold col-sm-1">#</div>
+                <div class="font-weight-bold col-sm-3">Название</div>
+                <div class="font-weight-bold col-sm-4">Связанные товары</div>
+                <div class="font-weight-bold col-sm-2">Категория</div>
+                <div class="font-weight-bold col-sm-2">Операции</div>
             </div>
             <div class="my-2" *ngFor="let subcategory of subcategories">
                 <app-subcategory (subCategoryEmitter)="removeSubCategory(subcategory)" [subCategory]="subcategory" [categories]="categories"></app-subcategory>
