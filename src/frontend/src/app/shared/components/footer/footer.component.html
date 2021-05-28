@@ -20,7 +20,7 @@
             <div class="col-6 col-sm-3">
                 <p class="title">Категории</p>
                 <ul class="nav flex-column">
-                    <li class="nav-item" *ngFor="let category of categoryService.getAll()">
+                    <li class="nav-item" *ngFor="let category of categories">
                         <a class="nav-link" [routerLink]="['catalog', category.name]">{{category.name}}</a>
                     </li>
                 </ul>
