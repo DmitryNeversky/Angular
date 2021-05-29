@@ -1,24 +1,34 @@
 <form #updateForm="ngForm" class="update-form d-flex align-items-center row">
     <input type="hidden" name="id" ngModel="{{category.id}}">
     <div class="col-sm-1">{{category.id}}</div>
-    <div class="col-sm-2"><input type="text" class="w-100 border-0" name="name" ngModel="{{category.name}}"></div>
-    <div class="col-sm-5 d-flex">
+    <div class="col-sm-3"><input type="text" class="w-100 border-0" name="name" ngModel="{{category.name}}"></div>
+    <div class="col-sm-6 d-flex">
         <a href="#" *ngFor="let subCategory of category.subCategories">{{subCategory.name}},&nbsp;</a>
-    </div>
-    <div class="col-sm-2 images">
-        <img class="preview" src="/assets/images/uploaded/{{category.image}}" alt="img.cat">
-        <input type="file" id="add-category-image" class="advanced-input d-none" (change)="imageLoader.load($event, true)" accept="image/*">
-        <label for="add-category-image">Сменить</label>
-        <div class="images">
-            <img src="{{image}}" class="image" *ngFor="let image of imageLoader.loadImages" (click)="imageLoader.removeImage($event)" alt="load.img">
-        </div>
     </div>
     <div class="d-flex col-sm-2 align-items-baseline" *ngIf="category.id != 1">
         <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
         <button class="remove-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(category)"><fa-icon [icon]="icons.times"></fa-icon></button>
         <button class="open-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Развернуть" (click)="expanded = !expanded"><fa-icon [icon]="icons.open"></fa-icon></button>
     </div>
-    <div class="col-sm-12 overflow-hidden" [ngClass]="expanded ? 'expanded' : 'collapsed'">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, quisquam!</p>
+    <div class="col-sm-12 row overflow-hidden" [ngClass]="expanded ? 'expanded' : 'collapsed'">
+        <div class="col-sm-4 images">
+            <input type="file" id="add-category-image-{{category.id}}" class="advanced-input d-none" (change)="imageLoader.load($event)" accept="image/*">
+            <label for="add-category-image-{{category.id}}">
+                <img class="image" *ngIf="category.image == null && imageLoader.loadImage == null" src="assets/images/preview.jpg" alt="img">
+                <img class="image" *ngIf="category.image == null && imageLoader.loadImage != null" src="{{imageLoader.loadImage}}" alt="img">
+                <img class="image" *ngIf="category.image != null && imageLoader.loadImage == null" src="assets/images/uploaded/{{category.image}}" alt="img">
+                <img class="image" *ngIf="category.image != null && imageLoader.loadImage != null" src="{{imageLoader.loadImage}}" (click)="imageLoader.removeImage($event)" alt="img">
+            </label>
+        </div>
+        <div class="col-sm-8">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, quisquam!</p>
+        </div>
     </div>
 </form>
+
+<!--            <img class="preview" src="/assets/images/uploaded/{{category.image}}" (click)="imagesLoader.remImage($event, category.image)" alt="img.cat">-->
+<!--            <input type="file" id="add-category-image" class="advanced-input d-none" (change)="imagesLoader.load($event, true)" accept="image/*">-->
+<!--            <label for="add-category-image">Сменить</label>-->
+<!--            <div class="images">-->
+<!--                <img src="{{image}}" class="image" *ngFor="let image of imagesLoader.loadImages" (click)="imagesLoader.remImage($event, image)" alt="load.img">-->
+<!--            </div>-->

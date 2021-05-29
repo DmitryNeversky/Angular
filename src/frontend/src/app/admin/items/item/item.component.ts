@@ -4,7 +4,7 @@ import {Subcategory} from "../../../models/subcategory";
 import {Item} from "../../../models/item";
 import {NgForm} from "@angular/forms";
 import {ItemService} from "../../../services/item.service";
-import {ImageLoader} from "../../../shared/ImageLoader";
+import {ImagesLoader} from "../../../shared/ImagesLoader";
 
 @Component({
   selector: 'app-item',
@@ -12,6 +12,8 @@ import {ImageLoader} from "../../../shared/ImageLoader";
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
+
+  public expanded: boolean = false;
 
   public icons = {times: faTimes, check: faCheck, open: faChevronDown}
 
@@ -24,7 +26,7 @@ export class ItemComponent implements OnInit {
   @Output()
   private itemEmitter: EventEmitter<Item> = new EventEmitter<Item>();
 
-  public imageLoader = new ImageLoader();
+  public imagesLoader = new ImagesLoader();
 
   constructor(private itemService: ItemService) { }
 
@@ -41,9 +43,9 @@ export class ItemComponent implements OnInit {
     formData.append('price', form.value.price);
     formData.append('count', form.value.count);
     formData.append('subCategory', form.value.subCategory);
-    this.imageLoader.removeImagesList.forEach(x => formData.append('removeImages', x));
-    for (let i = 0; i < this.imageLoader.dataTransfer.files.length; i++)
-      formData.append('addImages', this.imageLoader.dataTransfer.files[i]);
+    this.imagesLoader.removeImagesList.forEach(x => formData.append('removeImages', x));
+    for (let i = 0; i < this.imagesLoader.dataTransfer.files.length; i++)
+      formData.append('addImages', this.imagesLoader.dataTransfer.files[i]);
 
     this.itemService.update(form.value.id, formData).subscribe(() => {
     }, error => console.log(error));

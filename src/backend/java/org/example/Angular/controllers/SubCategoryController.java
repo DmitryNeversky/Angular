@@ -33,9 +33,10 @@ public class SubCategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<SubCategory> addSubCategory(@RequestParam String name,
-                                                      @RequestParam Category category,
-                                                      @RequestParam(required = false) MultipartFile image){
+    public ResponseEntity<SubCategory> addSubCategory(
+            @RequestParam String name,
+            @RequestParam Category category,
+            @RequestParam(required = false) MultipartFile image){
 
         return new ResponseEntity<>(subCategoryService.addSubCategory(name, category, image), HttpStatus.CREATED);
     }

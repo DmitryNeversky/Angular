@@ -5,6 +5,7 @@ import {ItemService} from "../../services/item.service";
 import {Category} from "../../models/category";
 import {Subcategory} from "../../models/subcategory";
 import {FormControl, FormGroup} from "@angular/forms";
+import {ImagesLoader} from "../../shared/ImagesLoader";
 import {ImageLoader} from "../../shared/ImageLoader";
 
 @Component({
@@ -29,9 +30,15 @@ export class GeneralComponent implements OnInit {
 
   public categoryImageLoader = new ImageLoader();
   public subCategoryImageLoader = new ImageLoader();
-  public itemImageLoader = new ImageLoader();
+  public itemImagesLoader = new ImagesLoader();
 
   ngOnInit(): void {
+    this.categoryService.getAll().subscribe(response => {
+      this.categories = response;
+    });
+    this.subCategoryService.getAll().subscribe(response => {
+      this.subCategories = response;
+    });
     this.categoryForm = new FormGroup({
       name: new FormControl('', [])
     });
@@ -59,6 +66,7 @@ export class GeneralComponent implements OnInit {
 
     this.categoryService.add(formData).subscribe(() => {
       this.categoryForm.reset();
+      this.categoryImageLoader.reset();
     }, error => { console.log(error) });
   }
 
@@ -70,10 +78,12 @@ export class GeneralComponent implements OnInit {
 
     formData.append('name', this.subCategoryForm.value.name);
     formData.append('category', this.subCategoryForm.value.category);
-    formData.append('preview', this.subCategoryImageLoader.dataTransfer.files[0]);
+    formData.append('image', this.subCategoryImageLoader.dataTransfer.files[0]);
 
     this.subCategoryService.add(formData).subscribe(() => {
       this.subCategoryForm.reset();
+      this.subCategoryForm.get('category').setValue(1);
+      this.subCategoryImageLoader.reset();
     }, error => { console.log(error) });
   }
 
@@ -86,11 +96,13 @@ export class GeneralComponent implements OnInit {
     formData.append('count', this.itemForm.value.count);
     formData.append('subCategory', this.itemForm.value.subCategory);
 
-    for (let i = 0; i < this.itemImageLoader.dataTransfer.files.length; i++)
-      formData.append('images', this.itemImageLoader.dataTransfer.files[i]);
+    for (let i = 0; i < this.itemImagesLoader.dataTransfer.files.length; i++)
+      formData.append('images', this.itemImagesLoader.dataTransfer.files[i]);
 
     this.itemService.add(formData).subscribe(() => {
       this.itemForm.reset();
+      this.itemForm.get('subCategory').setValue(1);
+      this.itemImagesLoader.reset();
     }, error => console.log(error));
   }
 

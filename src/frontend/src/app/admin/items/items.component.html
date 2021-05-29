@@ -1,30 +1,13 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
-            <form #addForm="ngForm">
-                <input type="text" class="advanced-input" name="name" ngModel placeholder="Название">
-                <textarea class="advanced-input" name="description" ngModel placeholder="Описание"></textarea>
-                <input type="file" id="add-item-images" class="advanced-input" (change)="imageLoader.load($event)" accept="image/*" multiple>
-                <label for="add-item-images">Добавить изображения</label>
-                <div id="images" class="images">
-                    <img src="{{image}}" class="image" *ngFor="let image of imageLoader.loadImages" (click)="imageLoader.removeImage($event)" alt="load.img">
-                </div>
-                <input type="text" class="advanced-input" name="price" ngModel placeholder="Цена">
-                <input type="text" class="advanced-input" name="count" ngModel placeholder="Кол-Во">
-                <select name="subCategory" ngModel>
-                    <option *ngFor="let subCategory of subCategories" value="{{subCategory.id}}">{{subCategory.name}}</option>
-                </select>
-                <button class="advanced-input" (click)="addItem(addForm)">Добавить</button>
-            </form>
-        </div>
-        <div class="col-sm-8 pt-2">
-            <div class="row">
-                <div class="font-weight-bold col-sm-1">#</div>
-                <div class="font-weight-bold col-sm-2">Название</div>
-                <div class="font-weight-bold col-sm-2">Цена</div>
-                <div class="font-weight-bold col-sm-2">Кол-во</div>
-                <div class="font-weight-bold col-sm-3">Подкатегория</div>
-                <div class="font-weight-bold col-sm-2">Операции</div>
+        <div class="col-sm-12 pt-2">
+            <div class="row fw-bolder">
+                <div class="col-sm-1">#</div>
+                <div class="col-sm-2">Название</div>
+                <div class="col-sm-2">Цена</div>
+                <div class="col-sm-2">Кол-во</div>
+                <div class="col-sm-3">Подкатегория</div>
+                <div class="col-sm-2">Операции</div>
             </div>
             <div class="my-2" *ngFor="let item of items">
                 <app-item (itemEmitter)="removeItem(item)" [item]="item" [subCategories]="subCategories"></app-item>

@@ -3,10 +3,10 @@
 <div class="container content">
     <div class="row">
         <div class="col-sm-4">
-            <img *ngIf="item.images == null" src="assets/images/preview.jpg" alt="img.item">
+            <img *ngIf="item.images.length == 0" src="assets/images/preview.jpg" alt="default.item">
 
-            <ng-template [ngIf]="item.images != null">
-                <img [src]="'../../assets/images/uploaded/' + preview" alt="img.item">
+            <ng-template [ngIf]="item.images.length > 0">
+                <img [src]="'../../assets/images/uploaded/' + preview" alt="preview.item">
                 <div class="row gallery">
                     <div class="col-sm-3 wrap-image" *ngFor="let image of item.images; let index = index">
                         <img class="image" [src]="'../../assets/images/uploaded/' + image" (click)="setPreview(image)" alt="gallery.img">

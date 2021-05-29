@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CategoryService} from "../../services/category.service";
 import {Category} from "../../models/category";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ImageLoader} from "../../shared/ImageLoader";
+import {ImagesLoader} from "../../shared/ImagesLoader";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -13,7 +13,7 @@ import {ActivatedRoute} from "@angular/router";
 export class CategoriesComponent implements OnInit {
 
   public categories: Category[] = [];
-  public imageLoader = new ImageLoader();
+  public imagesLoader = new ImagesLoader();
 
   public addForm: FormGroup;
 
@@ -25,20 +25,6 @@ export class CategoriesComponent implements OnInit {
     this.addForm = new FormGroup({
       name: new FormControl('', [Validators.minLength(2), Validators.maxLength(17), Validators.required])
     });
-  }
-
-  onAdd(){
-
-    if(this.categories.find(x => x.name === this.addForm.value.name) || !this.addForm.valid)
-      return;
-
-    let formData = new FormData();
-    formData.append('name', this.addForm.value.name);
-    formData.append('image', this.imageLoader.dataTransfer.files[0]);
-
-    this.service.add(formData).subscribe((response: Category) => {
-      this.categories.push(response);
-    }, error => { console.log(error) });
   }
 
   removeCategory(category: Category){

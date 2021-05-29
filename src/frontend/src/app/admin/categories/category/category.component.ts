@@ -32,6 +32,8 @@ export class CategoryComponent implements OnInit {
     let formData = new FormData();
 
     formData.append('name', updateForm.value.name);
+    if(this.imageLoader.removedImage != undefined)
+      formData.append('removeImage', this.imageLoader.removedImage);
     if(this.imageLoader.dataTransfer.files[0] != null)
       formData.append('image', this.imageLoader.dataTransfer.files[0]);
 

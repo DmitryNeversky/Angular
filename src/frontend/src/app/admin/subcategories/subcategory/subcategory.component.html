@@ -10,13 +10,20 @@
             <option *ngFor="let category of categories" ngValue="{{category.id}}">{{ category.name }}</option>
         </select>
     </div>
-    <input type="file" id="add-item-image" class="advanced-input" (change)="imageLoader.load($event, true)" accept="image/*">
-    <label for="add-item-image">Сменить изображение</label>
-    <div class="images">
-        <img src="{{image}}" class="image" *ngFor="let image of imageLoader.loadImages" (click)="imageLoader.removeImage($event)" alt="load.img">
-    </div>
     <div class="col-sm-2 d-flex align-items-baseline" *ngIf="subCategory.id != 1">
         <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
         <button class="remove-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(subCategory)"><fa-icon [icon]="icons.times"></fa-icon></button>
+        <button class="open-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Развернуть" (click)="expanded = !expanded"><fa-icon [icon]="icons.open"></fa-icon></button>
+    </div>
+    <div class="col-sm-12 row overflow-hidden" [ngClass]="expanded ? 'expanded' : 'collapsed'">
+        <div class="col-sm-4 images">
+            <input type="file" id="add-category-image-{{subCategory.id}}" class="advanced-input d-none" (change)="imageLoader.load($event)" accept="image/*">
+            <label for="add-category-image-{{subCategory.id}}">
+                <img class="image" *ngIf="subCategory.image == null && imageLoader.loadImage == null" src="assets/images/preview.jpg" alt="img">
+                <img class="image" *ngIf="subCategory.image == null && imageLoader.loadImage != null" src="{{imageLoader.loadImage}}" alt="img">
+                <img class="image" *ngIf="subCategory.image != null && imageLoader.loadImage == null" src="assets/images/uploaded/{{subCategory.image}}" alt="img">
+                <img class="image" *ngIf="subCategory.image != null && imageLoader.loadImage != null" src="{{imageLoader.loadImage}}" (click)="imageLoader.removeImage($event)" alt="img">
+            </label>
+        </div>
     </div>
 </form>

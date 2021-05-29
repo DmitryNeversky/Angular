@@ -1,42 +1,39 @@
 export class ImageLoader {
 
-    loadImages: any = [];
-    dataTransfer: DataTransfer = new DataTransfer();
+    public loadImage: any;
+    public removedImage: string;
+    public dataTransfer: DataTransfer = new DataTransfer();
 
     constructor() {}
 
-    load(event: any, single: boolean = false) {
+    load(event: any) {
 
         let component = this;
 
         if (event.target.files && event.target.files[0]) {
 
-            for(const file of event.target.files){
+            const file = event.target.files[0];
 
-                let ext = file.name.match(/\.([^\.]+)$/)[1];
+            let ext = file.name.match(/\.([^\.]+)$/)[1];
 
-                switch (ext) {
-                    case 'jpg':
-                    case 'jpeg':
-                    case 'png':
-                        break;
-                    default:
-                        continue;
-                }
-
-                this.dataTransfer.items.add(file);
-
-                let reader = new FileReader();
-
-                reader.onload = function (e: any){
-                    if(single)
-                        component.loadImages[0] = e.target.result;
-                    else
-                        component.loadImages.push(e.target.result);
-                }
-
-                reader.readAsDataURL(file); // convert to base64 string
+            switch (ext) {
+                case 'jpg':
+                case 'jpeg':
+                case 'png':
+                    break;
+                default:
+                    return;
             }
+
+            this.dataTransfer.items.add(file);
+
+            let reader = new FileReader();
+
+            reader.onload = function (e: any){
+                component.loadImage = e.target.result;
+            }
+
+            reader.readAsDataURL(file); // convert to base64 string
 
             event.target.files = this.dataTransfer.files;
         }
@@ -44,20 +41,12 @@ export class ImageLoader {
 
     removeImage(event: any){
         this.dataTransfer.items.remove(event.target);
+        this.loadImage = null;
         event.target.remove();
     }
 
-    public removeImagesList: string[] = [];
-
-    remImage(event: any, image: any){
-        if(event.target.hasAttribute('remove')) {
-            event.target.removeAttribute('remove');
-            this.removeImagesList = this.removeImagesList.filter(x => x != image);
-            event.target.style.opacity = '1';
-        } else {
-            event.target.setAttribute('remove', null);
-            this.removeImagesList.push(image);
-            event.target.style.opacity = '0.5';
-        }
+    reset(){
+        this.loadImage = null;
+        this.dataTransfer.items.clear();
     }
 }

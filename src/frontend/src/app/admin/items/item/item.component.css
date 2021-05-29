@@ -1,0 +1,14 @@
+.expanded{
+    height: auto;
+    transition: .3s;
+}
+
+.collapsed{
+    height: 0;
+    transition: .3s;
+}
+
+.preview{
+    width: 100px;
+    height: 100px;
+}

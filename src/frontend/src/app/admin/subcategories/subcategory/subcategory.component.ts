@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faChevronDown, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {Subcategory} from "../../../models/subcategory";
 import {SubcategoryService} from "../../../services/subcategory.service";
 import {NgForm} from "@angular/forms";
@@ -13,7 +13,9 @@ import {ImageLoader} from "../../../shared/ImageLoader";
 })
 export class SubcategoryComponent implements OnInit {
 
-  public icons = {times: faTimes, check: faCheck}
+  public expanded: boolean = false;
+
+  public icons = {times: faTimes, check: faCheck, open: faChevronDown}
 
   @Input()
   public subCategory: Subcategory | undefined;
@@ -37,6 +39,8 @@ export class SubcategoryComponent implements OnInit {
 
     formData.append('name', updateForm.value.name);
     formData.append('category', updateForm.value.category);
+    if(this.imageLoader.removedImage != undefined)
+      formData.append('removeImage', this.imageLoader.removedImage);
     if(this.imageLoader.dataTransfer.files[0] != null)
       formData.append('image', this.imageLoader.dataTransfer.files[0]);
 
