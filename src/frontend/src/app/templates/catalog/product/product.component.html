@@ -1,8 +1,19 @@
-<div class="container my-5">
+<app-header></app-header>
+
+<div class="container content">
     <div class="row">
         <div class="col-sm-4">
-            <img *ngIf="item.images[0] != null" src="{{ '../../assets/images/uploaded/' + item.images[0] }}" alt="img.item">
-            <img *ngIf="item.images[0] == null" src="assets/images/preview.jpg" alt="img.item">
+            <img *ngIf="item.images == null" src="assets/images/preview.jpg" alt="img.item">
+
+            <ng-template [ngIf]="item.images != null">
+                <img [src]="'../../assets/images/uploaded/' + preview" alt="img.item">
+                <div class="row gallery">
+                    <div class="col-sm-3 wrap-image" *ngFor="let image of item.images; let index = index">
+                        <img class="image" [src]="'../../assets/images/uploaded/' + image" (click)="setPreview(image)" alt="gallery.img">
+                    </div>
+                </div>
+            </ng-template>
+
         </div>
         <div class="col-sm-8">
             <p class="fs-3">{{item.name}}</p>
@@ -12,3 +23,5 @@
         </div>
     </div>
 </div>
+
+<app-footer></app-footer>

@@ -42,9 +42,10 @@ public class CategoryController {
     public ResponseEntity<Category> updateCategory(
             @PathVariable int id,
             @RequestParam(required = false) String name,
+            @RequestParam(required = false) String removeImage,
             @RequestParam(required = false) MultipartFile image){
 
-        return new ResponseEntity<>(categoryService.updateCategory(id, name, image), HttpStatus.OK);
+        return new ResponseEntity<>(categoryService.updateCategory(id, name, removeImage, image), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{category}")

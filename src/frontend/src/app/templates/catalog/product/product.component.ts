@@ -12,6 +12,8 @@ export class ProductComponent implements OnInit {
 
   public item: Item;
 
+  public preview: string;
+
   constructor(private activatedRoute: ActivatedRoute,
               private itemService: ItemService) { }
 
@@ -19,8 +21,13 @@ export class ProductComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.itemService.get(params.item).subscribe((response: Item) => {
         this.item = response;
+        this.preview = response.images[0];
       });
     });
+  }
+
+  setPreview(image: string){
+    this.preview = image;
   }
 
 }

@@ -76,10 +76,21 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public Category updateCategory(int id, String name, MultipartFile image){
+    public Category updateCategory(int id, String name, String removeImage, MultipartFile image){
         Optional<Category> category = categoryRepository.findById(id);
         if(!category.isPresent())
             return null;
+
+        if(removeImage != null) {
+            if (Files.exists(Paths.get(UPLOAD_IMAGE_PATH + removeImage))) {
+                try {
+                    Files.delete(Paths.get(UPLOAD_IMAGE_PATH + removeImage));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            category.get().setImage(null);
+        }
 
         if(image != null) {
             try {
