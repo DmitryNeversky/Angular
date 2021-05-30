@@ -8,6 +8,7 @@ export class Item {
     private _count:number = 0;
     private _subCategory: Subcategory;
     private _images: string[] = [];
+    private _looks: string[] = [];
 
     constructor(name: string, subCategory: Subcategory) {
         this._name = name;
@@ -68,5 +69,13 @@ export class Item {
 
     set images(value: string[]) {
         this._images = value;
+    }
+
+    get looks(): string[] {
+        return this._looks;
+    }
+
+    set looks(value: string[]) {
+        this._looks = value;
     }
 }

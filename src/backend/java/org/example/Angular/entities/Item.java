@@ -1,7 +1,9 @@
 package org.example.Angular.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,6 +25,9 @@ public class Item {
     @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "item_id"))
     @Column(name = "filename")
     private Set<String> images = new HashSet<>();
+
+    @ElementCollection
+    private List<String> looks = new ArrayList<>();
 
 //  Constructors
 
@@ -88,5 +93,13 @@ public class Item {
 
     public void addImage(String name){
         images.add(name);
+    }
+
+    public List<String> getLooks() {
+        return looks;
+    }
+
+    public void addLook(String ip){
+        getLooks().add(ip);
     }
 }

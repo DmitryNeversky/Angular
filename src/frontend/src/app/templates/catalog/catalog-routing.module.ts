@@ -24,11 +24,11 @@ const routes: Routes = [
                 path: ':category/:subcategory',
                 component: ItemsComponent
             },
+            {
+                path: ':category/:subcategory/:item',
+                component: ProductComponent
+            }
         ]
-    },
-    {
-        path: ':category/:subcategory/:item',
-        component: ProductComponent
     }
 ];
 
