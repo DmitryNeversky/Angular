@@ -1,6 +1,23 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 pt-2">
+
+        <div class="col-sm-2">
+            <div class="input-group">
+                <div class="input-group-text">#</div>
+                <input [(ngModel)]="idSearch" type="text" class="form-control" placeholder="Id">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <input [(ngModel)]="nameSearch" type="text" class="form-control" placeholder="Name">
+        </div>
+        <div class="col-sm-6">
+            <select name="category" [(ngModel)]="subCategorySearch">
+                <option value="0">Null</option>
+                <option *ngFor="let subcategory of subCategories" ngValue="{{subcategory.id}}">{{ subcategory.name }}</option>
+            </select>
+        </div>
+
+        <div class="col-sm-12 mt-5">
             <div class="row fw-bolder">
                 <div class="col-sm-1">#</div>
                 <div class="col-sm-2">Название</div>
@@ -9,7 +26,7 @@
                 <div class="col-sm-3">Подкатегория</div>
                 <div class="col-sm-2">Операции</div>
             </div>
-            <div class="my-2" *ngFor="let item of items">
+            <div class="my-2" *ngFor="let item of items | searchId: idSearch | searchName: nameSearch | searchSubCategory: subCategorySearch">
                 <app-item (itemEmitter)="removeItem(item)" [item]="item" [subCategories]="subCategories"></app-item>
             </div>
         </div>

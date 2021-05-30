@@ -14,6 +14,10 @@ import {ImageLoader} from "../../shared/ImageLoader";
 })
 export class SubcategoriesComponent implements OnInit {
 
+  public nameSearch: string = '';
+  public idSearch: string = '';
+  public categorySearch: number = 0;
+
   public icons = {times: faTimes, check: faCheck}
 
   public categories: Category[] = [];

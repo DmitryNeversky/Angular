@@ -13,6 +13,10 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ItemsComponent implements OnInit {
 
+  public nameSearch: string = '';
+  public idSearch: string = '';
+  public subCategorySearch: number = 0;
+
   public items: Item[] = [];
   public subCategories: Subcategory[] = [];
   public imagesLoader = new ImagesLoader();
