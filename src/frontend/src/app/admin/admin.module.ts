@@ -14,6 +14,7 @@ import {SubcategoryComponent} from "./subcategories/subcategory/subcategory.comp
 import {AuthService} from "../services/auth.service";
 import {AuthGuard} from "../auth.guard";
 import {GeneralComponent} from './general/general.component';
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import {GeneralComponent} from './general/general.component';
         FormsModule,
         FontAwesomeModule,
         HttpClientModule,
+        SharedModule,
 
         AdminRoutingModule,
     ],
