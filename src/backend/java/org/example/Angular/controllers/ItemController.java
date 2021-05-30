@@ -1,7 +1,6 @@
 package org.example.Angular.controllers;
 
 import org.example.Angular.entities.Item;
-import org.example.Angular.entities.SubCategory;
 import org.example.Angular.services.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +37,7 @@ public class ItemController {
             @RequestParam(required = false) String description,
             @RequestParam(required = false) double price,
             @RequestParam(required = false) int count,
-            @RequestParam(required = false) SubCategory subCategory,
+            @RequestParam(required = false) int subCategory,
             @RequestParam(required = false) List<MultipartFile> images){
 
         Item item = new Item(name, description, price, count, subCategory);
@@ -53,7 +52,7 @@ public class ItemController {
             @RequestParam(required = false) String description,
             @RequestParam(required = false) double price,
             @RequestParam(required = false) int count,
-            @RequestParam(required = false) SubCategory subCategory,
+            @RequestParam(required = false) int subCategory,
             @RequestParam(required = false) Set<String> removeImages,
             @RequestParam(required = false) List<MultipartFile> addImages){
 

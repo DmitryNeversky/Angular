@@ -5,7 +5,7 @@
     <div class="col-sm-2"><input type="text" class="w-100 border-0" name="price" ngModel="{{ item.price }}"></div>
     <div class="col-sm-2"><input type="text" class="w-100 border-0" name="count" ngModel="{{ item.count }}"></div>
     <div class="col-sm-3">
-        <select name="subCategory" ngModel="{{ item.subCategory.id }}">
+        <select name="subCategory" ngModel="{{ item.subCategory }}">
             <option *ngFor="let subCategory of subCategories" value="{{ subCategory.id }}">{{ subCategory.name }}</option>
         </select>
     </div>

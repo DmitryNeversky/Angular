@@ -18,8 +18,8 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-2 mb-2">
+    <div class="row mb-2">
+        <div class="col-md-2">
             <ul class="d-flex list-unstyled justify-content-between size-list">
                 <li (click)="pageSize = 8" [ngClass]="pageSize == 8 ? 'active-page-size' : ''">8</li>
                 <li (click)="pageSize = 12" [ngClass]="pageSize == 12 ? 'active-page-size' : ''">12</li>
@@ -27,7 +27,14 @@
                 <li (click)="pageSize = 20" [ngClass]="pageSize == 20 ? 'active-page-size' : ''">20</li>
             </ul>
         </div>
-        <div class="col-md-10"></div>
+        <div class="col-md-10">
+            <ul class="d-flex list-unstyled justify-content-between size-list">
+                <li (click)="sortByName()">Название</li>
+                <li (click)="sortByPrice()">Цена</li>
+                <li (click)="sortByLook()">Просмотры</li>
+                <li (click)="sortByCount()">Количество</li>
+            </ul>
+        </div>
     </div>
 
     <div class="col-sm-12">

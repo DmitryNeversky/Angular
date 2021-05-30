@@ -1,6 +1,6 @@
 package org.example.Angular.services;
 
-import org.example.Angular.entities.Category;
+import org.example.Angular.entities.Item;
 import org.example.Angular.entities.SubCategory;
 import org.example.Angular.repositories.SubCategoryRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -22,9 +23,11 @@ public class SubCategoryService {
     private String UPLOAD_IMAGE_PATH;
 
     private final SubCategoryRepository subCategoryRepository;
+    private final CategoryService categoryService;
 
-    public SubCategoryService(SubCategoryRepository subCategoryRepository) {
+    public SubCategoryService(SubCategoryRepository subCategoryRepository, CategoryService categoryService) {
         this.subCategoryRepository = subCategoryRepository;
+        this.categoryService = categoryService;
     }
 
     public List<SubCategory> getAllSubCategories(){
@@ -38,8 +41,8 @@ public class SubCategoryService {
         return subCategory.orElse(null);
     }
 
-    public SubCategory addSubCategory(String name, Category category, MultipartFile image){
-        SubCategory subCategory = new SubCategory(name, category);
+    public SubCategory addSubCategory(String name, int categoryId, MultipartFile image){
+        SubCategory subCategory = new SubCategory(name, categoryId);
 
         if(image != null){
             String fileName = UUID.randomUUID() + "-" + image.getOriginalFilename();
@@ -52,10 +55,14 @@ public class SubCategoryService {
             }
         }
 
-        return subCategoryRepository.save(subCategory);
+        subCategoryRepository.save(subCategory);
+
+        categoryService.addSubCategory(categoryId, subCategory);
+
+        return subCategory;
     }
 
-    public SubCategory updateSubCategory(int id, String name, Category category, MultipartFile image){
+    public SubCategory updateSubCategory(int id, String name, int categoryId, MultipartFile image){
         Optional<SubCategory> subCategory = subCategoryRepository.findById(id);
         if(!subCategory.isPresent())
             return null;
@@ -74,7 +81,17 @@ public class SubCategoryService {
         }
 
         subCategory.get().setName(name);
-        subCategory.get().setCategory(category);
+
+        if(subCategory.get().getCategory() != categoryId) {
+            categoryService.removeSubCategory(subCategory.get().getCategory(), subCategory.get());
+
+            subCategory.get().setCategory(categoryId);
+            subCategoryRepository.save(subCategory.get());
+
+            categoryService.addSubCategory(categoryId, subCategory.get());
+
+            return subCategory.get();
+        }
 
         return subCategoryRepository.save(subCategory.get());
     }
@@ -90,8 +107,35 @@ public class SubCategoryService {
             e.printStackTrace();
         }
 
-        subCategory.getItems().forEach(item -> item.setSubCategory(defaultSubCategory.get()));
+        subCategory.getItems().forEach(x -> x.setSubCategory(defaultSubCategory.get().getId()));
+
+        Set<Item> set = subCategory.getItems();
+
+        categoryService.removeSubCategory(subCategory.getCategory(), subCategory);
+
         subCategoryRepository.delete(subCategory);
+
+        set.forEach(x -> defaultSubCategory.get().addItem(x));
+
+        subCategoryRepository.save(defaultSubCategory.get());
+    }
+
+    public void addItem(Item item){
+        Optional<SubCategory> subCategory = subCategoryRepository.findById(item.getSubCategory());
+        if(!subCategory.isPresent())
+            return;
+
+        subCategory.get().addItem(item);
+        subCategoryRepository.save(subCategory.get());
+    }
+
+    public void removeItem(int subCategoryId, Item item){
+        Optional<SubCategory> subCategory = subCategoryRepository.findById(subCategoryId);
+        if(!subCategory.isPresent())
+            return;
+
+        subCategory.get().getItems().remove(item);
+        subCategoryRepository.save(subCategory.get());
     }
 
     @PostConstruct

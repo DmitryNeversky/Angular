@@ -6,7 +6,7 @@
         <a href="#" *ngFor="let item of subCategory.items">{{item.name}},&#8194;</a>
     </div>
     <div class="col-sm-2">
-        <select name="category" ngModel="{{subCategory.category.id}}" *ngIf="subCategory.id != 1">
+        <select name="category" ngModel="{{subCategory.category}}" *ngIf="subCategory.id != 1">
             <option *ngFor="let category of categories" ngValue="{{category.id}}">{{ category.name }}</option>
         </select>
     </div>

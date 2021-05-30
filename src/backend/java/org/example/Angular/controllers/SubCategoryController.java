@@ -1,6 +1,5 @@
 package org.example.Angular.controllers;
 
-import org.example.Angular.entities.Category;
 import org.example.Angular.entities.SubCategory;
 import org.example.Angular.services.SubCategoryService;
 import org.springframework.http.HttpStatus;
@@ -35,19 +34,20 @@ public class SubCategoryController {
     @PostMapping("/add")
     public ResponseEntity<SubCategory> addSubCategory(
             @RequestParam String name,
-            @RequestParam Category category,
+            @RequestParam int categoryId,
             @RequestParam(required = false) MultipartFile image){
 
-        return new ResponseEntity<>(subCategoryService.addSubCategory(name, category, image), HttpStatus.CREATED);
+        return new ResponseEntity<>(subCategoryService.addSubCategory(name, categoryId, image), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<SubCategory> updateSubCategory(@PathVariable int id,
-                                                         @RequestParam String name,
-                                                         @RequestParam Category category,
-                                                         @RequestParam(required = false) MultipartFile image){
+    public ResponseEntity<SubCategory> updateSubCategory(
+            @PathVariable int id,
+            @RequestParam String name,
+            @RequestParam int categoryId,
+            @RequestParam(required = false) MultipartFile image){
 
-        return new ResponseEntity<>(subCategoryService.updateSubCategory(id, name, category, image), HttpStatus.OK);
+        return new ResponseEntity<>(subCategoryService.updateSubCategory(id, name, categoryId, image), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{subCategory}")

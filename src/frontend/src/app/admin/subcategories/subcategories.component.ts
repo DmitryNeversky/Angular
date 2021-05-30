@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subcategory} from "../../models/subcategory";
 import {SubcategoryService} from "../../services/subcategory.service";
 import {Category} from "../../models/category";
@@ -21,22 +20,23 @@ export class SubcategoriesComponent implements OnInit {
   public subcategories: Subcategory[] = [];
   public imageLoader: ImageLoader = new ImageLoader();
 
-  public addForm: FormGroup;
-
-  constructor(private service: SubcategoryService,
-              private categoryService: CategoryService,
-              private activatedRoute: ActivatedRoute) { }
+  constructor(private categoryService: CategoryService,
+              private activatedRoute: ActivatedRoute,
+              private subCategoryService: SubcategoryService) { }
 
   ngOnInit(): void {
-    this.subcategories = this.activatedRoute.snapshot.data.subCategories;
+    // this.subcategories = this.activatedRoute.snapshot.data.subCategories;
 
-    this.addForm = new FormGroup({
-      name: new FormControl('', [Validators.minLength(2), Validators.maxLength(17), Validators.required]),
-      category: new FormControl('1')
+    this.subCategoryService.getAll().subscribe((response: Subcategory[]) => {
+      this.subcategories = response;
+      console.log("sub - subCategories: ");
+      response.forEach(console.log);
     });
 
     this.categoryService.getAll().subscribe((response: Category[]) => {
       this.categories = response;
+      console.log("sub - Categories: ");
+      response.forEach(console.log);
     });
   }
 

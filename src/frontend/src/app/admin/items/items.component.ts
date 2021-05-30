@@ -26,7 +26,7 @@ export class ItemsComponent implements OnInit {
     // this.activatedRoute.data.subscribe(data => { this.items = data.items });
     this.subCategoryService.getAll().subscribe((response: Subcategory[]) => {
       this.subCategories = response;
-    },error => console.log(error));
+    },error =>  console.log(error));
   }
 
   removeItem(item: Item){

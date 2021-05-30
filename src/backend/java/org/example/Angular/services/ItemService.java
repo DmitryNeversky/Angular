@@ -24,9 +24,11 @@ public class ItemService {
     private String UPLOAD_IMAGE_PATH;
 
     private final ItemRepository itemRepository;
+    private final SubCategoryService subCategoryService;
 
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository, SubCategoryService subCategoryService) {
         this.itemRepository = itemRepository;
+        this.subCategoryService = subCategoryService;
     }
 
     public List<Item> getItems(){
@@ -42,10 +44,17 @@ public class ItemService {
     public Item add(Item item, List<MultipartFile> images){
         uploadImages(item, images);
 
-        return itemRepository.save(item);
+        itemRepository.save(item);
+
+        subCategoryService.addItem(item);
+
+        return item;
     }
 
     public Item update(Item item, Set<String> removeImages, List<MultipartFile> addImages){
+        Optional<Item> findItem = itemRepository.findById(item.getId());
+        if(!findItem.isPresent())
+            return item;
 
         if(removeImages != null) {
             removeImages.forEach(x -> {
@@ -62,6 +71,16 @@ public class ItemService {
 
         uploadImages(item, addImages);
 
+        if(item.getSubCategory() != findItem.get().getSubCategory()) {
+            subCategoryService.removeItem(item.getSubCategory(), item);
+
+            itemRepository.save(item);
+
+            subCategoryService.addItem(item);
+
+            return item;
+        }
+
         return itemRepository.save(item);
     }
 
@@ -77,6 +96,7 @@ public class ItemService {
                 }
             }
         }
+        subCategoryService.removeItem(item.getSubCategory(), item);
         itemRepository.delete(item);
     }
 

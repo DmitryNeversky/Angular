@@ -21,10 +21,12 @@ public class SubCategory {
     private String name;
     private String image;
 
-    @ManyToOne
-    private Category category;
+    private int category;
 
-    @OneToMany(mappedBy = "subCategory")
+    @OneToMany
+    @JoinTable(name = "subcategory_item",
+            joinColumns = @JoinColumn(name = "subcategory_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
     private Set<Item> items = new HashSet<>();
 
 //  Constructors
@@ -34,13 +36,12 @@ public class SubCategory {
     public SubCategory(String name) {
         this.name = name;
     }
-
-    public SubCategory(String name, Category category) {
+    public SubCategory(String name, int category) {
         this.name = name;
         this.category = category;
     }
 
-//  Getters & Setters
+    //  Getters & Setters
 
     public int getId() {
         return id;
@@ -62,11 +63,11 @@ public class SubCategory {
         this.image = image;
     }
 
-    public Category getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 
@@ -83,6 +84,7 @@ public class SubCategory {
         return "SubCategory{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
                 ", category=" + category +
                 ", items=" + items +
                 '}';

@@ -18,8 +18,7 @@ public class Item {
     private double price;
     private int count;
 
-    @ManyToOne
-    private SubCategory subCategory;
+    private int subCategory;
 
     @ElementCollection
     @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "item_id"))
@@ -33,7 +32,7 @@ public class Item {
 
     public Item() { }
 
-    public Item(String name, String description, double price, int count, SubCategory subCategory) {
+    public Item(String name, String description, double price, int count, int subCategory) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -79,11 +78,11 @@ public class Item {
         this.count = count;
     }
 
-    public SubCategory getSubCategory() {
+    public int getSubCategory() {
         return subCategory;
     }
 
-    public void setSubCategory(SubCategory subCategory) {
+    public void setSubCategory(int subCategory) {
         this.subCategory = subCategory;
     }
 

@@ -38,12 +38,12 @@ export class CategoryComponent implements OnInit {
       formData.append('image', this.imageLoader.dataTransfer.files[0]);
 
     this.categoryService.update(updateForm.value.id, formData).subscribe( () => {
-    }, error => { console.log(error) });
+    }, error => console.log(error));
   }
 
   public onDelete(category: Category): void {
     this.categoryService.delete(category).subscribe( () => {
       this.categoryEmitter.emit(category);
-    }, error => { console.log(error) });
+    }, error => console.log(error));
   }
 }

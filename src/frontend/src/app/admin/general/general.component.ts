@@ -67,7 +67,7 @@ export class GeneralComponent implements OnInit {
     this.categoryService.add(formData).subscribe(() => {
       this.categoryForm.reset();
       this.categoryImageLoader.reset();
-    }, error => { console.log(error) });
+    }, error => console.log(error));
   }
 
   addSubCategory(){
@@ -77,14 +77,14 @@ export class GeneralComponent implements OnInit {
     let formData = new FormData();
 
     formData.append('name', this.subCategoryForm.value.name);
-    formData.append('category', this.subCategoryForm.value.category);
+    formData.append('categoryId', this.subCategoryForm.value.category);
     formData.append('image', this.subCategoryImageLoader.dataTransfer.files[0]);
 
     this.subCategoryService.add(formData).subscribe(() => {
       this.subCategoryForm.reset();
       this.subCategoryForm.get('category').setValue(1);
       this.subCategoryImageLoader.reset();
-    }, error => { console.log(error) });
+    }, error => console.log(error));
   }
 
   addItem(){

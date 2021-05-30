@@ -1,7 +1,6 @@
 package org.example.Angular.services;
 
 import org.example.Angular.entities.Category;
-import org.example.Angular.entities.Item;
 import org.example.Angular.entities.SubCategory;
 import org.example.Angular.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,9 +11,9 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -43,20 +42,6 @@ public class CategoryService {
         Optional<Category> category = categoryRepository.findByName(name);
 
         return category.orElse(null);
-    }
-
-    public List<Item> getItemsByCategoryId(int id){
-        Optional<Category> category = categoryRepository.findById(id);
-        if(!category.isPresent())
-            return null;
-
-        List<Item> list = new ArrayList<>();
-
-        for(SubCategory pair : category.get().getSubCategories()){
-            list.addAll(pair.getItems());
-        }
-
-        return list;
     }
 
     public Category addCategory(String name, MultipartFile image){
@@ -121,8 +106,33 @@ public class CategoryService {
             e.printStackTrace();
         }
 
-        category.getSubCategories().forEach(x -> x.setCategory(defaultCategory.get()));
+        category.getSubCategories().forEach(x -> x.setCategory(defaultCategory.get().getId()));
+
+        Set<SubCategory> set = category.getSubCategories();
+
         categoryRepository.delete(category);
+
+        set.forEach(x -> defaultCategory.get().getSubCategories().add(x));
+
+        categoryRepository.save(defaultCategory.get());
+    }
+
+    public void addSubCategory(int categoryId, SubCategory subCategory){
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if(!category.isPresent())
+            return;
+
+        category.get().addSubCategory(subCategory);
+        categoryRepository.save(category.get());
+    }
+
+    public void removeSubCategory(int categoryId, SubCategory subCategory){
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if(!category.isPresent())
+            return;
+
+        category.get().getSubCategories().remove(subCategory);
+        categoryRepository.save(category.get());
     }
 
     @PostConstruct

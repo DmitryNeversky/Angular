@@ -11,6 +11,11 @@ import {Item} from "../../../models/item";
 })
 export class ItemsComponent implements OnInit {
 
+  private sortName: boolean = false;
+  private sortPrice: boolean = false;
+  private sortLook: boolean = false;
+  private sortCount: boolean = false;
+
   public search: string = "";
   public min: number = 0;
   public max: number = 0;
@@ -87,8 +92,71 @@ export class ItemsComponent implements OnInit {
     this.goIndex(0);
   }
 
-  setPageSize(event: any){
-    this.pageSize = event.target.firstChild.data;
+  sortByName(){
+      this.filteredItems = this.filteredItems.sort((a, b) => {
+        if(a.name.toLowerCase() > b.name.toLowerCase())
+          return 1
+        else if(a.name.toLowerCase() < b.name.toLowerCase())
+          return -1
+        else return 0
+      });
+
+      if(this.sortName){
+        this.filteredItems.reverse();
+        this.sortName = !this.sortName;
+      } else this.sortName = !this.sortName;
+
+      this.goIndex(0);
   }
 
+  sortByPrice(){
+    this.filteredItems = this.filteredItems.sort((a, b) => {
+      if(a.price > b.price)
+        return 1
+      else if(a.price < b.price)
+        return -1
+      else return 0
+    });
+
+    if(this.sortPrice){
+      this.filteredItems.reverse();
+      this.sortPrice = !this.sortPrice;
+    } else this.sortPrice = !this.sortPrice;
+
+    this.goIndex(0);
+  }
+
+  sortByLook(){
+    this.filteredItems = this.filteredItems.sort((a, b) => {
+      if(a.looks.length > b.looks.length)
+        return 1
+      else if(a.looks.length < b.looks.length)
+        return -1
+      else return 0
+    });
+
+    if(this.sortLook){
+      this.filteredItems.reverse();
+      this.sortLook = !this.sortLook;
+    } else this.sortLook = !this.sortLook;
+
+    this.goIndex(0);
+  }
+
+  sortByCount(){
+    this.filteredItems = this.filteredItems.sort((a, b) => {
+      if(a.count > b.count)
+        return 1
+      else if(a.count < b.count)
+        return -1
+      else return 0
+    });
+
+    if(this.sortCount){
+      this.filteredItems.reverse();
+      this.sortCount = !this.sortCount;
+    } else this.sortCount = !this.sortCount;
+
+    this.goIndex(0);
+  }
 }
