@@ -1,22 +1,31 @@
-<form #updateForm="ngForm" class="update-form d-flex row">
-    <input type="hidden" ngModel="{{subCategory.id}}" name="id">
-    <div class="col-sm-1">{{subCategory.id}}</div>
-    <div class="col-sm-3"><input name="name" class="w-100 border-0" ngModel="{{subCategory.name}}" type="text"></div>
-    <div class="col-sm-4">
-        <a href="#" *ngFor="let item of subCategory.items">{{item.name}},&#8194;</a>
+<form #updateForm="ngForm">
+
+    <div class="col-sm-12 row">
+
+        <input type="hidden" ngModel="{{subCategory.id}}" name="id">
+
+        <div class="col-sm-1">
+            {{subCategory.id}}
+        </div>
+        <div class="col-sm-6">
+            <input name="name" class="w-100 border-0" ngModel="{{subCategory.name}}" type="text">
+        </div>
+        <div class="col-sm-3">
+            <select name="category" class="advanced-select" ngModel="{{subCategory.category}}" *ngIf="subCategory.id != 1">
+                <option *ngFor="let category of categories" ngValue="{{category.id}}">{{ category.name }}</option>
+            </select>
+        </div>
+        <div class="col-sm-2" *ngIf="subCategory.id != 1">
+            <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
+            <button class="remove-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(subCategory)"><fa-icon [icon]="icons.times"></fa-icon></button>
+            <button appClick180 class="open-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Развернуть" (click)="expanded = !expanded"><fa-icon [icon]="icons.open"></fa-icon></button>
+        </div>
+
     </div>
-    <div class="col-sm-2">
-        <select name="category" ngModel="{{subCategory.category}}" *ngIf="subCategory.id != 1">
-            <option *ngFor="let category of categories" ngValue="{{category.id}}">{{ category.name }}</option>
-        </select>
-    </div>
-    <div class="col-sm-2 d-flex align-items-baseline" *ngIf="subCategory.id != 1">
-        <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
-        <button class="remove-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(subCategory)"><fa-icon [icon]="icons.times"></fa-icon></button>
-        <button class="open-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Развернуть" (click)="expanded = !expanded"><fa-icon [icon]="icons.open"></fa-icon></button>
-    </div>
+
     <div class="col-sm-12 row overflow-hidden" [ngClass]="expanded ? 'expanded' : 'collapsed'">
-        <div class="col-sm-4 images">
+        <div class="col-sm-4 images border-end mt-3">
+            <p class="fw-bolder">Изображения</p>
             <input type="file" id="add-category-image-{{subCategory.id}}" class="advanced-input d-none" (change)="imageLoader.load($event)" accept="image/*">
             <label for="add-category-image-{{subCategory.id}}">
                 <img class="image" *ngIf="subCategory.image == null && imageLoader.loadImage == null" src="assets/images/preview.jpg" alt="img">
@@ -25,5 +34,10 @@
                 <img class="image" *ngIf="subCategory.image != null && imageLoader.loadImage != null" src="{{imageLoader.loadImage}}" (click)="imageLoader.removeImage($event)" alt="img">
             </label>
         </div>
+        <div class="col-sm-8">
+            <p class="fw-bolder mt-3">Связанные товары</p>
+            <a href="#" *ngFor="let item of subCategory.items">{{item.name}},&#8194;</a>
+        </div>
     </div>
+
 </form>

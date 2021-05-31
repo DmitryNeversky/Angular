@@ -1,14 +1,10 @@
-.expanded{
-    height: auto;
-    transition: .3s;
+.add-image{
+    margin: 0 8.2%;
+    cursor: pointer;
+    transition: .2s;
 }
 
-.collapsed{
-    height: 0;
-    transition: .3s;
-}
-
-.preview{
-    width: 100px;
-    height: 100px;
+.add-image:hover{
+    color: #ffe186;
+    transition: .2s;
 }

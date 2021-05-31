@@ -119,4 +119,12 @@ public class ItemService {
             }
         }
     }
+
+    public void addLook(int itemId, String ip){
+        Optional<Item> item = itemRepository.findById(itemId);
+        if(item.isPresent()) {
+            item.get().addLook(ip);
+            itemRepository.save(item.get());
+        }
+    }
 }

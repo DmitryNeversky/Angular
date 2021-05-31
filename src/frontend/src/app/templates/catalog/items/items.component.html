@@ -49,7 +49,7 @@
                             <p class="text-black-50">{{ item.description }}</p>
                             <p class="text-black-50 h5 mb-4">{{ item.price }}</p>
                             <p class="text-black-50 h5 mb-4">{{ item.count }}</p>
-                            <a class="float-start" [routerLink]="[item.id]">Смотреть</a>
+                            <a class="float-start" (click)="addLook(item)" [routerLink]="[item.id]">Смотреть</a>
                             <a class="float-end" href="#"><i class="fas fa-heart"></i></a>
                         </div>
                     </div>

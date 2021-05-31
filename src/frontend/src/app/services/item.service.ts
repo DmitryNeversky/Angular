@@ -30,4 +30,8 @@ export class ItemService {
   public delete(itemId:number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiBaseUrl}/items/delete/${itemId}`)
   }
+
+  public addLook(formData: FormData): void {
+    this.httpClient.post<void>(`${this.apiBaseUrl}/items/add_look`, formData).subscribe();
+  }
 }

@@ -3,6 +3,8 @@ import {ActivatedRoute, Params} from "@angular/router";
 import {SubcategoryService} from "../../../services/subcategory.service";
 import {Subcategory} from "../../../models/subcategory";
 import {Item} from "../../../models/item";
+import {UserService} from "../../../services/user.service";
+import {ItemService} from "../../../services/item.service";
 
 @Component({
   selector: 'app-items-page',
@@ -26,7 +28,9 @@ export class ItemsComponent implements OnInit {
   public preload: boolean = true;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private subcategoryService: SubcategoryService) { }
+              private subcategoryService: SubcategoryService,
+              private userService: UserService,
+              private itemService: ItemService) { }
 
   ngOnInit(): void {
     this.loadItems();
@@ -158,5 +162,16 @@ export class ItemsComponent implements OnInit {
     } else this.sortCount = !this.sortCount;
 
     this.goIndex(0);
+  }
+
+  addLook(item: Item){
+    this.userService.getIP().subscribe(response => {
+      if (!item.looks.includes(response.ip)){
+        let formData = new FormData();
+        formData.append('itemId', item.id.toString());
+        formData.append('ip', response.ip);
+        this.itemService.addLook(formData);
+      }
+    });
   }
 }

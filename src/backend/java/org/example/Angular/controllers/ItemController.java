@@ -71,4 +71,9 @@ public class ItemController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/add_look")
+    public void addLook(@RequestParam int itemId, @RequestParam String ip){
+        itemService.addLook(itemId, ip);
+    }
 }

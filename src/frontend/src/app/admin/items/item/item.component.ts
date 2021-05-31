@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {faCheck, faChevronDown, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faChevronDown, faPlusCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {Subcategory} from "../../../models/subcategory";
 import {Item} from "../../../models/item";
 import {NgForm} from "@angular/forms";
@@ -15,7 +15,7 @@ export class ItemComponent implements OnInit {
 
   public expanded: boolean = false;
 
-  public icons = {times: faTimes, check: faCheck, open: faChevronDown}
+  public icons = {times: faTimes, check: faCheck, open: faChevronDown, plus: faPlusCircle}
 
   @Input()
   public item: Item | undefined;
@@ -55,9 +55,5 @@ export class ItemComponent implements OnInit {
     this.itemService.delete(item.id).subscribe(() => {
       this.itemEmitter.emit(item);
     }, error => console.log(error));
-  }
-
-  openItem(event: any){
-    event.target.style.transform = 'rotate(180deg)';
   }
 }

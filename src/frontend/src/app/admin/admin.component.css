@@ -1,0 +1,26 @@
+.open-button{
+    transition: .3s;
+}
+
+.expanded{
+    max-height: 600px;
+    transition: .6s;
+}
+
+.collapsed{
+    max-height: 0;
+    transition: .3s;
+}
+
+.preview{
+    width: 100px;
+    height: 100px;
+}
+
+.contain{
+    max-height: 360px;
+    overflow-y: scroll;
+}
+
+.contain::-webkit-scrollbar{width: 5px; background: none}
+.contain::-webkit-scrollbar-thumb{background: #ecececb8; border-radius: 25px}

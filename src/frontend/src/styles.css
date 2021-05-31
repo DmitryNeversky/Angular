@@ -86,6 +86,15 @@ button.advanced-input:hover{
     background-color: #ffe186;
 }
 
+select.advanced-select{
+    border: none;
+    background: none;
+}
+
+select.advanced-select:focus-visible{
+    outline: none;
+}
+
 .advanced-input:focus-visible{
     outline: none;
 }
@@ -146,6 +155,10 @@ button.advanced-input:hover{
 }
 
 .card-img{
+    height: 200px;
+}
+
+.card-img-top{
     height: 200px;
 }
 
