@@ -13,10 +13,18 @@ export class SettingsService {
   constructor(private httpClient: HttpClient) {}
 
   public getHomeCollectionSize(): Observable<number> {
-    return this.httpClient.get<number>(`${this.apiBaseUrl}/settings/home-collection-size`);
+    return this.httpClient.get<number>(`${this.apiBaseUrl}/settings/collection_category_size`);
   }
 
-  public setHomeCollectionSize(size: number): Observable<void> {
-    return this.httpClient.post<void>(`${this.apiBaseUrl}/settings/home-collection-size`, size);
+  public setHomeCollectionSize(formData: FormData): Observable<void> {
+    return this.httpClient.post<void>(`${this.apiBaseUrl}/settings/collection_category_size`, formData);
+  }
+
+  public getPopularItemSize(): Observable<number> {
+    return this.httpClient.get<number>(`${this.apiBaseUrl}/settings/popular_item_size`);
+  }
+
+  public setPopularItemSize(formData: FormData): Observable<void> {
+    return this.httpClient.post<void>(`${this.apiBaseUrl}/settings/popular_item_size`, formData);
   }
 }

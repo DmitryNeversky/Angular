@@ -30,7 +30,7 @@
             <p class="h3">Наша коллекция</p>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-4" *ngFor="let category of categories">
+            <div class="col-12 col-sm-4" *ngFor="let category of collectionCategories">
                 <a [routerLink]="['catalog/', category.name]">
                     <div class="card text-white">
                         <img *ngIf="category.image == null" src="../../../assets/images/preview.jpg" class="card-img" alt="door.img">

@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   public homeCollectionSize: number = 3;
   public categories: Category[] = [];
   public popularItems: Item[];
+  public popularItemSize: number;
 
   constructor(private categoryService: CategoryService,
               private settingsService: SettingsService,
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
     this.loadSettings();
     this.loadCategories();
     this.initPopularItems();
+    this.getHomeCollection();
   }
 
   loadCategories(){
@@ -49,7 +51,17 @@ export class HomeComponent implements OnInit {
         else
           return 0
       });
-      this.popularItems.length = 3; // {$}
+      this.settingsService.getPopularItemSize().subscribe(size => {
+        this.popularItems.length = size;
+      })
     })
+  }
+
+  public collectionCategories: Category[]
+
+  getHomeCollection(){
+    this.categoryService.getHomeCollection().subscribe(response => {
+      this.collectionCategories = response;
+    });
   }
 }

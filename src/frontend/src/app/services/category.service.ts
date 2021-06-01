@@ -30,4 +30,12 @@ export class CategoryService {
   public delete(category: Category): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiBaseUrl}/categories/delete/${category.id}`);
   }
+
+  public setHomeCollection(formData: FormData){
+    this.httpClient.post<void>(`${this.apiBaseUrl}/home/collection`, formData).subscribe();
+  }
+
+  public getHomeCollection(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(`${this.apiBaseUrl}/home/collection`);
+  }
 }

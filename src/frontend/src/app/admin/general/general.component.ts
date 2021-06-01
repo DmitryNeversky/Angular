@@ -7,6 +7,8 @@ import {Subcategory} from "../../models/subcategory";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ImagesLoader} from "../../shared/ImagesLoader";
 import {ImageLoader} from "../../shared/ImageLoader";
+import {Item} from "../../models/item";
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
   selector: 'app-general',
@@ -17,12 +19,14 @@ export class GeneralComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
               private subCategoryService: SubcategoryService,
-              private itemService: ItemService) {
+              private itemService: ItemService,
+              private settingService: SettingsService) {
 
   }
 
   public categories: Category[];
   public subCategories: Subcategory[];
+  public items: Item[];
 
   public categoryForm: FormGroup;
   public subCategoryForm: FormGroup;
@@ -38,6 +42,9 @@ export class GeneralComponent implements OnInit {
     });
     this.subCategoryService.getAll().subscribe(response => {
       this.subCategories = response;
+    });
+    this.itemService.getAll().subscribe((response: Item[]) => {
+      this.items = response;
     });
     this.categoryForm = new FormGroup({
       name: new FormControl('', [])
@@ -106,4 +113,25 @@ export class GeneralComponent implements OnInit {
     }, error => console.log(error));
   }
 
+  public selects: Category[];
+
+  setHomeCollection(){
+    let formData = new FormData();
+    this.selects.forEach(x => formData.append('categories', x.toString()));
+    this.categoryService.setHomeCollection(formData);
+  }
+
+  public popularItemsSize: number;
+
+  setPopularItemSize(){
+    let formData = new FormData();
+    formData.append('popularItemSize', this.popularItemsSize.toString());
+    this.settingService.setPopularItemSize(formData).subscribe();
+  }
+
+  getPopularItemSize(){
+    this.settingService.getPopularItemSize().subscribe(response => {
+      this.popularItemsSize = response;
+    });
+  }
 }

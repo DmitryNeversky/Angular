@@ -47,4 +47,27 @@
         </div>
 
     </div>
+
+    <div class="row">
+
+        <div class="col-md-2">
+            <select [(ngModel)]="selects" multiple>
+                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+
+            <button (click)="setHomeCollection()">setHomeCollection</button>
+        </div>
+
+        <div class="col-md-2">
+            <input [(ngModel)]="popularItemsSize" type="text">
+
+            <button (click)="setPopularItemSize()">setPopularItemSize</button>
+        </div>
+
+        <h1>{{popularItemsSize}}</h1>
+
+        <div class="col-md-2">
+            <button (click)="getPopularItemSize()">getPopularItemSize</button>
+        </div>
+    </div>
 </div>
