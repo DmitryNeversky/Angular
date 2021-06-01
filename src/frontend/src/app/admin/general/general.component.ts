@@ -129,15 +129,57 @@ export class GeneralComponent implements OnInit {
 
   public popularItemsSize: number;
 
+  getPopularItemSize(){
+    this.metaService.getPopularSize().subscribe(response => {
+      console.log(response);
+    });
+  }
+
   setPopularSize(){
     let formData = new FormData();
     formData.append('size', this.popularItemsSize.toString());
     this.metaService.setPopularSize(formData).subscribe();
   }
 
-  getPopularItemSize(){
-    this.metaService.getPopularSize().subscribe(response => {
+  public phone;
+
+  getPhone(){
+    this.metaService.getPhone().subscribe(response => {
       console.log(response);
     });
+  }
+
+  setPhone(){
+    let formData = new FormData();
+    formData.append('phone', this.phone);
+    this.metaService.setPhone(formData).subscribe();
+  }
+
+  public address;
+
+  getAddress(){
+    this.metaService.getAddress().subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  setAddress(){
+    let formData = new FormData();
+    formData.append('address', this.address);
+    this.metaService.setAddress(formData).subscribe();
+  }
+
+  public email;
+
+  getEmail(){
+    this.metaService.getEmail().subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  setEmail(){
+    let formData = new FormData();
+    formData.append('email', this.email);
+    this.metaService.setEmail(formData).subscribe();
   }
 }

@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
               private itemService: ItemService,
-              private metaService: MetaService) { }
+              private metaService: MetaService) {}
 
   ngOnInit() {
     this.initHomeCollection();
@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   initHomeCollection(){
     this.metaService.getHomeCollection().subscribe((response => {
       this.homeCollection = response;
+      this.sliderIndex = 0;
     }));
   }
 
@@ -46,5 +47,26 @@ export class HomeComponent implements OnInit {
         }, error => console.log(error));
       }
     })
+  }
+
+  public sliderIndex;
+  private position: number = 0;
+
+  left(slider: HTMLDivElement) {
+    if(this.sliderIndex == 0)
+      return
+
+    this.sliderIndex -= 1;
+    this.position += 33.333;
+    slider.style.transform = `translateX(${this.position}%)`;
+  }
+
+  right(slider: HTMLDivElement) {
+    if(this.sliderIndex == this.homeCollection.length - 3)
+      return
+
+    this.sliderIndex += 1;
+    this.position -= 33.333;
+    slider.style.transform = `translateX(${this.position}%)`;
   }
 }

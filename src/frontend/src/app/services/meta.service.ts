@@ -28,4 +28,28 @@ export class MetaService {
   public setPopularSize(formData: FormData): Observable<void> {
     return this.httpClient.post<void>(`${this.apiBaseUrl}/home_popular_size`, formData);
   }
+
+  public getPhone(): Observable<string> {
+    return this.httpClient.get<string>(`${this.apiBaseUrl}/phone`);
+  }
+
+  public setPhone(formData: FormData): Observable<void> {
+    return this.httpClient.post<void>(`${this.apiBaseUrl}/phone`, formData);
+  }
+
+  public getAddress(): Observable<string> {
+    return this.httpClient.get<string>(`${this.apiBaseUrl}/address`);
+  }
+
+  public setAddress(formData: FormData): Observable<void> {
+    return this.httpClient.post<void>(`${this.apiBaseUrl}/address`, formData);
+  }
+
+  public getEmail(): Observable<string> {
+    return this.httpClient.get<string>(`${this.apiBaseUrl}/email`);
+  }
+
+  public setEmail(formData: FormData): Observable<void> {
+    return this.httpClient.post<void>(`${this.apiBaseUrl}/email`, formData);
+  }
 }

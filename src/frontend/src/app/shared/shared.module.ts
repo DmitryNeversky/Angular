@@ -10,6 +10,8 @@ import {SearchIdPipe} from "../pipes/search-id.pipe";
 import {SearchCategoryPipe} from "../pipes/search-category.pipe";
 import {SearchSubcategoryPipe} from "../pipes/search-subcategory.pipe";
 import {Click180Directive} from "../directives/click180.directive";
+import {SlideComponent} from './components/slider/slide/slide.component';
+import {SliderComponent} from "./components/slider/slider.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {Click180Directive} from "../directives/click180.directive";
       SearchIdPipe,
       SearchCategoryPipe,
       SearchSubcategoryPipe,
-      Click180Directive
+      Click180Directive,
+      SliderComponent,
+      SlideComponent
   ],
     exports: [
         HeaderComponent,
@@ -31,7 +35,9 @@ import {Click180Directive} from "../directives/click180.directive";
         SearchIdPipe,
         SearchCategoryPipe,
         SearchSubcategoryPipe,
-        Click180Directive
+        Click180Directive,
+        SliderComponent,
+        SlideComponent
     ],
   imports: [
     CommonModule,

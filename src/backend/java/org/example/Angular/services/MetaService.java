@@ -49,18 +49,47 @@ public class MetaService {
         metaRepository.save(meta);
     }
 
+    public String getPhone(){
+        Meta meta = metaRepository.findById(1);
+
+        return meta.getPhone();
+    }
+
+    public void setPhone(String phone){
+        Meta meta = metaRepository.findById(1);
+        meta.setPhone(phone);
+
+        metaRepository.save(meta);
+    }
+
+    public String getAddress(){
+        Meta meta = metaRepository.findById(1);
+
+        return meta.getAddress();
+    }
+
+    public void setAddress(String address){
+        Meta meta = metaRepository.findById(1);
+        meta.setAddress(address);
+
+        metaRepository.save(meta);
+    }
+
+    public String getEmail(){
+        Meta meta = metaRepository.findById(1);
+
+        return meta.getEmail();
+    }
+
+    public void setEmail(String email){
+        Meta meta = metaRepository.findById(1);
+        meta.setEmail(email);
+
+        metaRepository.save(meta);
+    }
+
     @PostConstruct
     private void init(){
-//        List<Category> categories = categoryRepository.findAll();
-//        categories = categories.stream().limit(3).collect(Collectors.toList());
-//
-//        List<Item> items = itemRepository.findAll();
-//        System.out.println(items);
-//        items = items.stream()
-//                .sorted(Comparator.comparingInt(a -> a.getLooks().size()))
-//                .limit(3)
-//                .collect(Collectors.toList());
-
         Meta meta = metaRepository.findById(1);
         if(meta == null)
             metaRepository.save(new Meta(1));

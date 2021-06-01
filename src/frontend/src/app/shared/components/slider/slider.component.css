@@ -1,0 +1,30 @@
+.slider-container{
+    position: relative;
+}
+
+.slider-wrapper{
+    height: auto;
+    overflow: hidden;
+}
+
+.slider{
+    padding: 10px 0;
+    align-items: center;
+    display: flex;
+    transition: .3s;
+}
+
+.arrow-left, .arrow-right{
+    position: absolute;
+    bottom: 50%;
+    border: none;
+    background: none;
+}
+
+.arrow-left{
+    left: -5%;
+}
+
+.arrow-right{
+    right: -5%;
+}

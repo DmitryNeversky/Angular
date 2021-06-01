@@ -26,11 +26,12 @@
 
 <section class="home-categories my-5">
     <div class="container">
+
         <div class="home-title">
             <p class="h3">Наша коллекция</p>
         </div>
-        <div class="row">
-            <div class="col-12 col-sm-4" *ngFor="let category of homeCollection">
+        <app-slider [displaySize]="3" [sliderSize]="homeCollection.length">
+            <app-slide *ngFor="let category of homeCollection">
                 <a [routerLink]="['catalog/', category.name]">
                     <div class="card text-white">
                         <img *ngIf="category.image == null" src="../../../assets/images/preview.jpg" class="card-img" alt="door.img">
@@ -40,8 +41,8 @@
                         </div>
                     </div>
                 </a>
-            </div>
-        </div>
+            </app-slide>
+        </app-slider>
     </div>
 </section>
 
@@ -65,8 +66,8 @@
             <p class="h3 float-start">Часто смотрят</p>
             <a routerLink="catalog" class="h5 float-end">Перейти в каталог</a>
         </div>
-        <div class="home-slider row">
-            <div class="col-sm-4" *ngFor="let item of popularItems">
+        <app-slider [displaySlides]="3" [sliderSize]="popularItems.length">
+            <app-slide *ngFor="let item of popularItems">
                 <div class="card product-card">
                     <img *ngIf="item.images[0] == null" src="assets/images/preview.jpg" class="card-img-top" alt="preview.image">
                     <img *ngIf="item.images[0] != null" src="assets/images/uploaded/{{item.images[0]}}" class="card-img-top" alt="item.image">
@@ -76,8 +77,8 @@
                         <button class="advanced-input">Смотреть</button>
                     </div>
                 </div>
-            </div>
-        </div>
+            </app-slide>
+        </app-slider>
     </div>
 </section>
 
