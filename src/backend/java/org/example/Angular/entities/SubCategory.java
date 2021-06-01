@@ -23,7 +23,7 @@ public class SubCategory {
 
     private int category;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "subcategory_item",
             joinColumns = @JoinColumn(name = "subcategory_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))

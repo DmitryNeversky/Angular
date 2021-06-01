@@ -25,7 +25,7 @@ public class Item {
     @Column(name = "filename")
     private Set<String> images = new HashSet<>();
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> looks = new ArrayList<>();
 
 //  Constructors

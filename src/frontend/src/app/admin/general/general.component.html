@@ -58,13 +58,13 @@
             <button (click)="setHomeCollection()">setHomeCollection</button>
         </div>
 
+        <button (click)="getHomeCollection()">Get homeCollection</button>
+
         <div class="col-md-2">
             <input [(ngModel)]="popularItemsSize" type="text">
 
-            <button (click)="setPopularItemSize()">setPopularItemSize</button>
+            <button (click)="setPopularSize()">setPopularItemSize</button>
         </div>
-
-        <h1>{{popularItemsSize}}</h1>
 
         <div class="col-md-2">
             <button (click)="getPopularItemSize()">getPopularItemSize</button>

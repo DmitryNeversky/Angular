@@ -8,7 +8,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ImagesLoader} from "../../shared/ImagesLoader";
 import {ImageLoader} from "../../shared/ImageLoader";
 import {Item} from "../../models/item";
-import {SettingsService} from "../../services/settings.service";
+import {MetaService} from "../../services/meta.service";
 
 @Component({
   selector: 'app-general',
@@ -20,7 +20,7 @@ export class GeneralComponent implements OnInit {
   constructor(private categoryService: CategoryService,
               private subCategoryService: SubcategoryService,
               private itemService: ItemService,
-              private settingService: SettingsService) {
+              private metaService: MetaService) {
 
   }
 
@@ -115,23 +115,29 @@ export class GeneralComponent implements OnInit {
 
   public selects: Category[];
 
+  getHomeCollection(){
+    this.metaService.getHomeCollection().subscribe((response: Category[]) => {
+      console.log(response);
+    });
+  }
+
   setHomeCollection(){
     let formData = new FormData();
     this.selects.forEach(x => formData.append('categories', x.toString()));
-    this.categoryService.setHomeCollection(formData);
+    this.metaService.setHomeCollection(formData).subscribe();
   }
 
   public popularItemsSize: number;
 
-  setPopularItemSize(){
+  setPopularSize(){
     let formData = new FormData();
-    formData.append('popularItemSize', this.popularItemsSize.toString());
-    this.settingService.setPopularItemSize(formData).subscribe();
+    formData.append('size', this.popularItemsSize.toString());
+    this.metaService.setPopularSize(formData).subscribe();
   }
 
   getPopularItemSize(){
-    this.settingService.getPopularItemSize().subscribe(response => {
-      this.popularItemsSize = response;
+    this.metaService.getPopularSize().subscribe(response => {
+      console.log(response);
     });
   }
 }

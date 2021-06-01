@@ -14,7 +14,7 @@ public class Category {
     private String name;
     private String image;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "category_subcategory",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "subcategory_id"))
