@@ -30,19 +30,21 @@
         <div class="home-title">
             <p class="h3">Наша коллекция</p>
         </div>
-        <app-slider [displaySize]="3" [sliderSize]="homeCollection.length">
-            <app-slide *ngFor="let category of homeCollection">
-                <a [routerLink]="['catalog/', category.name]">
-                    <div class="card text-white">
-                        <img *ngIf="category.image == null" src="../../../assets/images/preview.jpg" class="card-img" alt="door.img">
-                        <img *ngIf="category.image != null" [src]="'../../../assets/images/uploaded/' + category.image" class="card-img" alt="door.img">
-                        <div class="card-img-overlay bg-dark">
-                            <h3 class="card-title">{{ category.name }}</h3>
+        <ng-template [ngIf]="homeCollection != null">
+            <app-slider [displaySize]="3" [sliderSize]="homeCollection.length">
+                <app-slide *ngFor="let category of homeCollection">
+                    <a [routerLink]="['catalog/', category.name]">
+                        <div class="card text-white">
+                            <img *ngIf="category.image == null" src="../../../assets/images/preview.jpg" class="card-img" alt="door.img">
+                            <img *ngIf="category.image != null" [src]="'../../../assets/images/uploaded/' + category.image" class="card-img" alt="door.img">
+                            <div class="card-img-overlay bg-dark">
+                                <h3 class="card-title">{{ category.name }}</h3>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </app-slide>
-        </app-slider>
+                    </a>
+                </app-slide>
+            </app-slider>
+        </ng-template>
     </div>
 </section>
 
@@ -66,19 +68,21 @@
             <p class="h3 float-start">Часто смотрят</p>
             <a routerLink="catalog" class="h5 float-end">Перейти в каталог</a>
         </div>
-        <app-slider [displaySlides]="3" [sliderSize]="popularItems.length">
-            <app-slide *ngFor="let item of popularItems">
-                <div class="card product-card">
-                    <img *ngIf="item.images[0] == null" src="assets/images/preview.jpg" class="card-img-top" alt="preview.image">
-                    <img *ngIf="item.images[0] != null" src="assets/images/uploaded/{{item.images[0]}}" class="card-img-top" alt="item.image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{item.name}}</h5>
-                        <p class="card-text">{{item.description}}</p>
-                        <button class="advanced-input">Смотреть</button>
+        <ng-template [ngIf]="popularItems != null">
+            <app-slider [displaySize]="3" [sliderSize]="popularItems.length">
+                <app-slide *ngFor="let item of popularItems">
+                    <div class="card product-card">
+                        <img *ngIf="item.images[0] == null" src="assets/images/preview.jpg" class="card-img-top" alt="preview.image">
+                        <img *ngIf="item.images[0] != null" src="assets/images/uploaded/{{item.images[0]}}" class="card-img-top" alt="item.image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.name}}</h5>
+                            <p class="card-text">{{item.description}}</p>
+                            <a href="#" class="advanced-input">Смотреть</a>
+                        </div>
                     </div>
-                </div>
-            </app-slide>
-        </app-slider>
+                </app-slide>
+            </app-slider>
+        </ng-template>
     </div>
 </section>
 

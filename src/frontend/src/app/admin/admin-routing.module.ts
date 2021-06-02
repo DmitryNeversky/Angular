@@ -31,14 +31,16 @@ const routes: Routes = [
                 path: 'subcategories',
                 component: SubcategoriesComponent,
                 resolve: {
-                    subCategories: SubcategoriesResolver
+                    subCategories: SubcategoriesResolver,
+                    categories: CategoriesResolver,
                 }
             },
             {
                 path: 'items',
                 component: ItemsComponent,
                 resolve: {
-                    items: ItemsResolver
+                    items: ItemsResolver,
+                    subCategories: SubcategoriesResolver
                 }
             },
         ]

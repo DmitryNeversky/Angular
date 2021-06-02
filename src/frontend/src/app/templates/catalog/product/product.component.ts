@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
-import {ItemService} from "../../../services/item.service";
+import {ActivatedRoute} from "@angular/router";
 import {Item} from "../../../models/item";
 
 @Component({
@@ -10,20 +9,16 @@ import {Item} from "../../../models/item";
 })
 export class ProductComponent implements OnInit {
 
-  public item: Item;
+  public item: Item = null;
 
   public preview: string;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private itemService: ItemService) { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.itemService.get(params.item).subscribe((response: Item) => {
-        this.item = response;
-        this.preview = response.images[0];
-      });
-    });
+    this.item = this.activatedRoute.snapshot.data.product;
+    if(this.item.images.length > 0)
+      this.preview = this.item.images[0];
   }
 
   setPreview(image: string){

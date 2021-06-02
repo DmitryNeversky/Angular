@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="col-sm-4" *ngFor="let subcategory of category.subCategories">
+    <div class="col-sm-4" *ngFor="let subcategory of subCategories">
         <a class="card-wrapper" [routerLink]="['./', subcategory.name]">
             <div class="card bg-dark text-white">
                 <img *ngIf="subcategory.image != null" src="{{ '../../assets/images/uploaded/' + subcategory.image }}" alt="img.item">

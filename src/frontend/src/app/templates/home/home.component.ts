@@ -25,10 +25,12 @@ export class HomeComponent implements OnInit {
   }
 
   initHomeCollection(){
-    this.metaService.getHomeCollection().subscribe((response => {
-      this.homeCollection = response;
-      this.sliderIndex = 0;
-    }));
+    this.metaService.getHomeCollection().subscribe((response: Category[]) => {
+      if(response.length > 0) {
+        this.homeCollection = response;
+        this.sliderIndex = 0;
+      } else this.homeCollection = null;
+    });
   }
 
   initPopularItems(){
@@ -45,7 +47,7 @@ export class HomeComponent implements OnInit {
         this.metaService.getPopularSize().subscribe(size => {
           if(response.length > 3) this.popularItems.length = size;
         }, error => console.log(error));
-      }
+      } else this.popularItems = null;
     })
   }
 

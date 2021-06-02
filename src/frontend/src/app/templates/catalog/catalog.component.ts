@@ -25,6 +25,4 @@ export class CatalogComponent implements OnInit {
       this.categories = response;
     }, error => { console.log(error) });
   }
-
-  public openedMenu: boolean = false;
 }
