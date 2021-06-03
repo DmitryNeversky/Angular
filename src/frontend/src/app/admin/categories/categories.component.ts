@@ -31,6 +31,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   removeCategory(category: Category){
-    this.categories.splice(this.categories.indexOf(category, 1));
+    this.categories.splice(this.categories.indexOf(category), 1);
   }
 }

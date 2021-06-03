@@ -1,9 +1,9 @@
 <div class="slider-container">
-    <button class="arrow-left" (click)="left(slider)" [disabled]="sliderIndex == 0">Left</button>
+    <button class="arrow-left" (click)="left(slider)" [disabled]="sliderIndex == 0">&#10094;</button>
     <div class="slider-wrapper">
         <div class="slider" #slider>
             <ng-content></ng-content>
         </div>
     </div>
-    <button class="arrow-right" (click)="right(slider)" [disabled]="sliderIndex == sliderSize - displaySize || displaySize > sliderSize">Right</button>
+    <button class="arrow-right" (click)="right(slider)" [disabled]="sliderIndex == sliderSize - displaySize || displaySize > sliderSize">&#10095;</button>
 </div>

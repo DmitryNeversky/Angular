@@ -15,6 +15,7 @@
 }
 
 .arrow-left, .arrow-right{
+    transform: scale(2);
     position: absolute;
     bottom: 50%;
     border: none;

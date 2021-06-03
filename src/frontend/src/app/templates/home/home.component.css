@@ -41,3 +41,9 @@
     padding: 1%;
     background-color: white;
 }
+
+@media(max-width: 1140px){
+    .banner{
+        padding-top: 3.6rem;
+    }
+}

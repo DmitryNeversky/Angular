@@ -16,7 +16,7 @@ header .logo img{
     width: 80%;
 }
 
-header .favorite{
+header .favorite a{
     padding: 5% 10%;
     background-color: #ffe18699;
 }
@@ -28,4 +28,13 @@ header .favorite{
 
 .active{
     border-bottom: 2px solid rgb(255,225,134);
+}
+
+@media(max-width: 1140px){
+    header .logo{
+        width: 50%;
+    }
+    header .menu, header .favorite{
+        display: none;
+    }
 }
