@@ -4,8 +4,6 @@ import {CatalogComponent} from "./catalog.component";
 import {CategoriesComponent} from "./categories/categories.component";
 import {SubcategoriesComponent} from "./subcategories/subcategories.component";
 import {ItemsComponent} from "./items/items.component";
-import {ProductComponent} from "./product/product.component";
-import {ProductResolver} from "../../shared/resolvers/product.resolver";
 
 const routes: Routes = [
     {
@@ -24,11 +22,6 @@ const routes: Routes = [
             {
                 path: ':category/:subcategory',
                 component: ItemsComponent
-            },
-            {
-                path: ':category/:subcategory/:item',
-                component: ProductComponent,
-                resolve: { product: ProductResolver }
             }
         ]
     }

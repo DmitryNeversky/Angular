@@ -1,5 +1,7 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
+import {ProductComponent} from "./templates/product/product.component";
+import {ProductResolver} from "./shared/resolvers/product.resolver";
 
 const routes: Routes = [
     {
@@ -26,6 +28,13 @@ const routes: Routes = [
         path: 'admin',
         data: { animation: 'admin' },
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    },
+    {
+        path: 'product/:id',
+        component: ProductComponent,
+        resolve: {
+            product: ProductResolver
+        }
     }
 ]
 

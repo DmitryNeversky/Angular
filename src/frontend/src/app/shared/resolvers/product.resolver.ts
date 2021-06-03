@@ -13,6 +13,6 @@ export class ProductResolver implements Resolve<Item> {
                 private itemService: ItemService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Item> | Promise<Item> | Item {
-        return this.itemService.get(+route.paramMap.get('item'));
+        return this.itemService.get(+route.paramMap.get('id'));
     }
 }

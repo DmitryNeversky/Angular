@@ -12,9 +12,10 @@ import {FormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {SharedModule} from "./shared/shared.module";
 import {PaginatorPipe} from './pipes/paginator.pipe';
+import {ProductComponent} from "./templates/product/product.component";
 
 @NgModule({
-    declarations: [AppComponent, PaginatorPipe],
+    declarations: [AppComponent, PaginatorPipe, ProductComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

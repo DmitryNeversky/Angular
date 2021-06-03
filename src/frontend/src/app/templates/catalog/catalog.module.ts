@@ -6,12 +6,11 @@ import {FormsModule} from "@angular/forms";
 import {CategoriesComponent} from './categories/categories.component';
 import {SubcategoriesComponent} from './subcategories/subcategories.component';
 import {ItemsComponent} from './items/items.component';
-import {ProductComponent} from './product/product.component';
 import {SharedModule} from "../../shared/shared.module";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
-    declarations: [CatalogComponent, CategoriesComponent, SubcategoriesComponent, ItemsComponent, ProductComponent],
+    declarations: [CatalogComponent, CategoriesComponent, SubcategoriesComponent, ItemsComponent],
     imports: [CommonModule, CatalogRoutingModule, FormsModule, SharedModule, FontAwesomeModule],
     providers: [],
 })
