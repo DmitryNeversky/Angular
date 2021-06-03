@@ -5,5 +5,5 @@
             <ng-content></ng-content>
         </div>
     </div>
-    <button class="arrow-right" (click)="right(slider)" [disabled]="sliderIndex == sliderSize - displaySize">Right</button>
+    <button class="arrow-right" (click)="right(slider)" [disabled]="sliderIndex == sliderSize - displaySize || displaySize > sliderSize">Right</button>
 </div>

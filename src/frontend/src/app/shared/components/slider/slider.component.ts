@@ -28,7 +28,7 @@ export class SliderComponent {
   }
 
   right(slider: HTMLDivElement) {
-    if(this.sliderIndex == this.sliderSize - this.displaySize) // ??
+    if(this.sliderIndex == this.sliderSize - this.displaySize)
       return
 
     this.sliderIndex += 1;
