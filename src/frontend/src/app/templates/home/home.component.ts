@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
     this.metaService.getHomeCollection().subscribe((response: Category[]) => {
       if(response.length > 0) {
         this.homeCollection = response;
-        this.sliderIndex = 0;
       } else this.homeCollection = null;
     });
   }
@@ -49,26 +48,5 @@ export class HomeComponent implements OnInit {
         }, error => console.log(error));
       } else this.popularItems = null;
     })
-  }
-
-  public sliderIndex;
-  private position: number = 0;
-
-  left(slider: HTMLDivElement) {
-    if(this.sliderIndex == 0)
-      return
-
-    this.sliderIndex -= 1;
-    this.position += 33.333;
-    slider.style.transform = `translateX(${this.position}%)`;
-  }
-
-  right(slider: HTMLDivElement) {
-    if(this.sliderIndex == this.homeCollection.length - 3)
-      return
-
-    this.sliderIndex += 1;
-    this.position -= 33.333;
-    slider.style.transform = `translateX(${this.position}%)`;
   }
 }
