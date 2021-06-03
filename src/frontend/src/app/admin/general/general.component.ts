@@ -9,6 +9,7 @@ import {ImagesLoader} from "../../shared/ImagesLoader";
 import {ImageLoader} from "../../shared/ImageLoader";
 import {Item} from "../../models/item";
 import {MetaService} from "../../services/meta.service";
+import {faPlusSquare} from "@fortawesome/free-regular-svg-icons";
 
 @Component({
   selector: 'app-general',
@@ -17,12 +18,12 @@ import {MetaService} from "../../services/meta.service";
 })
 export class GeneralComponent implements OnInit {
 
+  public icons = {plus: faPlusSquare};
+
   constructor(private categoryService: CategoryService,
               private subCategoryService: SubcategoryService,
               private itemService: ItemService,
-              private metaService: MetaService) {
-
-  }
+              private metaService: MetaService) {}
 
   public categories: Category[];
   public subCategories: Subcategory[];
@@ -71,7 +72,8 @@ export class GeneralComponent implements OnInit {
     formData.append('name', this.categoryForm.value.name);
     formData.append('image', this.categoryImageLoader.dataTransfer.files[0]);
 
-    this.categoryService.add(formData).subscribe(() => {
+    this.categoryService.add(formData).subscribe((response: Category) => {
+      this.categories.push(response);
       this.categoryForm.reset();
       this.categoryImageLoader.reset();
     }, error => console.log(error));
@@ -87,7 +89,8 @@ export class GeneralComponent implements OnInit {
     formData.append('categoryId', this.subCategoryForm.value.category);
     formData.append('image', this.subCategoryImageLoader.dataTransfer.files[0]);
 
-    this.subCategoryService.add(formData).subscribe(() => {
+    this.subCategoryService.add(formData).subscribe((response: Subcategory) => {
+      this.subCategories.push(response);
       this.subCategoryForm.reset();
       this.subCategoryForm.get('category').setValue(1);
       this.subCategoryImageLoader.reset();
@@ -106,7 +109,8 @@ export class GeneralComponent implements OnInit {
     for (let i = 0; i < this.itemImagesLoader.dataTransfer.files.length; i++)
       formData.append('images', this.itemImagesLoader.dataTransfer.files[i]);
 
-    this.itemService.add(formData).subscribe(() => {
+    this.itemService.add(formData).subscribe((response: Item) => {
+      this.items.push(response);
       this.itemForm.reset();
       this.itemForm.get('subCategory').setValue(1);
       this.itemImagesLoader.reset();

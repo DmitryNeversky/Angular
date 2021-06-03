@@ -1,88 +1,145 @@
-<div class="container">
-    <div class="row">
+<div class="container pb-3">
 
-        <div class="col-sm-4">
-            <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+    <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+        <div class="row">
+            <h2 class="mb-3">Категория</h2>
+            <div class="col-sm-4">
                 <input type="text" id="name" class="advanced-input" placeholder="Название" formControlName="name">
+            </div>
+            <div class="col-sm-6">
                 <input type="file" id="add-category-image" class="d-none" (change)="categoryImageLoader.load($event)" accept="image/*">
-                <label for="add-category-image">Добавить изображение</label>
                 <div class="images">
-                    <img *ngIf="categoryImageLoader.loadImage != null" src="{{categoryImageLoader.loadImage}}" class="image" (click)="categoryImageLoader.removeImage($event)" alt="load.img">
+                    <label class="add-image fs-2" for="add-category-image">
+                        <img class="image" *ngIf="categoryImageLoader.loadImage == null" src="assets/images/preview.jpg" alt="img">
+                        <img class="image" *ngIf="categoryImageLoader.loadImage != null" src="{{categoryImageLoader.loadImage}}" (click)="categoryImageLoader.removeImage($event)" alt="img">
+                    </label>
                 </div>
+            </div>
+            <div class="col-sm-2">
                 <button type="submit" class="advanced-input">Добавить</button>
-            </form>
+            </div>
         </div>
+    </form>
 
-        <div class="col-sm-4">
-            <form [formGroup]="subCategoryForm" (ngSubmit)="addSubCategory()">
+    <hr>
+
+    <form [formGroup]="subCategoryForm" (ngSubmit)="addSubCategory()">
+        <div class="row">
+            <h2 class="mb-3">Под-категория</h2>
+            <div class="col-sm-4">
                 <input type="text" class="advanced-input" placeholder="Название" formControlName="name">
+            </div>
+            <div class="col-sm-3">
                 <input type="file" id="add-subcategory-image" class="d-none" (change)="subCategoryImageLoader.load($event)" accept="image/*">
-                <label for="add-subcategory-image">Добавить изображение</label>
                 <div class="images">
-                    <img *ngIf="subCategoryImageLoader.loadImage != null" src="{{subCategoryImageLoader.loadImage}}" class="image" (click)="subCategoryImageLoader.removeImage($event)" alt="load.img">
+                    <label class="add-image fs-2" for="add-subcategory-image">
+                        <img class="image" *ngIf="subCategoryImageLoader.loadImage == null" src="assets/images/preview.jpg" alt="img">
+                        <img class="image" *ngIf="subCategoryImageLoader.loadImage != null" src="{{subCategoryImageLoader.loadImage}}" (click)="subCategoryImageLoader.removeImage($event)" alt="img">
+                    </label>
                 </div>
-                <select formControlName="category">
+            </div>
+            <div class="col-sm-3">
+                <select class="advanced-input" formControlName="category">
                     <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                 </select>
+            </div>
+            <div class="col-sm-2">
                 <button type="submit" class="advanced-input">Добавить</button>
-            </form>
+            </div>
         </div>
+    </form>
 
-        <div class="col-sm-4">
-            <form [formGroup]="itemForm" (ngSubmit)="addItem()">
+    <hr>
+
+    <form [formGroup]="itemForm" (ngSubmit)="addItem()">
+        <div class="row">
+            <h2 class="mb-3">Продукт</h2>
+            <div class="col-sm-3">
                 <input type="text" class="advanced-input" formControlName="name" placeholder="Название">
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="advanced-input" formControlName="price" placeholder="Цена">
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="advanced-input" formControlName="count" placeholder="Кол-Во">
+            </div>
+            <div class="col-sm-3">
+                <select class="advanced-input" formControlName="subCategory">
+                    <option *ngFor="let subCategory of subCategories" value="{{subCategory.id}}">{{subCategory.name}}</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button class="advanced-input">Добавить</button>
+            </div>
+            <div class="col-sm-6">
                 <textarea class="advanced-input" formControlName="description" placeholder="Описание"></textarea>
+            </div>
+            <div class="col-sm-6">
                 <input type="file" id="add-item-images" class="d-none" (change)="itemImagesLoader.load($event)" accept="image/*" multiple>
-                <label for="add-item-images">Добавить изображения</label>
+                <label class="add-image fa-2x mt-1" for="add-item-images">
+                    <fa-icon [icon]="icons.plus"></fa-icon>
+                </label>
                 <div id="images" class="images">
                     <img src="{{image}}" class="image" *ngFor="let image of itemImagesLoader.loadImages" (click)="itemImagesLoader.removeImage($event)" alt="load.img">
                 </div>
-                <input type="text" class="advanced-input" formControlName="price" placeholder="Цена">
-                <input type="text" class="advanced-input" formControlName="count" placeholder="Кол-Во">
-                <select formControlName="subCategory">
-                    <option *ngFor="let subCategory of subCategories" value="{{subCategory.id}}">{{subCategory.name}}</option>
-                </select>
-                <button class="advanced-input">Добавить</button>
-            </form>
+            </div>
         </div>
+    </form>
 
-    </div>
+    <hr>
 
     <div class="row">
-
-        <div class="col-md-2">
-            <select [(ngModel)]="selects" multiple>
+        <h2 class="mb-3">Виджет "Наша коллекция"</h2>
+        <div class="col-sm-4">
+            <select class="advanced-input" [(ngModel)]="selects" multiple>
                 <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
             </select>
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-2">
+            <button class="advanced-input" (click)="setHomeCollection()">Установить</button>
+        </div>
+    </div>
 
-            <button (click)="setHomeCollection()">setHomeCollection</button>
+    <hr>
+
+    <div class="row">
+        <h2 class="mb-3">Виджет "Популярные товары"</h2>
+        <div class="col-sm-4">
+            <input class="advanced-input" [(ngModel)]="popularItemsSize" placeholder="Кол-во отображаемых товаров" type="text">
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-2">
+            <button class="advanced-input" (click)="setPopularSize()">Установить</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <h2 class="mb-3">Контакты</h2>
+        <div class="col-sm-4">
+            <input type="text" class="advanced-input" placeholder="Телефон" [(ngModel)]="phone">
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-2">
+            <button class="advanced-input" (click)="setPhone()">Установить</button>
         </div>
 
-        <button (click)="getHomeCollection()">Get homeCollection</button>
-
-        <div class="col-md-2">
-            <input [(ngModel)]="popularItemsSize" type="text">
-
-            <button (click)="setPopularSize()">setPopularItemSize</button>
+        <div class="col-sm-4">
+            <input type="text" class="advanced-input" placeholder="Адрес" [(ngModel)]="address">
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-2">
+            <button class="advanced-input" (click)="setAddress()">Установить</button>
         </div>
 
-        <div class="col-md-2">
-            <button (click)="getPopularItemSize()">getPopularItemSize</button>
+        <div class="col-sm-4">
+            <input type="text" class="advanced-input" placeholder="Email" [(ngModel)]="email">
         </div>
-
-        <div class="col-md-2">
-            <input type="text" placeholder="phone" [(ngModel)]="phone">
-            <button (click)="setPhone()">SetPhone</button>
-        </div>
-
-        <div class="col-md-2">
-            <input type="text" placeholder="address" [(ngModel)]="address">
-            <button (click)="setAddress()">setAddress</button>
-        </div>
-
-        <div class="col-md-2">
-            <input type="text" placeholder="email" [(ngModel)]="email">
-            <button (click)="setEmail()">setEmail</button>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-2">
+            <button class="advanced-input" (click)="setEmail()">Установить</button>
         </div>
     </div>
 </div>

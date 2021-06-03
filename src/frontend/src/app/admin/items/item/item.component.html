@@ -17,7 +17,7 @@
             <input type="text" class="w-100 border-0" name="count" ngModel="{{ item.count }}">
         </div>
         <div class="col-sm-3">
-            <select name="subCategory" ngModel="{{ item.subCategory }}">
+            <select class="advanced-select" name="subCategory" ngModel="{{ item.subCategory }}">
                 <option *ngFor="let subCategory of subCategories" value="{{ subCategory.id }}">{{ subCategory.name }}</option>
             </select>
         </div>
@@ -32,7 +32,7 @@
     <div class="col-sm-12 row overflow-hidden" [ngClass]="expanded ? 'expanded' : 'collapsed'">
         <div class="col-sm-6 images border-end mt-3">
             <p class="fw-bolder">Изображения</p>
-            <input type="file" [id]="'add-image-' + item.id" class="advanced-input d-none" (change)="imagesLoader.load($event)" accept="image/*" multiple>
+            <input type="file" [id]="'add-image-' + item.id" class="d-none" (change)="imagesLoader.load($event)" accept="image/*" multiple>
             <label class="add-image fs-2" [for]="'add-image-' + item.id"><fa-icon [icon]="icons.plus"></fa-icon></label>
             <img src="{{ image }}" *ngFor="let image of imagesLoader.loadImages" class="image" (click)="imagesLoader.removeImage($event)" alt="">
             <img src="/assets/images/uploaded/{{ image }}" *ngFor="let image of item.images" (click)="imagesLoader.remImage($event, image)" class="image" alt="">
