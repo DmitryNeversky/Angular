@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="subCategories; else preloader">
 
     <div class="col-sm-4" *ngFor="let subcategory of subCategories">
         <a class="card-wrapper" [routerLink]="['./', subcategory.name]">
@@ -14,3 +14,7 @@
     </div>
 
 </div>
+
+<ng-template #preloader>
+    <app-preloader></app-preloader>
+</ng-template>

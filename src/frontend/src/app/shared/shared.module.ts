@@ -12,6 +12,7 @@ import {SearchSubcategoryPipe} from "../pipes/search-subcategory.pipe";
 import {Click180Directive} from "../directives/click180.directive";
 import {SlideComponent} from './components/slider/slide/slide.component';
 import {SliderComponent} from "./components/slider/slider.component";
+import {PreloaderComponent} from './components/preloader/preloader.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {SliderComponent} from "./components/slider/slider.component";
       SearchSubcategoryPipe,
       Click180Directive,
       SliderComponent,
-      SlideComponent
+      SlideComponent,
+      PreloaderComponent
   ],
     exports: [
         HeaderComponent,
@@ -37,7 +39,8 @@ import {SliderComponent} from "./components/slider/slider.component";
         SearchSubcategoryPipe,
         Click180Directive,
         SliderComponent,
-        SlideComponent
+        SlideComponent,
+        PreloaderComponent
     ],
   imports: [
     CommonModule,

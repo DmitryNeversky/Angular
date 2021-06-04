@@ -7,8 +7,6 @@ import {Injectable} from "@angular/core";
 @Injectable({providedIn: "root"})
 export class ProductResolver implements Resolve<Item> {
 
-    private item: Item = null;
-
     constructor(private activatedRoute: ActivatedRoute,
                 private itemService: ItemService) {}
 

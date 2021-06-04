@@ -39,6 +39,8 @@ export class ItemsComponent implements OnInit {
   loadItems(){
     this.preload = true;
 
+    // this.items = this.activatedRoute.snapshot.data.items;
+
     this.activatedRoute.params.subscribe((params: Params) => {
       this.subcategoryService.getByName(params.subcategory).subscribe((response: Subcategory) => {
         this.items = response.items;

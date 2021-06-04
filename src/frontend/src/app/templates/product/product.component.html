@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="container content">
+<div *ngIf="item; else preloader" class="container content">
 
     <div class="row">
 
@@ -31,5 +31,9 @@
     </div>
 
 </div>
+
+<ng-template #preloader>
+    <app-preloader></app-preloader>
+</ng-template>
 
 <app-footer></app-footer>
