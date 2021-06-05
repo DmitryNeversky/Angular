@@ -1,28 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-import {Category} from "../../models/category";
-import {CategoryService} from "../../services/category.service";
+import {Component} from '@angular/core';
 import {faBars} from "@fortawesome/free-solid-svg-icons/faBars";
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from "@angular/router";
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent {
+
+  public loading: boolean = false;
 
   public icons = {menu: faBars}
 
-  public categories: Category[] = [];
-
-  constructor(private categoryService: CategoryService) { }
-
-  ngOnInit(): void {
-    this.getCategories();
-  }
-
-  getCategories(){
-    this.categoryService.getAll().subscribe((response: Category[]) => {
-      this.categories = response;
-    }, error => { console.log(error) });
+  constructor(private router: Router) {
+    router.events.subscribe(ev => {
+      if(ev instanceof NavigationStart) {
+        this.loading = true;
+      }
+      if(ev instanceof NavigationEnd || ev instanceof NavigationCancel || ev instanceof NavigationError)
+        this.loading = false;
+    });
   }
 }

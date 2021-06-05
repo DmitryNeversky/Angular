@@ -1,4 +1,4 @@
-<div *ngIf="categories; else preloader" class="row">
+<div class="row">
     <div class="col-sm-4" *ngFor="let category of categories">
         <a class="card-wrapper" [routerLink]="['./', category.name]">
             <div class="card bg-dark text-white">
@@ -12,7 +12,3 @@
         </a>
     </div>
 </div>
-
-<ng-template #preloader>
-    <app-preloader></app-preloader>
-</ng-template>

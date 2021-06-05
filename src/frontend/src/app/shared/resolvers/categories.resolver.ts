@@ -10,6 +10,13 @@ export class CategoriesResolver implements Resolve<Category[]> {
     constructor(private categoryService: CategoryService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Category[]> | Promise<Category[]> | Category[] {
-        return this.categoryService.getAll();
+        return this.categoryService.getAll()
+            // .pipe(
+            //     map((categories: Category[]) =>
+            //         categories.filter((category: Category) =>
+            //             category.subCategories.length > 0
+            //         )
+            //     )
+            // );
     }
 }

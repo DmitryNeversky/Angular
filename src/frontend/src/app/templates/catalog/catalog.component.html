@@ -12,11 +12,12 @@
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <app-sidebar [categories]="categories"></app-sidebar>
+            <app-sidebar></app-sidebar>
         </div>
     </div>
 
     <div class="container">
+        <app-preloader *ngIf="loading"></app-preloader>
         <router-outlet></router-outlet>
     </div>
 </section>

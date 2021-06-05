@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoryService} from "../../../services/category.service";
 import {Category} from "../../../models/category";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-categories-page',
@@ -11,11 +11,9 @@ export class CategoriesComponent implements OnInit {
 
   public categories: Category[];
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.categoryService.getAll().subscribe((response: Category[]) => {
-      this.categories = response.filter(x => x.subCategories.length > 0);
-    });
+    this.categories = this.route.snapshot.data.categories.filter(x => x.subCategories.length > 0);
   }
 }
