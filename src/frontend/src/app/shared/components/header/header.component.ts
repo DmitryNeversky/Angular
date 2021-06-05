@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +7,22 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  @ViewChild('header')
+  private headerElement: ElementRef;
+
   constructor() { }
 
   ngOnInit(): void {
 
+  }
+
+  @HostListener('window:scroll')
+  onScroll() {
+    if(window.scrollY > 70){
+      this.headerElement.nativeElement.style.padding = '1% 0';
+    } else if (window.scrollY < 70){
+      this.headerElement.nativeElement.style.padding = '2% 0';
+    }
   }
 
 }
