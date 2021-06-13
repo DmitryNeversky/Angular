@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
-import {CategoryService} from "../../../services/category.service";
-import {Category} from "../../../models/category";
+import {ActivatedRoute} from "@angular/router";
 import {Subcategory} from "../../../models/subcategory";
 
 @Component({
@@ -13,15 +11,10 @@ export class SubcategoriesComponent implements OnInit {
 
   public subCategories: Subcategory[];
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private categoryService: CategoryService) { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.categoryService.getByName(params.category).subscribe((response: Category) => {
-        this.subCategories = response.subCategories.filter(x => x.items.length > 0);
-      });
-    });
+    this.subCategories = this.activatedRoute.snapshot.data.subCategories.filter(x => x.items.length > 0);
   }
 
 }

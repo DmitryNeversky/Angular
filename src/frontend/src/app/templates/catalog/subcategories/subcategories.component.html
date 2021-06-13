@@ -1,20 +1,12 @@
-<div class="row" *ngIf="subCategories; else preloader">
-
-    <div class="col-sm-4" *ngFor="let subcategory of subCategories">
-        <a class="card-wrapper" [routerLink]="['./', subcategory.name]">
-            <div class="card bg-dark text-white">
-                <img *ngIf="subcategory.image != null" src="{{ '../../assets/images/uploaded/' + subcategory.image }}" alt="img.item">
-                <img *ngIf="subcategory.image == null" src="assets/images/preview.jpg" alt="img.item">
-                <div class="card-img-overlay">
-                    <h4 class="card-title">{{ subcategory.name }}</h4>
-                    <p class="fst-italic card-text">Товаров {{subcategory.items.length}}</p>
-                </div>
+<div class="col-sm-4" *ngFor="let subcategory of subCategories">
+    <a class="card-wrapper" [routerLink]="['./', subcategory.name]">
+        <div class="card bg-dark text-white">
+            <img *ngIf="subcategory.image != null" src="{{ '../../assets/images/uploaded/' + subcategory.image }}" alt="img.item">
+            <img *ngIf="subcategory.image == null" src="assets/images/preview.jpg" alt="img.item">
+            <div class="card-img-overlay">
+                <h4 class="card-title">{{ subcategory.name }}</h4>
+                <p class="fst-italic card-text">Товаров {{subcategory.items.length}}</p>
             </div>
-        </a>
-    </div>
-
+        </div>
+    </a>
 </div>
-
-<ng-template #preloader>
-    <app-preloader></app-preloader>
-</ng-template>

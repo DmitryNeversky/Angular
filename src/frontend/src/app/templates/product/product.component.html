@@ -1,39 +1,33 @@
 <app-header></app-header>
 
-<div *ngIf="item; else preloader" class="container content">
+<div class="container">
 
-    <div class="row">
+<div class="row">
 
-        <ng-template [ngIf]="item != null">
+    <ng-template [ngIf]="item != null">
 
-            <div class="col-sm-4">
-                <img *ngIf="item.images.length == 0" src="../../../assets/images/preview.jpg" alt="default.item">
+        <div class="col-sm-4">
+            <img *ngIf="item.images.length == 0" src="../../../assets/images/preview.jpg" alt="default.item">
 
-                <ng-template [ngIf]="item.images.length > 0">
-                    <img [src]="'../../assets/images/uploaded/' + preview" alt="preview.item">
-                    <div class="row gallery">
-                        <div class="col-sm-3 wrap-image" *ngFor="let image of item.images; let index = index">
-                            <img class="image" [src]="'../../assets/images/uploaded/' + image" (click)="setPreview(image)" alt="gallery.img">
-                        </div>
+            <ng-template [ngIf]="item.images.length > 0">
+                <img [src]="'../../assets/images/uploaded/' + preview" alt="preview.item">
+                <div class="row gallery">
+                    <div class="col-sm-3 wrap-image" *ngFor="let image of item.images; let index = index">
+                        <img class="image" [src]="'../../assets/images/uploaded/' + image" (click)="setPreview(image)" alt="gallery.img">
                     </div>
-                </ng-template>
-            </div>
+                </div>
+            </ng-template>
+        </div>
 
-            <div class="col-sm-8">
-                <p class="fs-3">{{item.name}}</p>
-                <p class=""><span class="fw-bolder">Цена: </span>{{item.price}} руб.</p>
-                <p class=""><span class="fw-bolder">Наличие: </span>{{item.count}}</p>
-                <p class=""><span class="fw-bolder">Описание: </span>{{item.description}}</p>
-            </div>
+        <div class="col-sm-8">
+            <p class="fs-3">{{item.name}}</p>
+            <p class=""><span class="fw-bolder">Цена: </span>{{item.price}} руб.</p>
+            <p class=""><span class="fw-bolder">Наличие: </span>{{item.count}}</p>
+            <p class=""><span class="fw-bolder">Описание: </span>{{item.description}}</p>
+        </div>
 
-        </ng-template>
-
-    </div>
+    </ng-template>
 
 </div>
-
-<ng-template #preloader>
-    <app-preloader></app-preloader>
-</ng-template>
-
+</div>
 <app-footer></app-footer>

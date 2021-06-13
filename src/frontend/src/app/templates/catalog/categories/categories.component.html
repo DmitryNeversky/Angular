@@ -1,14 +1,12 @@
-<div class="row">
-    <div class="col-sm-4" *ngFor="let category of categories">
-        <a class="card-wrapper" [routerLink]="['./', category.name]">
-            <div class="card bg-dark text-white">
-                <img *ngIf="category.image == null" src="assets/images/preview.jpg" class="card-img" alt="cat.img">
-                <img *ngIf="category.image != null" src="assets/images/uploaded/{{category.image}}" class="card-img" alt="cat.img">
-                <div class="card-img-overlay">
-                    <h4 class="card-title">{{ category.name }}</h4>
-                    <p class="fst-italic card-text">Подкатегорий {{category.subCategories.length}}</p>
-                </div>
+<div class="col-sm-4" *ngFor="let category of categories">
+    <a class="card-wrapper" [routerLink]="['./', category.name]">
+        <div class="card bg-dark text-white">
+            <img *ngIf="category.image == null" src="assets/images/preview.jpg" class="card-img" alt="cat.img">
+            <img *ngIf="category.image != null" src="assets/images/uploaded/{{category.image}}" class="card-img" alt="cat.img">
+            <div class="card-img-overlay">
+                <h4 class="card-title">{{ category.name }}</h4>
+                <p class="fst-italic card-text">Подкатегорий {{category.subCategories.length}}</p>
             </div>
-        </a>
-    </div>
+        </div>
+    </a>
 </div>

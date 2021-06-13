@@ -17,8 +17,10 @@
     </div>
 
     <div class="container">
-        <app-preloader *ngIf="loading"></app-preloader>
-        <router-outlet></router-outlet>
+        <div class="row">
+            <app-preloader *ngIf="loading"></app-preloader>
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </section>
 
