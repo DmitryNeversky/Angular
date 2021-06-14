@@ -5,15 +5,45 @@
         <div class="row">
             <div class="col-sm-8">
                 <p class="h3 text-center">Свяжитесь с нами</p>
-                <p class="fst-italic text-center my-4 text-black-50">Мы работаем на горячей линии 24/7 и стараемся отвечать в течении часа.
+                <p class="fst-italic text-center my-4 text-black-50">Мы работаем на горячей линии 24/7 и стараемся
+                    отвечать в течении часа.
                     <br>Вы также можете задать нам вопрос с помощью этой формы.</p>
-                <form action="#">
+                <form [formGroup]="form">
                     <div class="row">
-                        <div class="col-sm-6"><input type="text" class="advanced-input" placeholder="Имя"></div>
-                        <div class="col-sm-6"><input type="tel" class="advanced-input" placeholder="+0 (000) 000 00 00"></div>
-                        <div class="col-sm-12"><textarea class="advanced-input" placeholder="Начните писать и я пропаду =)"></textarea></div>
-                        <div class="col-sm-6"><input type="text" class="advanced-input" placeholder="E-mail"></div>
-                        <div class="col-sm-6"><button class="advanced-input text-uppercase">Отправить</button></div>
+                        <div class="col-sm-6 position-relative">
+                            <small class="error-label"
+                                   *ngIf="submitted && form.get('name').invalid && form.get('name').errors.required">Укажите
+                                имя</small>
+                            <small class="error-label"
+                                   *ngIf="submitted && form.get('name').invalid && form.get('name').errors.minlength">Минимум
+                                3 символа</small>
+                            <input formControlName="name" type="text" class="advanced-input" placeholder="Имя">
+                        </div>
+                        <div class="col-sm-6 position-relative">
+                            <input formControlName="phone" type="tel" class="advanced-input"
+                                   placeholder="+0 (000) 000 00 00">
+                        </div>
+                        <div class="col-sm-12 position-relative mt-2">
+                            <small class="error-label"
+                                   *ngIf="submitted && form.get('message').invalid && form.get('message').errors.required">Напишите
+                                сообщение</small>
+                            <small class="error-label"
+                                   *ngIf="submitted && form.get('message').invalid && form.get('message').errors.minlength">
+                                Минимум {{form.get('message').errors.minlength.requiredLength}} симв.
+                                сейчас {{form.get('message').errors.minlength.actualLength}}
+                            </small>
+                            <textarea formControlName="message" class="advanced-input"
+                                      placeholder="Начните писать и я пропаду =)"></textarea>
+                        </div>
+                        <div class="col-sm-6 position-relative">
+                            <small class="error-label"
+                                   *ngIf="submitted && form.get('email').invalid && form.get('email').errors.email">Некорректный
+                                email</small>
+                            <input formControlName="email" type="text" class="advanced-input" placeholder="E-mail">
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="advanced-input text-uppercase" (click)="send()">Отправить</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -22,22 +52,36 @@
                 <div class="row">
                     <div class="col-sm-12 social border-bottom pb-3">
                         <p class="text-uppercase fs-6 family-montserrat">Социальные сети</p>
-                        <a href="#"><fa-icon [icon]="icons.vk"></fa-icon></a>
-                        <a href="#"><fa-icon [icon]="icons.twitter"></fa-icon></a>
-                        <a href="#"><fa-icon [icon]="icons.instagram"></fa-icon></a>
+                        <a href="#">
+                            <fa-icon [icon]="icons.vk"></fa-icon>
+                        </a>
+                        <a href="#">
+                            <fa-icon [icon]="icons.twitter"></fa-icon>
+                        </a>
+                        <a href="#">
+                            <fa-icon [icon]="icons.instagram"></fa-icon>
+                        </a>
                     </div>
                     <div class="col-sm-12 phone border-bottom py-3">
                         <p class="text-uppercase fs-6 family-montserrat pb-3">Телефоны</p>
-                        <p><fa-icon [icon]="icons.phone"></fa-icon><a [href]="'tel:' + info.phone">{{info.phone}}</a></p>
-                        <p><fa-icon [icon]="icons.whatsapp"></fa-icon><a href="whatsapp://{{info.whatsapp}}">{{info.whatsapp}}</a></p>
+                        <p>
+                            <fa-icon [icon]="icons.phone"></fa-icon>
+                            <a [href]="'tel:' + info.phone">{{info.phone}}</a></p>
+                        <p>
+                            <fa-icon [icon]="icons.whatsapp"></fa-icon>
+                            <a href="whatsapp:{{info.whatsapp}}">{{info.whatsapp}}</a></p>
                     </div>
                     <div class="col-sm-12 email border-bottom py-3">
                         <p class="text-uppercase fs-6 family-montserrat pb-3">E-mail</p>
-                        <p><fa-icon [icon]="icons.envelope"></fa-icon><a href="mailto:{{info.email}}">{{info.email}}</a></p>
+                        <p>
+                            <fa-icon [icon]="icons.envelope"></fa-icon>
+                            <a href="mailto:{{info.email}}">{{info.email}}</a></p>
                     </div>
                     <div class="col-sm-12 address pt-3">
                         <p class="text-uppercase fs-6 family-montserrat pb-3">Адрес</p>
-                        <p class="text-black-50"><fa-icon [icon]="icons.mark"></fa-icon>{{info.address}}</p>
+                        <p class="text-black-50">
+                            <fa-icon [icon]="icons.mark"></fa-icon>
+                            {{info.address}}</p>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,8 @@ import {Observable} from "rxjs";
 @Injectable({providedIn: "root"})
 export class UserService {
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) {
+    }
 
     public getIP(): Observable<any> {
         return this.httpClient.get<any>('https://jsonip.com');

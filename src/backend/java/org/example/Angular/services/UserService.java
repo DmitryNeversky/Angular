@@ -17,8 +17,8 @@ public class UserService {
     }
 
     @PostConstruct
-    private void createAdmin(){
-        if(!userRepository.existsById(1))
+    private void createAdmin() {
+        if (!userRepository.existsById(1))
             userRepository.save(new User("Admin", "1001", Role.ADMIN));
     }
 }

@@ -1,18 +1,18 @@
 import {Subcategory} from "./subcategory";
 
 export class Item {
-    private _id:number = 0;
-    private _name:string = "";
-    private _description:string = "";
-    private _price:number = 0;
-    private _count:number = 0;
-    private _subCategory: Subcategory;
+    private _id: number = 0;
+    private _name: string = "";
+    private _description: string = "";
+    private _price: number = 0;
+    private _count: number = 0;
+    private _subcategory: Subcategory;
     private _images: string[] = [];
     private _looks: string[] = [];
 
-    constructor(name: string, subCategory: Subcategory) {
+    constructor(name: string, subcategory: Subcategory) {
         this._name = name;
-        this._subCategory = subCategory;
+        this._subcategory = subcategory;
     }
 
     get id(): number {
@@ -55,12 +55,12 @@ export class Item {
         this._count = value;
     }
 
-    get subCategory(): Subcategory {
-        return <Subcategory>this._subCategory;
+    get subcategory(): Subcategory {
+        return <Subcategory>this._subcategory;
     }
 
-    set subCategory(value: Subcategory) {
-        this._subCategory = value;
+    set subcategory(value: Subcategory) {
+        this._subcategory = value;
     }
 
     get images(): string[] {

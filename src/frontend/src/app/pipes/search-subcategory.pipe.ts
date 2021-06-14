@@ -1,15 +1,15 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'searchSubCategory'
+    name: 'searchSubCategory'
 })
 export class SearchSubcategoryPipe implements PipeTransform {
 
-  transform(array: any[], arg: number): any[] {
-    if(arg == 0)
-      return array
+    transform(array: any[], arg: number): any[] {
+        if (arg == 0)
+            return array
 
-    return array.filter(x => x.subCategory == arg);
-  }
+        return array.filter(x => x.subcategory == arg);
+    }
 
 }

@@ -1,4 +1,4 @@
-.about-history .step::after{
+.about-history .step::after {
     content: "";
     display: block;
     width: 15px;
@@ -10,7 +10,7 @@
     left: -58px;
 }
 
-.about-history .step_b::before{
+.about-history .step_b::before {
     content: "";
     display: block;
     width: 15px;
@@ -22,17 +22,17 @@
     left: -58px;
 }
 
-.about-history .step, .step_b{
+.about-history .step, .step_b {
     border-left: 2px solid silver;
     padding-left: 50px;
 }
 
-.about-history .step .title{
+.about-history .step .title {
     position: relative;
     top: -10px;
 }
 
-.about-history .title::before{
+.about-history .title::before {
     content: "";
     display: block;
     width: 40px;
@@ -43,21 +43,21 @@
     top: 10px;
 }
 
-.about-history .inner p{
+.about-history .inner p {
     margin-left: 15px;
     font-size: 12px;
     font-style: italic;
 }
 
-.about-history .inner img{
+.about-history .inner img {
     max-width: 40%;
 }
 
-.step_b .title{
+.step_b .title {
     position: relative;
     top: 30px;
 }
 
-#contact-map{
+#contact-map {
     height: 400px;
 }

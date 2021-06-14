@@ -17,26 +17,26 @@ public class MetaService {
         this.metaRepository = metaRepository;
     }
 
-    public List<Category> getHomeCollection(){
+    public List<Category> getHomeCollection() {
         Meta meta = metaRepository.findById(1);
 
         return meta.getHomeCollection();
     }
 
-    public void setHomeCollection(List<Category> categories){
+    public void setHomeCollection(List<Category> categories) {
         Meta meta = metaRepository.findById(1);
         meta.setHomeCollection(categories);
 
         metaRepository.save(meta);
     }
 
-    public Integer getPopularSize(){
+    public Integer getPopularSize() {
         Meta meta = metaRepository.findById(1);
 
         return meta.getHomePopularSize();
     }
 
-    public void setPopularSize(int size){
+    public void setPopularSize(int size) {
         Meta meta = metaRepository.findById(1);
         meta.setHomePopularSize(size);
 
@@ -44,9 +44,9 @@ public class MetaService {
     }
 
     @PostConstruct
-    private void init(){
+    private void init() {
         Meta meta = metaRepository.findById(1);
-        if(meta == null)
+        if (meta == null)
             metaRepository.save(new Meta(1));
     }
 }

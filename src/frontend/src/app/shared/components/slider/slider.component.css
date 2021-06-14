@@ -1,20 +1,20 @@
-.slider-container{
+.slider-container {
     position: relative;
 }
 
-.slider-wrapper{
+.slider-wrapper {
     height: auto;
     overflow: hidden;
 }
 
-.slider{
+.slider {
     padding: 10px 0;
     align-items: center;
     display: flex;
     transition: .3s;
 }
 
-.arrow-left, .arrow-right{
+.arrow-left, .arrow-right {
     transform: scale(2);
     position: absolute;
     bottom: 50%;
@@ -22,10 +22,10 @@
     background: none;
 }
 
-.arrow-left{
+.arrow-left {
     left: -5%;
 }
 
-.arrow-right{
+.arrow-right {
     right: -5%;
 }

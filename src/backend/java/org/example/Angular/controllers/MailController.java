@@ -20,15 +20,18 @@ public class MailController {
     }
 
     @PostMapping
-    public ResponseEntity<?> send(@RequestBody Mail mail){
+    public ResponseEntity<?> send(@RequestBody Mail mail) {
 
         System.out.println(mail);
 
         String message = mail.getMessage() + "\nEmail: " + mail.getEmail()
                 + "\nТелефон: " + mail.getPhone() + "\n\nИмя: " + mail.getName();
 
-        try { mailSender.send("shdeemon@mail.ru", "Форма для связи", message); }
-        catch (Exception e) { return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); }
+        try {
+            mailSender.send("shdeemon@mail.ru", "Форма для связи", message);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

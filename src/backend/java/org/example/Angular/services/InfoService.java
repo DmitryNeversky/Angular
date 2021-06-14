@@ -15,20 +15,20 @@ public class InfoService {
         this.infoRepository = infoRepository;
     }
 
-    public Info get(){
+    public Info get() {
 
         return infoRepository.findById(1);
     }
 
-    public Info save(Info info){
+    public Info save(Info info) {
 
         return infoRepository.save(info);
     }
 
     @PostConstruct
-    private void init(){
+    private void init() {
         Info info = infoRepository.findById(1);
-        if(info == null)
+        if (info == null)
             infoRepository.save(new Info(1));
     }
 }

@@ -23,7 +23,8 @@ public class Meta {
     @JoinColumn(name = "item_id")
     private List<Item> homePopularItems = new ArrayList<>();
 
-    public Meta(){}
+    public Meta() {
+    }
 
     public Meta(int id) {
         this.id = id;

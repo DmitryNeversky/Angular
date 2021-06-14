@@ -8,7 +8,8 @@ import {Injectable} from "@angular/core";
 export class ProductResolver implements Resolve<Item> {
 
     constructor(private activatedRoute: ActivatedRoute,
-                private itemService: ItemService) {}
+                private itemService: ItemService) {
+    }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Item> | Promise<Item> | Item {
         return this.itemService.get(+route.paramMap.get('id'));

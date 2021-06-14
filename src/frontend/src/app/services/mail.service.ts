@@ -4,15 +4,16 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class MailService {
 
-  private apiBaseURL = environment.apiBaseUrl;
+    private apiBaseURL = environment.apiBaseUrl;
 
-  constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {
+    }
 
-  send(body: object): Observable<void> {
-    return this.httpClient.post<void>(`${this.apiBaseURL}/mail`, body);
-  }
+    send(body: object): Observable<void> {
+        return this.httpClient.post<void>(`${this.apiBaseURL}/mail`, body);
+    }
 }

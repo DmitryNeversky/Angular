@@ -7,7 +7,8 @@ import {Injectable} from "@angular/core";
 @Injectable({providedIn: "root"})
 export class ItemsResolver implements Resolve<Item[]> {
 
-    constructor(private itemService: ItemService) {}
+    constructor(private itemService: ItemService) {
+    }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Item[]> | Promise<Item[]> | Item[] {
         return this.itemService.getAll();

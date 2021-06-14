@@ -21,26 +21,26 @@ public class MetaController {
     }
 
     @GetMapping("/home_collection")
-    public ResponseEntity<List<Category>> getHomeCollection(){
+    public ResponseEntity<List<Category>> getHomeCollection() {
 
         return new ResponseEntity<>(metaService.getHomeCollection(), HttpStatus.OK);
     }
 
     @PostMapping("/home_collection")
-    public ResponseEntity<?> setHomeCollection(@RequestParam List<Category> categories){
+    public ResponseEntity<?> setHomeCollection(@RequestParam List<Category> categories) {
         metaService.setHomeCollection(categories);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/home_popular_size")
-    public ResponseEntity<Integer> getHomePopularSize(){
+    public ResponseEntity<Integer> getHomePopularSize() {
 
         return new ResponseEntity<>(metaService.getPopularSize(), HttpStatus.OK);
     }
 
     @PostMapping("/home_popular_size")
-    public ResponseEntity<?> setHomePopularSize(@RequestParam String size){
+    public ResponseEntity<?> setHomePopularSize(@RequestParam String size) {
         metaService.setPopularSize(Integer.parseInt(size));
 
         return new ResponseEntity<>(HttpStatus.OK);

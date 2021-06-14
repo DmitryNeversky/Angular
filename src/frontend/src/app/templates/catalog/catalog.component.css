@@ -1,16 +1,16 @@
-.catalog .categories ul>li{
+.catalog .categories ul > li {
     margin-left: 5%;
 }
 
-.catalog .card{
+.catalog .card {
     box-shadow: 0 0 15px -5px rgba(0, 0, 0, .2);
 }
 
-.catalog .card img{
+.catalog .card img {
     max-height: 284px;
 }
 
-.open-button{
+.open-button {
     position: fixed;
     top: 96px;
     color: white;
@@ -19,6 +19,6 @@
     padding: 10px 15px;
 }
 
-.offcanvas-start{
+.offcanvas-start {
     width: 280px;
 }

@@ -24,7 +24,7 @@ const routes: Routes = [
                 path: ':category',
                 component: SubcategoriesComponent,
                 resolve: {
-                    subCategories: SubcategoriesResolver
+                    subcategories: SubcategoriesResolver
                 }
             },
             {
@@ -39,4 +39,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class CatalogRoutingModule { }
+export class CatalogRoutingModule {
+}

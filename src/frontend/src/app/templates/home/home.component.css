@@ -1,8 +1,8 @@
-.banner{
+.banner {
     padding-top: 4.4rem;
 }
 
-.banner .carousel-item .caption{
+.banner .carousel-item .caption {
     position: absolute;
     top: 25%;
     left: 15%;
@@ -10,40 +10,40 @@
     text-align: center;
 }
 
-.home-title{
+.home-title {
     border-bottom: 2px solid silver;
     margin-bottom: 4%;
 }
 
-.home-categories .card{
+.home-categories .card {
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, .3);
 }
 
-.home-categories .card img{
+.home-categories .card img {
     max-height: 200px;
 }
 
-.home-categories .card-img-overlay{
+.home-categories .card-img-overlay {
     text-align: center;
     margin: 19% 25%;
     transition: .3s;
 }
 
-.home-categories .card-img-overlay:hover{
+.home-categories .card-img-overlay:hover {
     margin: 0;
     padding-top: 25%;
     transition: .3s;
 }
 
-.home-about img{
+.home-about img {
     margin: 13% auto;
     width: 80%;
     padding: 1%;
     background-color: white;
 }
 
-@media(max-width: 1140px){
-    .banner{
+@media (max-width: 1140px) {
+    .banner {
         padding-top: 3.6rem;
     }
 }

@@ -7,31 +7,32 @@ import {Observable} from "rxjs";
 @Injectable()
 export class ItemService {
 
-  private apiBaseUrl = environment.apiBaseUrl;
+    private apiBaseUrl = environment.apiBaseUrl;
 
-  constructor(private httpClient:HttpClient) {}
+    constructor(private httpClient: HttpClient) {
+    }
 
-  public getAll(): Observable<Item[]>{
-    return this.httpClient.get<Item[]>(`${this.apiBaseUrl}/items/all`);
-  }
+    public getAll(): Observable<Item[]> {
+        return this.httpClient.get<Item[]>(`${this.apiBaseUrl}/items/all`);
+    }
 
-  public get(id: number): Observable<Item>{
-    return this.httpClient.get<Item>(`${this.apiBaseUrl}/items/${id}`);
-  }
+    public get(id: number): Observable<Item> {
+        return this.httpClient.get<Item>(`${this.apiBaseUrl}/items/${id}`);
+    }
 
-  public add(formData: FormData): Observable<Item>{
-    return this.httpClient.post<Item>(`${this.apiBaseUrl}/items/add`, formData);
-  }
+    public add(formData: FormData): Observable<Item> {
+        return this.httpClient.post<Item>(`${this.apiBaseUrl}/items/add`, formData);
+    }
 
-  public update(id: number, formData: FormData): Observable<Item>{
-    return this.httpClient.put<Item>(`${this.apiBaseUrl}/items/update/${id}`, formData)
-  }
+    public update(id: number, formData: FormData): Observable<Item> {
+        return this.httpClient.put<Item>(`${this.apiBaseUrl}/items/update/${id}`, formData)
+    }
 
-  public delete(itemId:number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.apiBaseUrl}/items/delete/${itemId}`)
-  }
+    public delete(itemId: number): Observable<void> {
+        return this.httpClient.delete<void>(`${this.apiBaseUrl}/items/delete/${itemId}`)
+    }
 
-  public addLook(formData: FormData): void {
-    this.httpClient.post<void>(`${this.apiBaseUrl}/items/add_look`, formData).subscribe();
-  }
+    public addLook(formData: FormData): void {
+        this.httpClient.post<void>(`${this.apiBaseUrl}/items/add_look`, formData).subscribe();
+    }
 }

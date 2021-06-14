@@ -17,7 +17,8 @@ public class User {
     private boolean isAuth;
     private Role role;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String name, String password, Role role) {
         this.name = name;

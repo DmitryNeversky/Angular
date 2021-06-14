@@ -30,7 +30,8 @@ public class Item {
 
 //  Constructors
 
-    public Item() { }
+    public Item() {
+    }
 
     public Item(String name, String description, double price, int count, int subcategory) {
         this.name = name;
@@ -78,11 +79,11 @@ public class Item {
         this.count = count;
     }
 
-    public int getSubCategory() {
+    public int getSubcategory() {
         return subcategory;
     }
 
-    public void setSubCategory(int subcategory) {
+    public void setSubcategory(int subcategory) {
         this.subcategory = subcategory;
     }
 
@@ -90,7 +91,7 @@ public class Item {
         return images;
     }
 
-    public void addImage(String name){
+    public void addImage(String name) {
         images.add(name);
     }
 
@@ -98,7 +99,7 @@ public class Item {
         return looks;
     }
 
-    public void addLook(String ip){
+    public void addLook(String ip) {
         getLooks().add(ip);
     }
 }

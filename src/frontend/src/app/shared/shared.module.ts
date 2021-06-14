@@ -15,20 +15,20 @@ import {SliderComponent} from "./components/slider/slider.component";
 import {PreloaderComponent} from './components/preloader/preloader.component';
 
 @NgModule({
-  declarations: [
-      HeaderComponent,
-      FooterComponent,
-      SidebarComponent,
-      BreadcrumbComponent,
-      SearchNamePipe,
-      SearchIdPipe,
-      SearchCategoryPipe,
-      SearchSubcategoryPipe,
-      Click180Directive,
-      SliderComponent,
-      SlideComponent,
-      PreloaderComponent
-  ],
+    declarations: [
+        HeaderComponent,
+        FooterComponent,
+        SidebarComponent,
+        BreadcrumbComponent,
+        SearchNamePipe,
+        SearchIdPipe,
+        SearchCategoryPipe,
+        SearchSubcategoryPipe,
+        Click180Directive,
+        SliderComponent,
+        SlideComponent,
+        PreloaderComponent
+    ],
     exports: [
         HeaderComponent,
         FooterComponent,
@@ -42,9 +42,10 @@ import {PreloaderComponent} from './components/preloader/preloader.component';
         SlideComponent,
         PreloaderComponent
     ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule
+    ],
 })
-export class SharedModule { }
+export class SharedModule {
+}

@@ -40,7 +40,8 @@
         <div class="col-lg-3 col-sm-4" *ngFor="let item of paginatedItems">
             <ng-template [ngIf]="item != null">
                 <div class="card">
-                    <img *ngIf="item.images[0] != null" class="preview" src="{{ '../../assets/images/uploaded/' + item.images[0] }}" alt="img.item">
+                    <img *ngIf="item.images[0] != null" class="preview"
+                         src="{{ '../../assets/images/uploaded/' + item.images[0] }}" alt="img.item">
                     <img *ngIf="item.images[0] == null" class="preview" src="assets/images/preview.jpg" alt="img.item">
                     <div class="p-3">
                         <p class="fw-bold">{{ item.name }}</p>
@@ -69,7 +70,9 @@
                 </button>
             </li>
             <li class="page-item">
-                <button class="page-link btn" [disabled]="pageIndex == pages.length - 1" (click)="goIndex(pageIndex + 1)">></button>
+                <button class="page-link btn" [disabled]="pageIndex == pages.length - 1"
+                        (click)="goIndex(pageIndex + 1)">>
+                </button>
             </li>
         </ul>
     </nav>

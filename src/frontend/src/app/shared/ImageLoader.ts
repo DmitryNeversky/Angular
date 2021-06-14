@@ -29,7 +29,7 @@ export class ImageLoader {
 
             let reader = new FileReader();
 
-            reader.onload = function (e: any){
+            reader.onload = function (e: any) {
                 component.loadImage = e.target.result;
             }
 
@@ -39,13 +39,13 @@ export class ImageLoader {
         }
     }
 
-    removeImage(event: any){
+    removeImage(event: any) {
         this.dataTransfer.items.remove(event.target);
         this.loadImage = null;
         event.target.remove();
     }
 
-    reset(){
+    reset() {
         this.loadImage = null;
         this.dataTransfer.items.clear();
     }

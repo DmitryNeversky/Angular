@@ -24,26 +24,26 @@ public class ItemService {
     private String UPLOAD_IMAGE_PATH;
 
     private final ItemRepository itemRepository;
-    private final SubCategoryService subcategoryService;
+    private final SubcategoryService subcategoryService;
 
-    public ItemService(ItemRepository itemRepository, SubCategoryService subcategoryService) {
+    public ItemService(ItemRepository itemRepository, SubcategoryService subcategoryService) {
         this.itemRepository = itemRepository;
         this.subcategoryService = subcategoryService;
     }
 
-    public List<Item> getItems(){
+    public List<Item> getItems() {
         return itemRepository.findAll();
     }
 
-    public Item getItem(int id){
+    public Item getItem(int id) {
         Optional<Item> item = itemRepository.findById(id);
 
         return item.orElse(null);
     }
 
-    public Item add(Item item, List<MultipartFile> images){
+    public Item add(Item item, List<MultipartFile> images) {
         uploadImages(item, images);
-
+        System.out.println(item.toString());
         itemRepository.save(item);
 
         subcategoryService.addItem(item);
@@ -51,12 +51,12 @@ public class ItemService {
         return item;
     }
 
-    public Item update(Item item, Set<String> removeImages, List<MultipartFile> addImages){
+    public Item update(Item item, Set<String> removeImages, List<MultipartFile> addImages) {
         Optional<Item> findItem = itemRepository.findById(item.getId());
-        if(!findItem.isPresent())
+        if (!findItem.isPresent())
             return item;
 
-        if(removeImages != null) {
+        if (removeImages != null) {
             removeImages.forEach(x -> {
                 if (Files.exists(Paths.get(UPLOAD_IMAGE_PATH + x))) {
                     try {
@@ -71,8 +71,8 @@ public class ItemService {
 
         uploadImages(item, addImages);
 
-        if(item.getSubCategory() != findItem.get().getSubCategory()) {
-            subcategoryService.removeItem(item.getSubCategory(), item);
+        if (item.getSubcategory() != findItem.get().getSubcategory()) {
+            subcategoryService.removeItem(item.getSubcategory(), item);
 
             itemRepository.save(item);
 
@@ -84,10 +84,10 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
-    public void delete(Item item){
-        if(item.getImages() != null) {
+    public void delete(Item item) {
+        if (item.getImages() != null) {
             for (String pair : item.getImages()) {
-                if(Files.exists(Paths.get(UPLOAD_IMAGE_PATH + pair))) {
+                if (Files.exists(Paths.get(UPLOAD_IMAGE_PATH + pair))) {
                     try {
                         Files.delete(Paths.get(UPLOAD_IMAGE_PATH + pair));
                     } catch (IOException e) {
@@ -96,12 +96,12 @@ public class ItemService {
                 }
             }
         }
-        subcategoryService.removeItem(item.getSubCategory(), item);
+        subcategoryService.removeItem(item.getSubcategory(), item);
         itemRepository.delete(item);
     }
 
-    private void uploadImages(Item item, List<MultipartFile> images){
-        if(images != null) {
+    private void uploadImages(Item item, List<MultipartFile> images) {
+        if (images != null) {
             for (MultipartFile pair : images) {
                 if (Objects.requireNonNull(pair.getOriginalFilename()).isEmpty())
                     continue;
@@ -120,9 +120,9 @@ public class ItemService {
         }
     }
 
-    public void addLook(int itemId, String ip){
+    public void addLook(int itemId, String ip) {
         Optional<Item> item = itemRepository.findById(itemId);
-        if(item.isPresent()) {
+        if (item.isPresent()) {
             item.get().addLook(ip);
             itemRepository.save(item.get());
         }

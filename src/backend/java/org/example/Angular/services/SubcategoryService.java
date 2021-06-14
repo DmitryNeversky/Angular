@@ -1,8 +1,8 @@
 package org.example.Angular.services;
 
 import org.example.Angular.entities.Item;
-import org.example.Angular.entities.SubCategory;
-import org.example.Angular.repositories.SubCategoryRepository;
+import org.example.Angular.entities.Subcategory;
+import org.example.Angular.repositories.SubcategoryRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,34 +17,34 @@ import java.util.Set;
 import java.util.UUID;
 
 @Service
-public class SubCategoryService {
+public class SubcategoryService {
 
     @Value("${upload.image.path}")
     private String UPLOAD_IMAGE_PATH;
 
-    private final SubCategoryRepository subcategoryRepository;
+    private final SubcategoryRepository subcategoryRepository;
     private final CategoryService categoryService;
 
-    public SubCategoryService(SubCategoryRepository subcategoryRepository, CategoryService categoryService) {
+    public SubcategoryService(SubcategoryRepository subcategoryRepository, CategoryService categoryService) {
         this.subcategoryRepository = subcategoryRepository;
         this.categoryService = categoryService;
     }
 
-    public List<SubCategory> getAllSubCategories(){
+    public List<Subcategory> getAllSubCategories() {
 
         return subcategoryRepository.findAll();
     }
 
-    public SubCategory getSubCategoryByName(String name){
-        Optional<SubCategory> subcategory = subcategoryRepository.findByName(name);
+    public Subcategory getSubcategoryByName(String name) {
+        Optional<Subcategory> subcategory = subcategoryRepository.findByName(name);
 
         return subcategory.orElse(null);
     }
 
-    public SubCategory addSubCategory(String name, int categoryId, MultipartFile image){
-        SubCategory subcategory = new SubCategory(name, categoryId);
+    public Subcategory addSubcategory(String name, int categoryId, MultipartFile image) {
+        Subcategory subcategory = new Subcategory(name, categoryId);
 
-        if(image != null){
+        if (image != null) {
             String fileName = UUID.randomUUID() + "-" + image.getOriginalFilename();
 
             try {
@@ -57,17 +57,17 @@ public class SubCategoryService {
 
         subcategoryRepository.save(subcategory);
 
-        categoryService.addSubCategory(categoryId, subcategory);
+        categoryService.addSubcategory(categoryId, subcategory);
 
         return subcategory;
     }
 
-    public SubCategory updateSubCategory(int id, String name, int categoryId, MultipartFile image){
-        Optional<SubCategory> subcategory = subcategoryRepository.findById(id);
-        if(!subcategory.isPresent())
+    public Subcategory updateSubcategory(int id, String name, int categoryId, MultipartFile image) {
+        Optional<Subcategory> subcategory = subcategoryRepository.findById(id);
+        if (!subcategory.isPresent())
             return null;
 
-        if(image != null) {
+        if (image != null) {
             try {
                 Files.deleteIfExists(Paths.get(UPLOAD_IMAGE_PATH + subcategory.get().getImage()));
 
@@ -82,13 +82,13 @@ public class SubCategoryService {
 
         subcategory.get().setName(name);
 
-        if(subcategory.get().getCategory() != categoryId) {
-            categoryService.removeSubCategory(subcategory.get().getCategory(), subcategory.get());
+        if (subcategory.get().getCategory() != categoryId) {
+            categoryService.removeSubcategory(subcategory.get().getCategory(), subcategory.get());
 
             subcategory.get().setCategory(categoryId);
             subcategoryRepository.save(subcategory.get());
 
-            categoryService.addSubCategory(categoryId, subcategory.get());
+            categoryService.addSubcategory(categoryId, subcategory.get());
 
             return subcategory.get();
         }
@@ -96,9 +96,9 @@ public class SubCategoryService {
         return subcategoryRepository.save(subcategory.get());
     }
 
-    public void deleteSubCategory(SubCategory subcategory){
-        Optional<SubCategory> defaultSubCategory = subcategoryRepository.findById(1);
-        if(!defaultSubCategory.isPresent())
+    public void deleteSubcategory(Subcategory subcategory) {
+        Optional<Subcategory> defaultSubcategory = subcategoryRepository.findById(1);
+        if (!defaultSubcategory.isPresent())
             return;
 
         try {
@@ -107,31 +107,31 @@ public class SubCategoryService {
             e.printStackTrace();
         }
 
-        subcategory.getItems().forEach(x -> x.setSubCategory(defaultSubCategory.get().getId()));
+        subcategory.getItems().forEach(x -> x.setSubcategory(defaultSubcategory.get().getId()));
 
         Set<Item> set = subcategory.getItems();
 
-        categoryService.removeSubCategory(subcategory.getCategory(), subcategory);
+        categoryService.removeSubcategory(subcategory.getCategory(), subcategory);
 
         subcategoryRepository.delete(subcategory);
 
-        set.forEach(x -> defaultSubCategory.get().addItem(x));
+        set.forEach(x -> defaultSubcategory.get().addItem(x));
 
-        subcategoryRepository.save(defaultSubCategory.get());
+        subcategoryRepository.save(defaultSubcategory.get());
     }
 
-    public void addItem(Item item){
-        Optional<SubCategory> subcategory = subcategoryRepository.findById(item.getSubCategory());
-        if(!subcategory.isPresent())
+    public void addItem(Item item) {
+        Optional<Subcategory> subcategory = subcategoryRepository.findById(item.getSubcategory());
+        if (!subcategory.isPresent())
             return;
 
         subcategory.get().addItem(item);
         subcategoryRepository.save(subcategory.get());
     }
 
-    public void removeItem(int subcategoryId, Item item){
-        Optional<SubCategory> subcategory = subcategoryRepository.findById(subcategoryId);
-        if(!subcategory.isPresent())
+    public void removeItem(int subcategoryId, Item item) {
+        Optional<Subcategory> subcategory = subcategoryRepository.findById(subcategoryId);
+        if (!subcategory.isPresent())
             return;
 
         subcategory.get().getItems().remove(item);
@@ -139,10 +139,10 @@ public class SubCategoryService {
     }
 
     @PostConstruct
-    public void onInit(){
-        if(subcategoryRepository.findByName("Default").isPresent())
+    public void onInit() {
+        if (subcategoryRepository.findByName("Default").isPresent())
             return;
 
-        subcategoryRepository.save(new SubCategory("Default"));
+        subcategoryRepository.save(new Subcategory("Default"));
     }
 }

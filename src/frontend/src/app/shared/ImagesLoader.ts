@@ -11,7 +11,7 @@ export class ImagesLoader {
 
         if (event.target.files && event.target.files[0]) {
 
-            for(const file of event.target.files){
+            for (const file of event.target.files) {
 
                 let ext = file.name.match(/\.([^\.]+)$/)[1];
 
@@ -28,7 +28,7 @@ export class ImagesLoader {
 
                 let reader = new FileReader();
 
-                reader.onload = function (e: any){
+                reader.onload = function (e: any) {
                     component.loadImages.push(e.target.result);
                 }
 
@@ -39,15 +39,15 @@ export class ImagesLoader {
         }
     }
 
-    removeImage(event: any){
+    removeImage(event: any) {
         this.dataTransfer.items.remove(event.target);
         event.target.remove();
     }
 
     public removeImagesList: string[] = [];
 
-    remImage(event: any, image: any){
-        if(event.target.hasAttribute('remove')) {
+    remImage(event: any, image: any) {
+        if (event.target.hasAttribute('remove')) {
             event.target.removeAttribute('remove');
             this.removeImagesList = this.removeImagesList.filter(x => x != image);
             event.target.style.opacity = '1';
@@ -58,7 +58,7 @@ export class ImagesLoader {
         }
     }
 
-    reset(){
+    reset() {
         this.loadImages = [];
         this.dataTransfer.items.clear();
     }

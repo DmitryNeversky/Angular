@@ -12,7 +12,7 @@ import java.util.Set;
         property = "id",
         generator = ObjectIdGenerators.PropertyGenerator.class
 )
-public class SubCategory {
+public class Subcategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,12 +31,14 @@ public class SubCategory {
 
 //  Constructors
 
-    public SubCategory() { }
+    public Subcategory() {
+    }
 
-    public SubCategory(String name) {
+    public Subcategory(String name) {
         this.name = name;
     }
-    public SubCategory(String name, int category) {
+
+    public Subcategory(String name, int category) {
         this.name = name;
         this.category = category;
     }
@@ -75,13 +77,13 @@ public class SubCategory {
         return items;
     }
 
-    public void addItem(Item item){
+    public void addItem(Item item) {
         items.add(item);
     }
 
     @Override
     public String toString() {
-        return "SubCategory{" +
+        return "Subcategory{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", image='" + image + '\'' +

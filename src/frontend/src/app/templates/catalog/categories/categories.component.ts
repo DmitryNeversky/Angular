@@ -14,6 +14,6 @@ export class CategoriesComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.categories = this.route.snapshot.data.categories.filter(x => x.subCategories.length > 0);
+    this.categories = this.route.snapshot.data.categories.filter(x => x.subcategories.length > 0);
   }
 }

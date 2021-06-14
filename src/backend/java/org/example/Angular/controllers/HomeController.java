@@ -28,10 +28,11 @@ public class HomeController {
         return new ResponseEntity<>(categories, HttpStatus.OK);
 
     }
+
     @PostMapping("/collection")
     public ResponseEntity<?> putCollection(@RequestParam List<Category> categories) throws IOException {
 
-        if(!Files.exists(Paths.get(RESOURCE_PATH + "home-collection.json")))
+        if (!Files.exists(Paths.get(RESOURCE_PATH + "home-collection.json")))
             Files.createFile(Paths.get(RESOURCE_PATH + "home-collection.json"));
 
         ObjectMapper mapper = new ObjectMapper();

@@ -1,4 +1,4 @@
-header{
+header {
     position: fixed;
     width: 100%;
     padding: 2%;
@@ -8,33 +8,34 @@ header{
     transition: .3s;
 }
 
-header:hover{
+header:hover {
     background-color: #fff;
 }
 
-header .logo img{
+header .logo img {
     width: 80%;
 }
 
-header .favorite a{
+header .favorite a {
     padding: 5% 10%;
     background-color: #ffe18699;
 }
 
-.stick_header{
+.stick_header {
     background-color: #fffffff5;
     padding: 1%;
 }
 
-.active{
-    border-bottom: 2px solid rgb(255,225,134);
+.active {
+    border-bottom: 2px solid rgb(255, 225, 134);
 }
 
-@media(max-width: 1140px){
-    header .logo{
+@media (max-width: 1140px) {
+    header .logo {
         width: 50%;
     }
-    header .menu, header .favorite{
+
+    header .menu, header .favorite {
         display: none;
     }
 }

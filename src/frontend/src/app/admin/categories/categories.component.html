@@ -18,7 +18,8 @@
 
         <div class="contain">
 
-            <div class="border-top py-2" *ngFor="let category of categories | searchName: nameSearch | searchId: idSearch">
+            <div class="border-top py-2"
+                 *ngFor="let category of categories | searchName: nameSearch | searchId: idSearch">
                 <app-category (categoryEmitter)="removeCategory(category)" [category]="category"></app-category>
             </div>
 

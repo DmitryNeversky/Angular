@@ -10,11 +10,12 @@
         <div class="col-sm-6">
             <select class="advanced-input" [(ngModel)]="subcategorySearch">
                 <option value="0">Null</option>
-                <option *ngFor="let subcategory of subCategories" ngValue="{{subcategory.id}}">{{ subcategory.name }}</option>
+                <option *ngFor="let subcategory of subcategories"
+                        ngValue="{{subcategory.id}}">{{ subcategory.name }}</option>
             </select>
         </div>
 
-    <div class="col-sm-12 fw-bolder row py-2 mt-2">
+        <div class="col-sm-12 fw-bolder row py-2 mt-2">
             <div class="col-sm-1">#</div>
             <div class="col-sm-2">Название</div>
             <div class="col-sm-2">Цена</div>
@@ -25,8 +26,9 @@
 
         <div class="contain">
 
-            <div class="border-top py-2" *ngFor="let item of items | searchId: idSearch | searchName: nameSearch | searchSubCategory: subcategorySearch">
-                <app-item (itemEmitter)="removeItem(item)" [item]="item" [subCategories]="subCategories"></app-item>
+            <div class="border-top py-2"
+                 *ngFor="let item of items | searchId: idSearch | searchName: nameSearch | searchSubCategory: subcategorySearch">
+                <app-item (itemEmitter)="removeItem(item)" [item]="item" [subcategories]="subcategories"></app-item>
             </div>
 
         </div>

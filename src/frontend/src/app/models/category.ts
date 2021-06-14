@@ -3,11 +3,14 @@ import {Subcategory} from "./subcategory";
 export class Category {
     private _id: number = 0;
     private _name: string = "";
-    private _subCategories: Subcategory[] = [];
+    private _subcategories: Subcategory[] = [];
     private _image: string = "";
 
-    constructor(name: string) {
+    constructor(id: number, name: string, subcategories: Subcategory[], image: string) {
+        this._id = id;
         this._name = name;
+        this._subcategories = subcategories;
+        this._image = image;
     }
 
     get id(): number {
@@ -26,12 +29,12 @@ export class Category {
         this._name = value;
     }
 
-    get subCategories(): Subcategory[] {
-        return this._subCategories;
+    get subcategories(): Subcategory[] {
+        return this._subcategories;
     }
 
-    set subCategories(value: Subcategory[]) {
-        this._subCategories = value;
+    set subcategories(value: Subcategory[]) {
+        this._subcategories = value;
     }
 
     get image(): string {

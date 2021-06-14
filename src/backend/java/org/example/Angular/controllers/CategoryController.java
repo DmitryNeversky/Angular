@@ -20,20 +20,20 @@ public class CategoryController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Category>> getCategories(){
+    public ResponseEntity<List<Category>> getCategories() {
 
         return new ResponseEntity<>(categoryService.getAllCategories(), HttpStatus.OK);
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<Category> getCategory(@PathVariable String name){
+    public ResponseEntity<Category> getCategory(@PathVariable String name) {
 
         return new ResponseEntity<>(categoryService.getCategoryByName(name), HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<Category> addCategory(@RequestParam String name,
-                                                @RequestParam(required = false) MultipartFile image){
+                                                @RequestParam(required = false) MultipartFile image) {
 
         return new ResponseEntity<>(categoryService.addCategory(name, image), HttpStatus.CREATED);
     }
@@ -43,13 +43,13 @@ public class CategoryController {
             @PathVariable int id,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String removeImage,
-            @RequestParam(required = false) MultipartFile image){
+            @RequestParam(required = false) MultipartFile image) {
 
         return new ResponseEntity<>(categoryService.updateCategory(id, name, removeImage, image), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{category}")
-    public ResponseEntity<?> deleteCategory(@PathVariable Category category){
+    public ResponseEntity<?> deleteCategory(@PathVariable Category category) {
         categoryService.deleteCategory(category);
 
         return new ResponseEntity<>(HttpStatus.OK);

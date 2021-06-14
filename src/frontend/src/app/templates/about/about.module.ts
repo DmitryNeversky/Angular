@@ -5,9 +5,9 @@ import {AboutRoutingModule} from "./about-routing.module";
 import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
-  declarations: [AboutComponent],
+    declarations: [AboutComponent],
     imports: [CommonModule, AboutRoutingModule, SharedModule],
-  providers: []
+    providers: []
 })
 export class AboutModule {
 

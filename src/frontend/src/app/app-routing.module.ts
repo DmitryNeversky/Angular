@@ -7,22 +7,22 @@ import {InfoResolver} from "./shared/resolvers/info.resolver";
 const routes: Routes = [
     {
         path: '',
-        data: { animation: 'home' },
+        data: {animation: 'home'},
         loadChildren: () => import('./templates/home/home.module').then(m => m.HomeModule)
     },
     {
         path: 'catalog',
-        data: { animation: 'catalog' },
+        data: {animation: 'catalog'},
         loadChildren: () => import('./templates/catalog/catalog.module').then(m => m.CatalogModule)
     },
     {
         path: 'about',
-        data: { animation: 'about' },
+        data: {animation: 'about'},
         loadChildren: () => import('./templates/about/about.module').then(m => m.AboutModule)
     },
     {
         path: 'contact',
-        data: { animation: 'contact' },
+        data: {animation: 'contact'},
         loadChildren: () => import('./templates/contact/contact.module').then(m => m.ContactModule),
         resolve: {
             contacts: InfoResolver
@@ -30,7 +30,7 @@ const routes: Routes = [
     },
     {
         path: 'admin',
-        data: { animation: 'admin' },
+        data: {animation: 'admin'},
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
     },
     {

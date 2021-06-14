@@ -6,27 +6,28 @@ import {Subcategory} from "../models/subcategory";
 
 @Injectable()
 export class SubcategoryService {
-  private apiBaseUrl = environment.apiBaseUrl;
+    private apiBaseUrl = environment.apiBaseUrl;
 
-  constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) {
+    }
 
-  public getAll(): Observable<Subcategory[]>{
-    return this.httpClient.get<Subcategory[]>(`${this.apiBaseUrl}/subcategories/all`);
-  }
+    public getAll(): Observable<Subcategory[]> {
+        return this.httpClient.get<Subcategory[]>(`${this.apiBaseUrl}/subcategories/all`);
+    }
 
-  public getByName(name: string): Observable<Subcategory> {
-    return this.httpClient.get<Subcategory>(`${this.apiBaseUrl}/subcategories/${name}`);
-  }
+    public getByName(name: string): Observable<Subcategory> {
+        return this.httpClient.get<Subcategory>(`${this.apiBaseUrl}/subcategories/${name}`);
+    }
 
-  public add(formData: FormData): Observable<Subcategory>{
-    return this.httpClient.post<Subcategory>(`${this.apiBaseUrl}/subcategories/add`, formData);
-  }
+    public add(formData: FormData): Observable<Subcategory> {
+        return this.httpClient.post<Subcategory>(`${this.apiBaseUrl}/subcategories/add`, formData);
+    }
 
-  public update(id: number, formData: FormData): Observable<Subcategory>{
-    return this.httpClient.put<Subcategory>(`${this.apiBaseUrl}/subcategories/update/${id}`, formData);
-  }
+    public update(id: number, formData: FormData): Observable<Subcategory> {
+        return this.httpClient.put<Subcategory>(`${this.apiBaseUrl}/subcategories/update/${id}`, formData);
+    }
 
-  public delete(subcategory: Subcategory): Observable<void> {
-    return this.httpClient.delete<void>(`${this.apiBaseUrl}/subcategories/delete/${subcategory.id}`);
-  }
+    public delete(subcategory: Subcategory): Observable<void> {
+        return this.httpClient.delete<void>(`${this.apiBaseUrl}/subcategories/delete/${subcategory.id}`);
+    }
 }

@@ -3,18 +3,20 @@ import {RouterOutlet} from "@angular/router";
 import {fadeInOutAnimation} from "./animations";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', './styles.css'],
-  animations: [fadeInOutAnimation]
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css', './styles.css'],
+    animations: [fadeInOutAnimation]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-  constructor() {}
+    getSubcategories
+    }
 
-  ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
-  }
+    prepareRoute(outlet: RouterOutlet) {
+        return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
+    }
 }

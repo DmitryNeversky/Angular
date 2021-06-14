@@ -18,11 +18,12 @@ public class Category {
     @JoinTable(name = "category_subcategory",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "subcategory_id"))
-    private Set<SubCategory> subCategories = new HashSet<>();
+    private Set<Subcategory> subcategories = new HashSet<>();
 
 //  Constructors
 
-    public Category() { }
+    public Category() {
+    }
 
     public Category(String name) {
         this.name = name;
@@ -55,12 +56,12 @@ public class Category {
         this.image = image;
     }
 
-    public Set<SubCategory> getSubCategories() {
-        return subCategories;
+    public Set<Subcategory> getSubcategories() {
+        return subcategories;
     }
 
-    public void addSubCategory(SubCategory subcategory){
-        subCategories.add(subcategory);
+    public void addSubcategory(Subcategory subcategory) {
+        subcategories.add(subcategory);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class Category {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", image='" + image + '\'' +
-                ", subCategories=" + subCategories +
+                ", subcategories=" + subcategories +
                 '}';
     }
 }

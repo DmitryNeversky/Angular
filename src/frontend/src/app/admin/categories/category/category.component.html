@@ -12,26 +12,40 @@
         </div>
         <div class="col-sm-6"></div>
         <div class="col-sm-2" *ngIf="category.id != 1">
-            <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)"><fa-icon [icon]="icons.check"></fa-icon></button>
-            <button class="remove-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить" (click)="onDelete(category)"><fa-icon [icon]="icons.times"></fa-icon></button>
-            <button appClick180 class="open-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Развернуть" (click)="expanded = !expanded"><fa-icon [icon]="icons.open"></fa-icon></button>
+            <button [disabled]="!updateForm.touched" class="update-button" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Сохранить" (click)="onUpdate(updateForm)">
+                <fa-icon [icon]="icons.check"></fa-icon>
+            </button>
+            <button class="remove-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить"
+                    (click)="onDelete(category)">
+                <fa-icon [icon]="icons.times"></fa-icon>
+            </button>
+            <button appClick180 class="open-button" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="Развернуть" (click)="expanded = !expanded">
+                <fa-icon [icon]="icons.open"></fa-icon>
+            </button>
         </div>
     </div>
 
     <div class="col-sm-12 row overflow-hidden" [ngClass]="expanded ? 'expanded' : 'collapsed'">
         <div class="col-sm-4 images border-end mt-3">
             <p class="fw-bolder">Изображение</p>
-            <input type="file" id="add-category-image-{{category.id}}" class="advanced-input d-none" (change)="imageLoader.load($event)" accept="image/*">
+            <input type="file" id="add-category-image-{{category.id}}" class="advanced-input d-none"
+                   (change)="imageLoader.load($event)" accept="image/*">
             <label for="add-category-image-{{category.id}}">
-                <img class="image" *ngIf="category.image == null && imageLoader.loadImage == null" src="assets/images/preview.jpg" alt="img">
-                <img class="image" *ngIf="category.image == null && imageLoader.loadImage != null" src="{{imageLoader.loadImage}}" alt="img">
-                <img class="image" *ngIf="category.image != null && imageLoader.loadImage == null" src="assets/images/uploaded/{{category.image}}" alt="img">
-                <img class="image" *ngIf="category.image != null && imageLoader.loadImage != null" src="{{imageLoader.loadImage}}" (click)="imageLoader.removeImage($event)" alt="img">
+                <img class="image" *ngIf="category.image == null && imageLoader.loadImage == null"
+                     src="assets/images/preview.jpg" alt="img">
+                <img class="image" *ngIf="category.image == null && imageLoader.loadImage != null"
+                     src="{{imageLoader.loadImage}}" alt="img">
+                <img class="image" *ngIf="category.image != null && imageLoader.loadImage == null"
+                     src="assets/images/uploaded/{{category.image}}" alt="img">
+                <img class="image" *ngIf="category.image != null && imageLoader.loadImage != null"
+                     src="{{imageLoader.loadImage}}" (click)="imageLoader.removeImage($event)" alt="img">
             </label>
         </div>
         <div class="col-sm-8">
             <p class="fw-bolder mt-3">Связанные под-категории</p>
-            <span *ngFor="let subcategory of category.subCategories">{{subcategory.name}},&#8194;</span>
+            <span *ngFor="let subcategory of category.subcategories">{{subcategory.name}},&#8194;</span>
         </div>
     </div>
 </form>

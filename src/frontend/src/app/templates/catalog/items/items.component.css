@@ -1,14 +1,19 @@
-.preview{
+.preview {
     height: 200px;
 }
 
-.card{
+.card {
     min-height: 434px;
 }
 
-.size-list li{ cursor: pointer }
-.size-list li:hover{ color: #ffe186 }
+.size-list li {
+    cursor: pointer
+}
 
-.active-page-size{
+.size-list li:hover {
+    color: #ffe186
+}
+
+.active-page-size {
     color: #ffe186;
 }

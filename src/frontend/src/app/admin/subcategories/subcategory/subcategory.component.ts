@@ -7,50 +7,51 @@ import {Category} from "../../../models/category";
 import {ImageLoader} from "../../../shared/ImageLoader";
 
 @Component({
-  selector: 'app-subcategory',
-  templateUrl: './subcategory.component.html',
-  styleUrls: ['./subcategory.component.css']
+    selector: 'app-subcategory',
+    templateUrl: './subcategory.component.html',
+    styleUrls: ['./subcategory.component.css']
 })
 export class SubcategoryComponent implements OnInit {
 
-  public expanded: boolean = false;
+    public expanded: boolean = false;
 
-  public icons = {times: faTimes, check: faCheck, open: faChevronDown}
+    public icons = {times: faTimes, check: faCheck, open: faChevronDown}
 
-  @Input()
-  public subCategory: Subcategory | undefined;
+    @Input()
+    public subcategory: Subcategory | undefined;
 
-  @Output()
-  public subCategoryEmitter: EventEmitter<Subcategory> = new EventEmitter<Subcategory>();
+    @Output()
+    public subcategoryEmitter: EventEmitter<Subcategory> = new EventEmitter<Subcategory>();
 
-  @Input()
-  public categories: Category[];
+    @Input()
+    public categories: Category[];
 
-  public imageLoader = new ImageLoader();
+    public imageLoader = new ImageLoader();
 
-  constructor(private subCategoryService: SubcategoryService) { }
+    constructor(private subcategoryService: SubcategoryService) {
+    }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-  }
+    }
 
-  public onUpdate(updateForm: NgForm): void {
-    let formData = new FormData();
+    public onUpdate(updateForm: NgForm): void {
+        let formData = new FormData();
 
-    formData.append('name', updateForm.value.name);
-    formData.append('categoryId', updateForm.value.category);
-    if(this.imageLoader.removedImage != undefined)
-      formData.append('removeImage', this.imageLoader.removedImage);
-    if(this.imageLoader.dataTransfer.files[0] != null)
-      formData.append('image', this.imageLoader.dataTransfer.files[0]);
+        formData.append('name', updateForm.value.name);
+        formData.append('categoryId', updateForm.value.category);
+        if (this.imageLoader.removedImage != undefined)
+            formData.append('removeImage', this.imageLoader.removedImage);
+        if (this.imageLoader.dataTransfer.files[0] != null)
+            formData.append('image', this.imageLoader.dataTransfer.files[0]);
 
-    this.subCategoryService.update(updateForm.value.id, formData).subscribe( () => {
-    }, error => console.log(error));
-  }
+        this.subcategoryService.update(updateForm.value.id, formData).subscribe(() => {
+        }, error => console.log(error));
+    }
 
-  public onDelete(subCategory: Subcategory): void {
-    this.subCategoryService.delete(subCategory).subscribe( () => {
-      this.subCategoryEmitter.emit(subCategory);
-    }, error => console.log(error));
-  }
+    public onDelete(subcategory: Subcategory): void {
+        this.subcategoryService.delete(subcategory).subscribe(() => {
+            this.subcategoryEmitter.emit(subcategory);
+        }, error => console.log(error));
+    }
 }

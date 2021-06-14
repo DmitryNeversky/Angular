@@ -17,13 +17,13 @@ public class InfoController {
     }
 
     @GetMapping
-    public ResponseEntity<Info> get(){
+    public ResponseEntity<Info> get() {
 
         return new ResponseEntity<>(infoService.get(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Info> post(@RequestBody Info info){
+    public ResponseEntity<Info> post(@RequestBody Info info) {
 
         return new ResponseEntity<>(infoService.save(info), HttpStatus.OK);
     }

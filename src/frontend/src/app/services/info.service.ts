@@ -5,21 +5,22 @@ import {Info} from "../models/Info";
 import {environment} from "../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class InfoService {
 
-  private apiBaseURL: string = environment.apiBaseUrl;
+    private apiBaseURL: string = environment.apiBaseUrl;
 
-  constructor(private httpClient: HttpClient) { }
-  
-  public get(): Observable<Info> {
+    constructor(private httpClient: HttpClient) {
+    }
 
-    return this.httpClient.get<Info>(`${this.apiBaseURL}/info`);
-  }
+    public get(): Observable<Info> {
 
-  public post(info: Info): Observable<void> {
+        return this.httpClient.get<Info>(`${this.apiBaseURL}/info`);
+    }
 
-    return this.httpClient.post<void>(`${this.apiBaseURL}/info`, info);
-  }
+    public post(info: Info): Observable<void> {
+
+        return this.httpClient.post<void>(`${this.apiBaseURL}/info`, info);
+    }
 }

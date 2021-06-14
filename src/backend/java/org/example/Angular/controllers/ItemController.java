@@ -21,13 +21,13 @@ public class ItemController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Item>> getItems(){
+    public ResponseEntity<List<Item>> getItems() {
 
         return new ResponseEntity<>(itemService.getItems(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Item> getItem(@PathVariable int id){
+    public ResponseEntity<Item> getItem(@PathVariable int id) {
         return new ResponseEntity<>(itemService.getItem(id), HttpStatus.OK);
     }
 
@@ -38,7 +38,7 @@ public class ItemController {
             @RequestParam(required = false) double price,
             @RequestParam(required = false) int count,
             @RequestParam(required = false) int subcategory,
-            @RequestParam(required = false) List<MultipartFile> images){
+            @RequestParam(required = false) List<MultipartFile> images) {
 
         Item item = new Item(name, description, price, count, subcategory);
 
@@ -54,26 +54,26 @@ public class ItemController {
             @RequestParam(required = false) int count,
             @RequestParam(required = false) int subcategory,
             @RequestParam(required = false) Set<String> removeImages,
-            @RequestParam(required = false) List<MultipartFile> addImages){
+            @RequestParam(required = false) List<MultipartFile> addImages) {
 
         item.setName(name);
         item.setDescription(description);
         item.setPrice(price);
         item.setCount(count);
-        item.setSubCategory(subcategory);
+        item.setSubcategory(subcategory);
 
         return new ResponseEntity<>(itemService.update(item, removeImages, addImages), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{item}")
-    public ResponseEntity<?> deleteItem(@PathVariable Item item){
+    public ResponseEntity<?> deleteItem(@PathVariable Item item) {
         itemService.delete(item);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/add_look")
-    public void addLook(@RequestParam int itemId, @RequestParam String ip){
+    public void addLook(@RequestParam int itemId, @RequestParam String ip) {
         itemService.addLook(itemId, ip);
     }
 }

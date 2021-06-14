@@ -5,14 +5,15 @@ import {InfoService} from "../../services/info.service";
 import {Info} from "../../models/Info";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class InfoResolver implements Resolve<Info> {
 
 
-  constructor(private infoService: InfoService) {}
+    constructor(private infoService: InfoService) {
+    }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Info> {
-    return this.infoService.get();
-  }
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Info> {
+        return this.infoService.get();
+    }
 }

@@ -23,8 +23,10 @@
 
         <div class="contain">
 
-            <div class="border-top py-2" *ngFor="let subcategory of subcategories | searchId: idSearch | searchName: nameSearch | searchCategory: categorySearch">
-                <app-subcategory (subCategoryEmitter)="removeSubCategory(subcategory)" [subCategory]="subcategory" [categories]="categories"></app-subcategory>
+            <div class="border-top py-2"
+                 *ngFor="let subcategory of subcategories | searchId: idSearch | searchName: nameSearch | searchCategory: categorySearch">
+                <app-subcategory (subcategoryEmitter)="removeSubCategory(subcategory)" [subcategory]="subcategory"
+                                 [categories]="categories"></app-subcategory>
             </div>
 
         </div>
