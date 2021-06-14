@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {ProductComponent} from "./templates/product/product.component";
 import {ProductResolver} from "./shared/resolvers/product.resolver";
+import {InfoResolver} from "./shared/resolvers/info.resolver";
 
 const routes: Routes = [
     {
@@ -22,7 +23,10 @@ const routes: Routes = [
     {
         path: 'contact',
         data: { animation: 'contact' },
-        loadChildren: () => import('./templates/contact/contact.module').then(m => m.ContactModule)
+        loadChildren: () => import('./templates/contact/contact.module').then(m => m.ContactModule),
+        resolve: {
+            contacts: InfoResolver
+        }
     },
     {
         path: 'admin',

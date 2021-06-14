@@ -45,43 +45,4 @@ public class MetaController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    @GetMapping("/phone")
-    public ResponseEntity<String> getPhone(){
-
-        return new ResponseEntity<>(metaService.getPhone(), HttpStatus.OK);
-    }
-
-    @PostMapping("/phone")
-    public ResponseEntity<?> setPhone(@RequestParam String phone){
-        metaService.setPhone(phone);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @GetMapping("/address")
-    public ResponseEntity<String> getAddress(){
-
-        return new ResponseEntity<>(metaService.getAddress(), HttpStatus.OK);
-    }
-
-    @PostMapping("/address")
-    public ResponseEntity<?> setAddress(@RequestParam String address){
-        metaService.setAddress(address);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @GetMapping("/email")
-    public ResponseEntity<String> getEmail(){
-
-        return new ResponseEntity<>(metaService.getEmail(), HttpStatus.OK);
-    }
-
-    @PostMapping("/email")
-    public ResponseEntity<?> setEmail(@RequestParam String email){
-        metaService.setEmail(email);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }

@@ -2,8 +2,6 @@ package org.example.Angular.services;
 
 import org.example.Angular.entities.Category;
 import org.example.Angular.entities.Meta;
-import org.example.Angular.repositories.CategoryRepository;
-import org.example.Angular.repositories.ItemRepository;
 import org.example.Angular.repositories.MetaRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +12,9 @@ import java.util.List;
 public class MetaService {
 
     private final MetaRepository metaRepository;
-    private final CategoryRepository categoryRepository;
-    private final ItemRepository itemRepository;
 
-    public MetaService(MetaRepository metaRepository, CategoryRepository categoryRepository, ItemRepository itemRepository) {
+    public MetaService(MetaRepository metaRepository) {
         this.metaRepository = metaRepository;
-        this.categoryRepository = categoryRepository;
-        this.itemRepository = itemRepository;
     }
 
     public List<Category> getHomeCollection(){
@@ -45,45 +39,6 @@ public class MetaService {
     public void setPopularSize(int size){
         Meta meta = metaRepository.findById(1);
         meta.setHomePopularSize(size);
-
-        metaRepository.save(meta);
-    }
-
-    public String getPhone(){
-        Meta meta = metaRepository.findById(1);
-
-        return meta.getPhone();
-    }
-
-    public void setPhone(String phone){
-        Meta meta = metaRepository.findById(1);
-        meta.setPhone(phone);
-
-        metaRepository.save(meta);
-    }
-
-    public String getAddress(){
-        Meta meta = metaRepository.findById(1);
-
-        return meta.getAddress();
-    }
-
-    public void setAddress(String address){
-        Meta meta = metaRepository.findById(1);
-        meta.setAddress(address);
-
-        metaRepository.save(meta);
-    }
-
-    public String getEmail(){
-        Meta meta = metaRepository.findById(1);
-
-        return meta.getEmail();
-    }
-
-    public void setEmail(String email){
-        Meta meta = metaRepository.findById(1);
-        meta.setEmail(email);
 
         metaRepository.save(meta);
     }

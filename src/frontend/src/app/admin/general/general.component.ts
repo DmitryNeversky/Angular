@@ -10,6 +10,8 @@ import {ImageLoader} from "../../shared/ImageLoader";
 import {Item} from "../../models/item";
 import {MetaService} from "../../services/meta.service";
 import {faPlusSquare} from "@fortawesome/free-regular-svg-icons";
+import {InfoService} from "../../services/info.service";
+import {Info} from "../../models/Info";
 
 @Component({
   selector: 'app-general',
@@ -23,11 +25,14 @@ export class GeneralComponent implements OnInit {
   constructor(private categoryService: CategoryService,
               private subCategoryService: SubcategoryService,
               private itemService: ItemService,
-              private metaService: MetaService) {}
+              private metaService: MetaService,
+              private infoService: InfoService) {}
 
   public categories: Category[];
   public subCategories: Subcategory[];
   public items: Item[];
+
+  public info: Info;
 
   public categoryForm: FormGroup;
   public subCategoryForm: FormGroup;
@@ -60,6 +65,9 @@ export class GeneralComponent implements OnInit {
       price: new FormControl('', []),
       count: new FormControl('', []),
       subCategory: new FormControl('1', [])
+    });
+    this.infoService.get().subscribe(response => {
+      this.info = response;
     });
   }
 
@@ -145,45 +153,8 @@ export class GeneralComponent implements OnInit {
     this.metaService.setPopularSize(formData).subscribe();
   }
 
-  public phone;
-
-  getPhone(){
-    this.metaService.getPhone().subscribe(response => {
-      console.log(response);
-    });
-  }
-
-  setPhone(){
-    let formData = new FormData();
-    formData.append('phone', this.phone);
-    this.metaService.setPhone(formData).subscribe();
-  }
-
-  public address;
-
-  getAddress(){
-    this.metaService.getAddress().subscribe(response => {
-      console.log(response);
-    });
-  }
-
-  setAddress(){
-    let formData = new FormData();
-    formData.append('address', this.address);
-    this.metaService.setAddress(formData).subscribe();
-  }
-
-  public email;
-
-  getEmail(){
-    this.metaService.getEmail().subscribe(response => {
-      console.log(response);
-    });
-  }
-
-  setEmail(){
-    let formData = new FormData();
-    formData.append('email', this.email);
-    this.metaService.setEmail(formData).subscribe();
+  setInfo(){
+    this.infoService.post(this.info).subscribe(() => {
+    }, error => console.log(error));
   }
 }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {faEnvelope, faMapMarkerAlt, faPhone,} from '@fortawesome/free-solid-svg-icons';
 import {faInstagram, faTwitter, faVk, faWhatsapp} from '@fortawesome/free-brands-svg-icons';
+import {ActivatedRoute} from "@angular/router";
+import {Info} from "../../models/Info";
 
 @Component({
   selector: 'app-contact',
@@ -8,6 +10,8 @@ import {faInstagram, faTwitter, faVk, faWhatsapp} from '@fortawesome/free-brands
   styleUrls: ['./contact.component.css'],
 })
 export class ContactComponent implements OnInit {
+
+  public info: Info;
 
   public icons = {
     mark: faMapMarkerAlt,
@@ -19,9 +23,10 @@ export class ContactComponent implements OnInit {
     twitter: faTwitter
   }
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.info = this.activatedRoute.snapshot.data.contacts;
   }
 
 }
