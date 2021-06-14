@@ -18,7 +18,7 @@ public class Item {
     private double price;
     private int count;
 
-    private int subCategory;
+    private int subcategory;
 
     @ElementCollection
     @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "item_id"))
@@ -32,12 +32,12 @@ public class Item {
 
     public Item() { }
 
-    public Item(String name, String description, double price, int count, int subCategory) {
+    public Item(String name, String description, double price, int count, int subcategory) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.count = count;
-        this.subCategory = subCategory;
+        this.subcategory = subcategory;
     }
 
 //  Getters & Setters
@@ -79,11 +79,11 @@ public class Item {
     }
 
     public int getSubCategory() {
-        return subCategory;
+        return subcategory;
     }
 
-    public void setSubCategory(int subCategory) {
-        this.subCategory = subCategory;
+    public void setSubCategory(int subcategory) {
+        this.subcategory = subcategory;
     }
 
     public Set<String> getImages() {

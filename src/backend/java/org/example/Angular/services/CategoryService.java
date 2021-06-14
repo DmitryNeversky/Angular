@@ -117,21 +117,21 @@ public class CategoryService {
         categoryRepository.save(defaultCategory.get());
     }
 
-    public void addSubCategory(int categoryId, SubCategory subCategory){
+    public void addSubCategory(int categoryId, SubCategory subcategory){
         Optional<Category> category = categoryRepository.findById(categoryId);
         if(!category.isPresent())
             return;
 
-        category.get().addSubCategory(subCategory);
+        category.get().addSubCategory(subcategory);
         categoryRepository.save(category.get());
     }
 
-    public void removeSubCategory(int categoryId, SubCategory subCategory){
+    public void removeSubCategory(int categoryId, SubCategory subcategory){
         Optional<Category> category = categoryRepository.findById(categoryId);
         if(!category.isPresent())
             return;
 
-        category.get().getSubCategories().remove(subCategory);
+        category.get().getSubCategories().remove(subcategory);
         categoryRepository.save(category.get());
     }
 

@@ -24,11 +24,11 @@ public class ItemService {
     private String UPLOAD_IMAGE_PATH;
 
     private final ItemRepository itemRepository;
-    private final SubCategoryService subCategoryService;
+    private final SubCategoryService subcategoryService;
 
-    public ItemService(ItemRepository itemRepository, SubCategoryService subCategoryService) {
+    public ItemService(ItemRepository itemRepository, SubCategoryService subcategoryService) {
         this.itemRepository = itemRepository;
-        this.subCategoryService = subCategoryService;
+        this.subcategoryService = subcategoryService;
     }
 
     public List<Item> getItems(){
@@ -46,7 +46,7 @@ public class ItemService {
 
         itemRepository.save(item);
 
-        subCategoryService.addItem(item);
+        subcategoryService.addItem(item);
 
         return item;
     }
@@ -72,11 +72,11 @@ public class ItemService {
         uploadImages(item, addImages);
 
         if(item.getSubCategory() != findItem.get().getSubCategory()) {
-            subCategoryService.removeItem(item.getSubCategory(), item);
+            subcategoryService.removeItem(item.getSubCategory(), item);
 
             itemRepository.save(item);
 
-            subCategoryService.addItem(item);
+            subcategoryService.addItem(item);
 
             return item;
         }
@@ -96,7 +96,7 @@ public class ItemService {
                 }
             }
         }
-        subCategoryService.removeItem(item.getSubCategory(), item);
+        subcategoryService.removeItem(item.getSubCategory(), item);
         itemRepository.delete(item);
     }
 

@@ -8,7 +8,7 @@
             <input [(ngModel)]="nameSearch" type="text" class="advanced-input" placeholder="Name">
         </div>
         <div class="col-sm-6">
-            <select class="advanced-input" [(ngModel)]="subCategorySearch">
+            <select class="advanced-input" [(ngModel)]="subcategorySearch">
                 <option value="0">Null</option>
                 <option *ngFor="let subcategory of subCategories" ngValue="{{subcategory.id}}">{{ subcategory.name }}</option>
             </select>
@@ -25,7 +25,7 @@
 
         <div class="contain">
 
-            <div class="border-top py-2" *ngFor="let item of items | searchId: idSearch | searchName: nameSearch | searchSubCategory: subCategorySearch">
+            <div class="border-top py-2" *ngFor="let item of items | searchId: idSearch | searchName: nameSearch | searchSubCategory: subcategorySearch">
                 <app-item (itemEmitter)="removeItem(item)" [item]="item" [subCategories]="subCategories"></app-item>
             </div>
 

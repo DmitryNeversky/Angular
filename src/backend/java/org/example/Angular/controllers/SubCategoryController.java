@@ -13,22 +13,22 @@ import java.util.List;
 @RequestMapping("subcategories")
 public class SubCategoryController {
 
-    private final SubCategoryService subCategoryService;
+    private final SubCategoryService subcategoryService;
 
-    public SubCategoryController(SubCategoryService subCategoryService) {
-        this.subCategoryService = subCategoryService;
+    public SubCategoryController(SubCategoryService subcategoryService) {
+        this.subcategoryService = subcategoryService;
     }
 
     @GetMapping("/all")
     public List<SubCategory> getSubCategories(){
 
-        return subCategoryService.getAllSubCategories();
+        return subcategoryService.getAllSubCategories();
     }
 
     @GetMapping("/{name}")
     public ResponseEntity<SubCategory> getSubCategory(@PathVariable String name){
 
-        return new ResponseEntity<>(subCategoryService.getSubCategoryByName(name), HttpStatus.OK);
+        return new ResponseEntity<>(subcategoryService.getSubCategoryByName(name), HttpStatus.OK);
     }
 
     @PostMapping("/add")
@@ -37,7 +37,7 @@ public class SubCategoryController {
             @RequestParam int categoryId,
             @RequestParam(required = false) MultipartFile image){
 
-        return new ResponseEntity<>(subCategoryService.addSubCategory(name, categoryId, image), HttpStatus.CREATED);
+        return new ResponseEntity<>(subcategoryService.addSubCategory(name, categoryId, image), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
@@ -47,12 +47,12 @@ public class SubCategoryController {
             @RequestParam int categoryId,
             @RequestParam(required = false) MultipartFile image){
 
-        return new ResponseEntity<>(subCategoryService.updateSubCategory(id, name, categoryId, image), HttpStatus.OK);
+        return new ResponseEntity<>(subcategoryService.updateSubCategory(id, name, categoryId, image), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{subCategory}")
-    public ResponseEntity<?> deleteSubCategory(@PathVariable SubCategory subCategory){
-        subCategoryService.deleteSubCategory(subCategory);
+    @DeleteMapping("/delete/{subcategory}")
+    public ResponseEntity<?> deleteSubCategory(@PathVariable SubCategory subcategory){
+        subcategoryService.deleteSubCategory(subcategory);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

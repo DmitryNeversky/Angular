@@ -42,7 +42,7 @@ export class ItemComponent implements OnInit {
     formData.append('description', form.value.description);
     formData.append('price', form.value.price);
     formData.append('count', form.value.count);
-    formData.append('subCategory', form.value.subCategory);
+    formData.append('subcategory', form.value.subcategory);
     this.imagesLoader.removeImagesList.forEach(x => formData.append('removeImages', x));
     for (let i = 0; i < this.imagesLoader.dataTransfer.files.length; i++)
       formData.append('addImages', this.imagesLoader.dataTransfer.files[i]);

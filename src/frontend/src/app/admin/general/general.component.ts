@@ -23,7 +23,7 @@ export class GeneralComponent implements OnInit {
   public icons = {plus: faPlusSquare};
 
   constructor(private categoryService: CategoryService,
-              private subCategoryService: SubcategoryService,
+              private subcategoryService: SubcategoryService,
               private itemService: ItemService,
               private metaService: MetaService,
               private infoService: InfoService) {}
@@ -35,18 +35,18 @@ export class GeneralComponent implements OnInit {
   public info: Info;
 
   public categoryForm: FormGroup;
-  public subCategoryForm: FormGroup;
+  public subcategoryForm: FormGroup;
   public itemForm: FormGroup;
 
   public categoryImageLoader = new ImageLoader();
-  public subCategoryImageLoader = new ImageLoader();
+  public subcategoryImageLoader = new ImageLoader();
   public itemImagesLoader = new ImagesLoader();
 
   ngOnInit(): void {
     this.categoryService.getAll().subscribe(response => {
       this.categories = response;
     });
-    this.subCategoryService.getAll().subscribe(response => {
+    this.subcategoryService.getAll().subscribe(response => {
       this.subCategories = response;
     });
     this.itemService.getAll().subscribe((response: Item[]) => {
@@ -55,7 +55,7 @@ export class GeneralComponent implements OnInit {
     this.categoryForm = new FormGroup({
       name: new FormControl('', [])
     });
-    this.subCategoryForm = new FormGroup({
+    this.subcategoryForm = new FormGroup({
       name: new FormControl('', []),
       category: new FormControl('1')
     });
@@ -64,7 +64,7 @@ export class GeneralComponent implements OnInit {
       description: new FormControl('', []),
       price: new FormControl('', []),
       count: new FormControl('', []),
-      subCategory: new FormControl('1', [])
+      subcategory: new FormControl('1', [])
     });
     this.infoService.get().subscribe(response => {
       this.info = response;
@@ -88,20 +88,20 @@ export class GeneralComponent implements OnInit {
   }
 
   addSubCategory(){
-    if(this.subCategories.find(x => x.name === this.subCategoryForm.value.name))
+    if(this.subCategories.find(x => x.name === this.subcategoryForm.value.name))
       return
 
     let formData = new FormData();
 
-    formData.append('name', this.subCategoryForm.value.name);
-    formData.append('categoryId', this.subCategoryForm.value.category);
-    formData.append('image', this.subCategoryImageLoader.dataTransfer.files[0]);
+    formData.append('name', this.subcategoryForm.value.name);
+    formData.append('categoryId', this.subcategoryForm.value.category);
+    formData.append('image', this.subcategoryImageLoader.dataTransfer.files[0]);
 
-    this.subCategoryService.add(formData).subscribe((response: Subcategory) => {
+    this.subcategoryService.add(formData).subscribe((response: Subcategory) => {
       this.subCategories.push(response);
-      this.subCategoryForm.reset();
-      this.subCategoryForm.get('category').setValue(1);
-      this.subCategoryImageLoader.reset();
+      this.subcategoryForm.reset();
+      this.subcategoryForm.get('category').setValue(1);
+      this.subcategoryImageLoader.reset();
     }, error => console.log(error));
   }
 
@@ -112,7 +112,7 @@ export class GeneralComponent implements OnInit {
     formData.append('description', this.itemForm.value.description);
     formData.append('price', this.itemForm.value.price);
     formData.append('count', this.itemForm.value.count);
-    formData.append('subCategory', this.itemForm.value.subCategory);
+    formData.append('subcategory', this.itemForm.value.subcategory);
 
     for (let i = 0; i < this.itemImagesLoader.dataTransfer.files.length; i++)
       formData.append('images', this.itemImagesLoader.dataTransfer.files[i]);
@@ -120,7 +120,7 @@ export class GeneralComponent implements OnInit {
     this.itemService.add(formData).subscribe((response: Item) => {
       this.items.push(response);
       this.itemForm.reset();
-      this.itemForm.get('subCategory').setValue(1);
+      this.itemForm.get('subcategory').setValue(1);
       this.itemImagesLoader.reset();
     }, error => console.log(error));
   }
@@ -137,6 +137,19 @@ export class GeneralComponent implements OnInit {
     let formData = new FormData();
     this.selects.forEach(x => formData.append('categories', x.toString()));
     this.metaService.setHomeCollection(formData).subscribe();
+  }
+
+  elements = [];
+
+  test(event: any, category: Category){
+    if(!event.target.classList.contains("added")) {
+      this.elements.push(category);
+      event.target.classList.add("added");
+    } else {
+      this.elements = this.elements.filter(x => x != category);
+      event.target.classList.remove("added");
+    }
+    console.log(this.elements);
   }
 
   public popularItemsSize: number;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("send")
+@RequestMapping("mail")
 public class MailController {
 
     private final MailSender mailSender;
@@ -21,6 +21,9 @@ public class MailController {
 
     @PostMapping
     public ResponseEntity<?> send(@RequestBody Mail mail){
+
+        System.out.println(mail);
+
         String message = mail.getMessage() + "\nEmail: " + mail.getEmail()
                 + "\nТелефон: " + mail.getPhone() + "\n\nИмя: " + mail.getName();
 

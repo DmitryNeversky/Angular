@@ -4,7 +4,6 @@ import {Item} from "../../models/item";
 import {Subcategory} from "../../models/subcategory";
 import {SubcategoryService} from "../../services/subcategory.service";
 import {ImagesLoader} from "../../shared/ImagesLoader";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-items',
@@ -15,22 +14,22 @@ export class ItemsComponent implements OnInit {
 
   public nameSearch: string = '';
   public idSearch: string = '';
-  public subCategorySearch: number = 0;
+  public subcategorySearch: number = 0;
 
   public items: Item[] = [];
   public subCategories: Subcategory[] = [];
   public imagesLoader = new ImagesLoader();
 
   constructor(private itemService: ItemService,
-              private subCategoryService: SubcategoryService,
-              private activatedRoute: ActivatedRoute) { }
+              private subcategoryService: SubcategoryService) { }
 
   ngOnInit(): void {
-    this.items = this.activatedRoute.snapshot.data.items;
-    // this.activatedRoute.data.subscribe(data => { this.items = data.items });
-    this.subCategoryService.getAll().subscribe((response: Subcategory[]) => {
-      this.subCategories = response;
-    },error =>  console.log(error));
+    this.itemService.getAll().subscribe((items: Item[]) => {
+      this.items = items;
+    });
+    this.subcategoryService.getAll().subscribe((subcategories: Subcategory[]) => {
+      this.subCategories = subcategories;
+    });
   }
 
   removeItem(item: Item){

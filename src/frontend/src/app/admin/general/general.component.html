@@ -1,3 +1,4 @@
+<ng-template [ngIf]="info != undefined">
 <div class="container pb-3">
 
     <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
@@ -23,18 +24,18 @@
 
     <hr>
 
-    <form [formGroup]="subCategoryForm" (ngSubmit)="addSubCategory()">
+    <form [formGroup]="subcategoryForm" (ngSubmit)="addSubCategory()">
         <div class="row">
             <h2 class="mb-3">Под-категория</h2>
             <div class="col-sm-4">
                 <input type="text" class="advanced-input" placeholder="Название" formControlName="name">
             </div>
             <div class="col-sm-3">
-                <input type="file" id="add-subcategory-image" class="d-none" (change)="subCategoryImageLoader.load($event)" accept="image/*">
+                <input type="file" id="add-subcategory-image" class="d-none" (change)="subcategoryImageLoader.load($event)" accept="image/*">
                 <div class="images">
                     <label class="add-image fs-2" for="add-subcategory-image">
-                        <img class="image" *ngIf="subCategoryImageLoader.loadImage == null" src="assets/images/preview.jpg" alt="img">
-                        <img class="image" *ngIf="subCategoryImageLoader.loadImage != null" src="{{subCategoryImageLoader.loadImage}}" (click)="subCategoryImageLoader.removeImage($event)" alt="img">
+                        <img class="image" *ngIf="subcategoryImageLoader.loadImage == null" src="assets/images/preview.jpg" alt="img">
+                        <img class="image" *ngIf="subcategoryImageLoader.loadImage != null" src="{{subcategoryImageLoader.loadImage}}" (click)="subcategoryImageLoader.removeImage($event)" alt="img">
                     </label>
                 </div>
             </div>
@@ -64,8 +65,8 @@
                 <input type="text" class="advanced-input" formControlName="count" placeholder="Кол-Во">
             </div>
             <div class="col-sm-3">
-                <select class="advanced-input" formControlName="subCategory">
-                    <option *ngFor="let subCategory of subCategories" value="{{subCategory.id}}">{{subCategory.name}}</option>
+                <select class="advanced-input" formControlName="subcategory">
+                    <option *ngFor="let subcategory of subCategories" value="{{subcategory.id}}">{{subcategory.name}}</option>
                 </select>
             </div>
             <div class="col-sm-2">
@@ -92,7 +93,7 @@
         <h2 class="mb-3">Виджет "Наша коллекция"</h2>
         <div class="col-sm-4">
             <select class="advanced-input" [(ngModel)]="selects" multiple>
-                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                    <option *ngFor="let category of categories" (click)="test($event, category)" [value]="category.id">{{category.name}}</option>
             </select>
         </div>
         <div class="col-sm-6"></div>
@@ -141,3 +142,4 @@
         </div>
     </div>
 </div>
+</ng-template>

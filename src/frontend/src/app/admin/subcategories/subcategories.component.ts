@@ -3,7 +3,7 @@ import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {Subcategory} from "../../models/subcategory";
 import {Category} from "../../models/category";
 import {CategoryService} from "../../services/category.service";
-import {ActivatedRoute} from "@angular/router";
+import {SubcategoryService} from "../../services/subcategory.service";
 
 @Component({
   selector: 'app-subcategories',
@@ -22,15 +22,19 @@ export class SubcategoriesComponent implements OnInit {
   public subcategories: Subcategory[] = [];
 
   constructor(private categoryService: CategoryService,
-              private activatedRoute: ActivatedRoute) { }
+              private subcategoryService: SubcategoryService) { }
 
   ngOnInit(): void {
-    this.subcategories = this.activatedRoute.snapshot.data.subCategories;
+    this.categoryService.getAll().subscribe((response: Category[]) => {
+      this.categories = response;
+    });
 
-    this.categories = this.activatedRoute.snapshot.data.categories;
+    this.subcategoryService.getAll().subscribe((subCategories: Subcategory[]) => {
+      this.subcategories = subCategories;
+    })
   }
 
-  removeSubCategory(subCategory: Subcategory){
-    this.subcategories.splice(this.subcategories.indexOf(subCategory), 1);
+  removeSubCategory(subcategory: Subcategory){
+    this.subcategories.splice(this.subcategories.indexOf(subcategory), 1);
   }
 }

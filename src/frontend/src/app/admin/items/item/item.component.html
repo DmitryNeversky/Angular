@@ -17,8 +17,8 @@
             <input type="text" class="w-100 border-0" name="count" ngModel="{{ item.count }}">
         </div>
         <div class="col-sm-3">
-            <select class="advanced-select" name="subCategory" ngModel="{{ item.subCategory }}">
-                <option *ngFor="let subCategory of subCategories" value="{{ subCategory.id }}">{{ subCategory.name }}</option>
+            <select class="advanced-select" name="subcategory" ngModel="{{ item.subcategory }}">
+                <option *ngFor="let subcategory of subCategories" value="{{ subcategory.id }}">{{ subcategory.name }}</option>
             </select>
         </div>
         <div class="col-sm-2 d-flex align-items-baseline">

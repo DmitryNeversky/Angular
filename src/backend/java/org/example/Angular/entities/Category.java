@@ -59,8 +59,8 @@ public class Category {
         return subCategories;
     }
 
-    public void addSubCategory(SubCategory subCategory){
-        subCategories.add(subCategory);
+    public void addSubCategory(SubCategory subcategory){
+        subCategories.add(subcategory);
     }
 
     @Override

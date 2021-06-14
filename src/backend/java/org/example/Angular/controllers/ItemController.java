@@ -37,10 +37,10 @@ public class ItemController {
             @RequestParam(required = false) String description,
             @RequestParam(required = false) double price,
             @RequestParam(required = false) int count,
-            @RequestParam(required = false) int subCategory,
+            @RequestParam(required = false) int subcategory,
             @RequestParam(required = false) List<MultipartFile> images){
 
-        Item item = new Item(name, description, price, count, subCategory);
+        Item item = new Item(name, description, price, count, subcategory);
 
         return new ResponseEntity<>(itemService.add(item, images), HttpStatus.CREATED);
     }
@@ -52,7 +52,7 @@ public class ItemController {
             @RequestParam(required = false) String description,
             @RequestParam(required = false) double price,
             @RequestParam(required = false) int count,
-            @RequestParam(required = false) int subCategory,
+            @RequestParam(required = false) int subcategory,
             @RequestParam(required = false) Set<String> removeImages,
             @RequestParam(required = false) List<MultipartFile> addImages){
 
@@ -60,7 +60,7 @@ public class ItemController {
         item.setDescription(description);
         item.setPrice(price);
         item.setCount(count);
-        item.setSubCategory(subCategory);
+        item.setSubCategory(subcategory);
 
         return new ResponseEntity<>(itemService.update(item, removeImages, addImages), HttpStatus.OK);
     }

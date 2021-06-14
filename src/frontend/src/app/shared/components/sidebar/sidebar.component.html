@@ -1,6 +1,6 @@
 <ul class="nav flex-column mb-2" *ngFor="let category of categories">
     <li class="fw-bold"><a [routerLink]="[category.name]" routerLinkActive="active-link">{{ category.name }}</a></li>
-    <li class="fw-light" *ngFor="let subCategory of category.subCategories">
-        <a [routerLink]="[category.name, subCategory.name]" routerLinkActive="active-link">{{ subCategory.name }}</a>
+    <li class="fw-light" *ngFor="let subcategory of category.subCategories">
+        <a [routerLink]="[category.name, subcategory.name]" routerLinkActive="active-link">{{ subcategory.name }}</a>
     </li>
 </ul>
