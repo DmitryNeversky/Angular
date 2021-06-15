@@ -10,11 +10,7 @@ import {fadeInOutAnimation} from "./animations";
 })
 export class AppComponent implements OnInit {
 
-    getSubcategories
-    }
-
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     prepareRoute(outlet: RouterOutlet) {
         return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
