@@ -10,6 +10,7 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
 export class CatalogComponent {
 
     public loading: boolean = false;
+    public breadcrumbs: Map<string, string> = new Map();
 
     @ViewChild('openButton')
     private openButton: ElementRef;
@@ -24,6 +25,21 @@ export class CatalogComponent {
             if (ev instanceof NavigationEnd || ev instanceof NavigationCancel || ev instanceof NavigationError)
                 this.loading = false;
         });
+    }
+
+    ngDoCheck() {
+        this.breadcrumbs.clear();
+
+        let temp = this.router.url.split('/');
+        if(temp[0] != undefined)
+            temp = temp.splice(2, 2);
+        if(temp[1] != undefined) {
+            temp[2] = temp[1];
+            temp[1] = temp[0] + '/' + temp[1];
+        }
+
+        this.breadcrumbs.set(temp[0], temp[0]);
+        this.breadcrumbs.set(temp[2], temp[1]);
     }
 
     @HostListener('window:scroll')

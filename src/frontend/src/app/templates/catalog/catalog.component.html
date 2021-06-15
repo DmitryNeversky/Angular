@@ -18,6 +18,12 @@
     </div>
 
     <div class="container">
+        <ul class="d-flex list-unstyled">
+            <li class="me-2"><a routerLink="/catalog">Каталог</a></li>
+            <li class="me-2" *ngFor="let breadcrumb of breadcrumbs | keyvalue">
+                <a [routerLink]="breadcrumb.value">> {{breadcrumb.key}}</a>
+            </li>
+        </ul>
         <app-preloader *ngIf="loading"></app-preloader>
         <router-outlet></router-outlet>
     </div>
