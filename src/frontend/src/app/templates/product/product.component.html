@@ -7,13 +7,13 @@
         <ng-template [ngIf]="item != null">
 
             <div class="col-sm-4">
-                <img *ngIf="item.images.length == 0" src="../../../assets/images/preview.jpg" alt="default.item">
+                <img class="preview" *ngIf="item.images.length == 0" src="../../../assets/images/preview.jpg" alt="default.item">
 
                 <ng-template [ngIf]="item.images.length > 0">
-                    <img [src]="'../../assets/images/uploaded/' + preview" alt="preview.item">
-                    <div class="row gallery">
+                    <img class="preview" [src]="'../../assets/images/uploaded/' + preview" alt="preview.item">
+                    <div class="row gallery g-1">
                         <div class="col-sm-3 wrap-image" *ngFor="let image of item.images; let index = index">
-                            <img class="image" [src]="'../../assets/images/uploaded/' + image"
+                            <img class="image" [ngStyle]="preview == image ? {'opacity': '.5'} : {'opacity': '1'}" [src]="'../../assets/images/uploaded/' + image"
                                  (click)="setPreview(image)" alt="gallery.img">
                         </div>
                     </div>

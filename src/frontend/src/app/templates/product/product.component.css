@@ -1,4 +1,21 @@
+.preview {
+    width: 100%;
+    height: 300px;
+}
+
+.gallery {
+    margin-top: auto;
+}
+
 .image {
     width: 100%;
-    max-height: 50px;
+    height: 50px;
+}
+
+.image:hover {
+    cursor: pointer;
+}
+
+.active {
+    background: black;
 }

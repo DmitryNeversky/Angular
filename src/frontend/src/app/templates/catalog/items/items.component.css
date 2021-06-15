@@ -28,3 +28,14 @@
 .active {
     color: #ffe186;
 }
+
+.advanced-input{
+    height: 40px;
+}
+
+input[type=checkbox].advanced-input{
+    width: 20%;
+    height: 20px !important;
+}
+
+/*#edeef0*/
