@@ -15,7 +15,3 @@
 .image:hover {
     cursor: pointer;
 }
-
-.active {
-    background: black;
-}

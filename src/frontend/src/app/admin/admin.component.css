@@ -12,11 +12,6 @@
     transition: .3s;
 }
 
-.preview {
-    width: 100px;
-    height: 100px;
-}
-
 .contain {
     max-height: 360px;
     overflow-y: scroll;
