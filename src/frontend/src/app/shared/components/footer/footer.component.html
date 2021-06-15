@@ -11,17 +11,17 @@
             <div class="col-6 col-sm-3">
                 <p class="title">Навигация</p>
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" routerLink="">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="catalog">Каталог</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="about">О нас</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="contact">Контакты</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/catalog">Каталог</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/about">О нас</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/contact">Контакты</a></li>
                 </ul>
             </div>
             <div class="col-6 col-sm-3">
                 <p class="title">Категории</p>
                 <ul class="nav flex-column">
                     <li class="nav-item" *ngFor="let category of categories">
-                        <a class="nav-link" [routerLink]="['catalog', category.name]">{{category.name}}</a>
+                        <a class="nav-link" [routerLink]="['/catalog', category.name]">{{category.name}}</a>
                     </li>
                 </ul>
             </div>
