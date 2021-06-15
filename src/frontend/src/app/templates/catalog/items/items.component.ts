@@ -5,6 +5,7 @@ import {Subcategory} from "../../../models/subcategory";
 import {Item} from "../../../models/item";
 import {UserService} from "../../../services/user.service";
 import {ItemService} from "../../../services/item.service";
+import {faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
     selector: 'app-items-page',
@@ -13,10 +14,12 @@ import {ItemService} from "../../../services/item.service";
 })
 export class ItemsComponent implements OnInit {
 
-    private sortName: boolean = false;
-    private sortPrice: boolean = false;
-    private sortLook: boolean = false;
-    private sortCount: boolean = false;
+    public icons = {left: faAngleLeft, right: faAngleRight};
+
+    public sortName: boolean = false;
+    public sortPrice: boolean = false;
+    public sortLook: boolean = false;
+    public sortCount: boolean = false;
 
     public search: string = "";
     public min: number = 0;

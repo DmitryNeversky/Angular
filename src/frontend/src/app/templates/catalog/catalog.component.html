@@ -2,7 +2,7 @@
 
 <section class="catalog content">
 
-    <button class="btn btn-primary open-button" type="button" data-bs-toggle="offcanvas"
+    <button #openButton class="btn btn-primary open-button" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
         <fa-icon [icon]="icons.menu"></fa-icon>
     </button>
@@ -18,10 +18,8 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <app-preloader *ngIf="loading"></app-preloader>
-            <router-outlet></router-outlet>
-        </div>
+        <app-preloader *ngIf="loading"></app-preloader>
+        <router-outlet></router-outlet>
     </div>
 </section>
 
