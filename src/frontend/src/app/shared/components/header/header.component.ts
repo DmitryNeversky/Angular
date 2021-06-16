@@ -1,4 +1,5 @@
 import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {faBars, faHeart} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
     selector: 'app-header',
@@ -6,6 +7,8 @@ import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/c
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+    public icons = {heart: faHeart, menu: faBars};
 
     @ViewChild('header')
     private headerElement: ElementRef;

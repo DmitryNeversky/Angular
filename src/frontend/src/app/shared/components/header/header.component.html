@@ -2,29 +2,43 @@
     <div class="container">
         <div class="row h-100 align-items-center">
 
-            <div class="col-11 col-sm-2 logo">
+            <div class="col-8 col-sm-2 logo d-flex">
                 <a routerLink="/">
                     <img src="../../../../assets/images/logo.png" alt="logo">
                 </a>
             </div>
 
+            <div class="col-2 mobile favorite-mobile">
+                <a routerLink="/admin"><fa-icon [icon]="icons.heart"></fa-icon>Избранное</a>
+            </div>
+
+            <div class="col-2 mobile">
+                <button class="btn color-main" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><fa-icon [icon]="icons.menu"></fa-icon></button>
+            </div>
+
             <div class="col-sm-8 menu">
                 <ul class="nav justify-content-end">
-                    <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/"
-                                            [routerLinkActiveOptions]="{exact: true}">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/catalog">Каталог</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/about">О нас</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" routerLinkActive="active"
-                                            routerLink="/contact">Контакты</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/catalog">Каталог</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/about">О нас</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/contact">Контакты</a></li>
                 </ul>
             </div>
 
             <div class="col-sm-2 text-center favorite">
-                <a routerLink="/admin">Желаемое</a>
+                <a routerLink="/admin" class="d-flex align-items-center"><fa-icon [icon]="icons.heart" class="me-2"></fa-icon>Избранное</a>
             </div>
-
         </div>
     </div>
 </header>
+
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-body small">
+        <ul class="nav justify-content-center">
+            <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/catalog">Каталог</a></li>
+            <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/about">О нас</a></li>
+            <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/contact">Контакты</a></li>
+        </ul>
+    </div>
+</div>

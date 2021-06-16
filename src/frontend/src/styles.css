@@ -116,6 +116,10 @@ select.advanced-select:focus-visible{
     background: #ffe18699;
 }
 
+.color-main{
+    color: #ffe186;
+}
+
 .images .image{
     height: 100px;
     width: 108px;

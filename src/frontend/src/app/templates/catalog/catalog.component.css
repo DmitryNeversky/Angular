@@ -23,3 +23,9 @@
 .offcanvas-start {
     width: 280px;
 }
+
+@media(max-width: 500px) {
+    .open-button{
+        top: 48px;
+    }
+}

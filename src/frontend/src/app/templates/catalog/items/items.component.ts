@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {SubcategoryService} from "../../../services/subcategory.service";
-import {Subcategory} from "../../../models/subcategory";
 import {Item} from "../../../models/item";
 import {UserService} from "../../../services/user.service";
 import {ItemService} from "../../../services/item.service";
@@ -28,8 +27,6 @@ export class ItemsComponent implements OnInit {
 
     public items: Item[];
 
-    public preload: boolean = true;
-
     constructor(private activatedRoute: ActivatedRoute,
                 private subcategoryService: SubcategoryService,
                 private userService: UserService,
@@ -41,20 +38,10 @@ export class ItemsComponent implements OnInit {
     }
 
     loadItems() {
-        this.preload = true;
-
-        // this.items = this.activatedRoute.snapshot.data.items;
-
-        this.activatedRoute.params.subscribe((params: Params) => {
-            this.subcategoryService.getByName(params.subcategory).subscribe((response: Subcategory) => {
-                this.items = response.items;
-                this.filteredItems = response.items;
-                this.initPagination(this.items);
-                this.goIndex(0);
-            })
-        });
-
-        this.preload = false;
+        this.items = this.activatedRoute.snapshot.data.items;
+        this.filteredItems = this.items;
+        this.initPagination(this.items);
+        this.goIndex(0);
     }
 
     public pageIndex: number = 0;

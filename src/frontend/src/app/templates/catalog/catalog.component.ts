@@ -44,10 +44,12 @@ export class CatalogComponent {
 
     @HostListener('window:scroll')
     onScroll() {
-        if (window.scrollY > 70) {
-            this.openButton.nativeElement.style.top = '69px';
-        } else if (window.scrollY < 70) {
-            this.openButton.nativeElement.style.top = '96px';
+        if(window.screen.availWidth > 500) {
+            if (window.scrollY > 70) {
+                this.openButton.nativeElement.style.top = '69px';
+            } else if (window.scrollY < 70) {
+                this.openButton.nativeElement.style.top = '96px';
+            }
         }
     }
 }

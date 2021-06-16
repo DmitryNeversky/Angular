@@ -16,9 +16,13 @@ header .logo img {
     width: 80%;
 }
 
-header .favorite a {
-    padding: 5% 10%;
-    background-color: #ffe18699;
+header .favorite fa-icon {
+    color: #ffe18699;
+    font-size: 18pt;
+}
+
+header .favorite-mobile a{
+    color: #ffe18699;
 }
 
 .stick_header {
@@ -30,12 +34,29 @@ header .favorite a {
     border-bottom: 2px solid rgb(255, 225, 134);
 }
 
-@media (max-width: 1140px) {
-    header .logo {
+.mobile{
+    display: none;
+}
+
+@media (max-width: 500px) {
+    header .logo img{
         width: 50%;
     }
 
     header .menu, header .favorite {
-        display: none;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .mobile{
+        display: block;
+    }
+
+    .offcanvas-bottom{
+        height: auto;
+    }
+
+    .content{
+        padding-top: 7rem;
     }
 }

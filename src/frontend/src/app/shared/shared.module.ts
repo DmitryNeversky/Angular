@@ -13,6 +13,8 @@ import {Click180Directive} from "../directives/click180.directive";
 import {SlideComponent} from './components/slider/slide/slide.component';
 import {SliderComponent} from "./components/slider/slider.component";
 import {PreloaderComponent} from './components/preloader/preloader.component';
+import {CookieService} from "ngx-cookie-service";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
     declarations: [
@@ -44,8 +46,10 @@ import {PreloaderComponent} from './components/preloader/preloader.component';
     ],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        FontAwesomeModule
     ],
+    providers: [CookieService]
 })
 export class SharedModule {
 }
