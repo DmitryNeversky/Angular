@@ -3,18 +3,7 @@
 <div class="container content">
     <div class="row">
         <div class="col-sm-3" *ngFor="let item of user.wishList">
-            <div class="card">
-                <img *ngIf="item.images[0] != null" class="preview"
-                     src="{{ '../../assets/images/uploaded/' + item.images[0] }}" alt="img.item">
-                <img *ngIf="item.images[0] == null" class="preview" src="assets/images/preview.jpg" alt="img.item">
-                <fa-icon [icon]="icons.heart" class="wish wished" (click)="unWish(item)"></fa-icon>
-                <div class="p-3">
-                    <p class="fw-bold">{{ item.name }}</p>
-                    <p class="float-start">Запас: {{ item.count }}</p>
-                    <p class="float-end fs-5">{{ item.price }} ₽</p>
-                </div>
-                <a [routerLink]="['/product', item.id]" class="advanced-input">Перейти</a>
-            </div>
+            <app-item-card [item]="item" [user]="user"></app-item-card>
         </div>
     </div>
 </div>

@@ -1,11 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {SubcategoryService} from "../../../services/subcategory.service";
 import {Item} from "../../../models/item";
-import {UserService} from "../../../services/user.service";
-import {ItemService} from "../../../services/item.service";
-import {faAngleLeft, faAngleRight, faHeart} from "@fortawesome/free-solid-svg-icons";
-import {faHeart as faHearted} from "@fortawesome/free-regular-svg-icons";
+import {faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons";
 import {User} from "../../../models/User";
 
 @Component({
@@ -15,9 +11,8 @@ import {User} from "../../../models/User";
 })
 export class ItemsComponent implements OnInit {
 
-    public icons = {left: faAngleLeft, right: faAngleRight, heart: faHeart, hearted: faHearted};
+    public icons = {left: faAngleLeft, right: faAngleRight};
 
-    public ip: string = "";
     public user: User;
 
     public sortName: boolean = false;
@@ -31,19 +26,12 @@ export class ItemsComponent implements OnInit {
     public available: boolean = false;
 
     public items: Item[];
-    public userWishList: number[];
 
-    constructor(private activatedRoute: ActivatedRoute,
-                private subcategoryService: SubcategoryService,
-                private userService: UserService,
-                private itemService: ItemService) {
-    }
+    constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit(): void {
-        this.items = this.activatedRoute.snapshot.data.items;
         this.user = this.activatedRoute.snapshot.data.currentUser;
-
-        this.userWishList = this.user.wishList.map(x => x.id);
+        this.items = this.activatedRoute.snapshot.data.items;
 
         this.filteredItems = this.items;
         this.initPagination(this.items);
@@ -161,34 +149,5 @@ export class ItemsComponent implements OnInit {
         } else this.sortCount = !this.sortCount;
 
         this.goIndex(0);
-    }
-
-    addLook(item: Item) {
-        if (!item.looks.includes(this.user.ip)) {
-            let formData = new FormData();
-            formData.append('itemId', item.id.toString());
-            formData.append('ip', this.user.ip);
-            this.itemService.addLook(formData);
-        }
-    }
-
-    private clickable: boolean = true;
-
-    wish(event: any, item: Item){
-        if(!this.clickable)
-            return
-        this.clickable = false;
-        if(this.userWishList.find(x => x == item.id))
-            this.userService.removeWish(this.user.ip, item)
-                .subscribe(() => {
-                    this.userWishList.splice(this.userWishList.indexOf(item.id), 1);
-                    this.clickable = true;
-                }, error => console.log(error));
-        else
-            this.userService.addWish(this.user.ip, item)
-                .subscribe(() => {
-                    this.userWishList.push(item.id);
-                    this.clickable = true;
-                }, error => console.log(error));
     }
 }

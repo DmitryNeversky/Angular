@@ -15,6 +15,7 @@ import {SliderComponent} from "./components/slider/slider.component";
 import {PreloaderComponent} from './components/preloader/preloader.component';
 import {CookieService} from "ngx-cookie-service";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {ItemCardComponent} from './components/item-card/item-card.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
         Click180Directive,
         SliderComponent,
         SlideComponent,
-        PreloaderComponent
+        PreloaderComponent,
+        ItemCardComponent
     ],
     exports: [
         HeaderComponent,
@@ -42,7 +44,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
         Click180Directive,
         SliderComponent,
         SlideComponent,
-        PreloaderComponent
+        PreloaderComponent,
+        ItemCardComponent
     ],
     imports: [
         CommonModule,
