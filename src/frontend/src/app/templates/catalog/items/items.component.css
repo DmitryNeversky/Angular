@@ -6,14 +6,35 @@
     min-height: 360px;
 }
 
-.card button{
+.card .wish{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+.wish{
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+}
+
+.wish:hover{
+    color: #ffe186;
+}
+
+.wished{
+    color: #ffe186;
+}
+
+.card .advanced-input{
     width: 100%;
     padding: 3%;
     background: #ffe18699;
     border: none;
 }
 
-.card button:hover{
+.card button.advanced-input:hover{
     background: #ffe186;
 }
 

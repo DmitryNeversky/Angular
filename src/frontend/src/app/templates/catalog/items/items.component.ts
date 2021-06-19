@@ -4,7 +4,9 @@ import {SubcategoryService} from "../../../services/subcategory.service";
 import {Item} from "../../../models/item";
 import {UserService} from "../../../services/user.service";
 import {ItemService} from "../../../services/item.service";
-import {faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faAngleRight, faHeart} from "@fortawesome/free-solid-svg-icons";
+import {faHeart as faHearted} from "@fortawesome/free-regular-svg-icons";
+import {User} from "../../../models/User";
 
 @Component({
     selector: 'app-items-page',
@@ -13,7 +15,10 @@ import {faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons";
 })
 export class ItemsComponent implements OnInit {
 
-    public icons = {left: faAngleLeft, right: faAngleRight};
+    public icons = {left: faAngleLeft, right: faAngleRight, heart: faHeart, hearted: faHearted};
+
+    public ip: string = "";
+    public user: User;
 
     public sortName: boolean = false;
     public sortPrice: boolean = false;
@@ -26,6 +31,7 @@ export class ItemsComponent implements OnInit {
     public available: boolean = false;
 
     public items: Item[];
+    public userWishList: number[];
 
     constructor(private activatedRoute: ActivatedRoute,
                 private subcategoryService: SubcategoryService,
@@ -34,11 +40,11 @@ export class ItemsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loadItems();
-    }
-
-    loadItems() {
         this.items = this.activatedRoute.snapshot.data.items;
+        this.user = this.activatedRoute.snapshot.data.currentUser;
+
+        this.userWishList = this.user.wishList.map(x => x.id);
+
         this.filteredItems = this.items;
         this.initPagination(this.items);
         this.goIndex(0);
@@ -158,13 +164,31 @@ export class ItemsComponent implements OnInit {
     }
 
     addLook(item: Item) {
-        this.userService.getIP().subscribe(response => {
-            if (!item.looks.includes(response.ip)) {
-                let formData = new FormData();
-                formData.append('itemId', item.id.toString());
-                formData.append('ip', response.ip);
-                this.itemService.addLook(formData);
-            }
-        });
+        if (!item.looks.includes(this.user.ip)) {
+            let formData = new FormData();
+            formData.append('itemId', item.id.toString());
+            formData.append('ip', this.user.ip);
+            this.itemService.addLook(formData);
+        }
+    }
+
+    private clickable: boolean = true;
+
+    wish(event: any, item: Item){
+        if(!this.clickable)
+            return
+        this.clickable = false;
+        if(this.userWishList.find(x => x == item.id))
+            this.userService.removeWish(this.user.ip, item)
+                .subscribe(() => {
+                    this.userWishList.splice(this.userWishList.indexOf(item.id), 1);
+                    this.clickable = true;
+                }, error => console.log(error));
+        else
+            this.userService.addWish(this.user.ip, item)
+                .subscribe(() => {
+                    this.userWishList.push(item.id);
+                    this.clickable = true;
+                }, error => console.log(error));
     }
 }

@@ -7,6 +7,8 @@ import {ItemsComponent} from "./items/items.component";
 import {CategoriesResolver} from "../../shared/resolvers/categories.resolver";
 import {SubcategoriesResolver} from "../../shared/resolvers/subcategories.resolver";
 import {ItemsResolver} from "../../shared/resolvers/items.resolver";
+import {UsersResolver} from "../../shared/resolvers/users.resolver";
+import {CurrentUserResolver} from "../../shared/resolvers/current-user.resolver";
 
 const routes: Routes = [
     {
@@ -32,7 +34,9 @@ const routes: Routes = [
                 path: ':category/:subcategory',
                 component: ItemsComponent,
                 resolve: {
-                    items: ItemsResolver
+                    items: ItemsResolver,
+                    users: UsersResolver,
+                    currentUser: CurrentUserResolver
                 }
             }
         ]

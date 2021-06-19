@@ -1,0 +1,14 @@
+.wish{
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+}
+
+.wish:hover{
+    color: #ffe186;
+}
+
+.wished{
+    color: #ffe186;
+}

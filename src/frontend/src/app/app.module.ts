@@ -13,9 +13,10 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {SharedModule} from "./shared/shared.module";
 import {PaginatorPipe} from './pipes/paginator.pipe';
 import {ProductComponent} from "./templates/product/product.component";
+import {WishlistComponent} from './templates/wishlist/wishlist.component';
 
 @NgModule({
-    declarations: [AppComponent, PaginatorPipe, ProductComponent],
+    declarations: [AppComponent, PaginatorPipe, ProductComponent, WishlistComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

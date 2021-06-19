@@ -1,9 +1,8 @@
 package org.example.Angular.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -14,10 +13,25 @@ public class User {
 
     private String name;
     private String password;
+    private String ip;
     private boolean isAuth;
     private Role role;
 
-    public User() {
+    @ManyToMany
+    @JoinTable(name = "user_wishlist_item",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
+    private Set<Item> wishList = new HashSet<>();
+
+    public User() { }
+
+    public User(String ip) {
+        this.ip = ip;
+    }
+
+    public User(String ip, Item item) {
+        this.ip = ip;
+        this.addIntoWishList(item);
     }
 
     public User(String name, String password, Role role) {
@@ -46,6 +60,14 @@ public class User {
         this.password = password;
     }
 
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
     public boolean isAuth() {
         return isAuth;
     }
@@ -62,14 +84,28 @@ public class User {
         this.role = role;
     }
 
+    public Set<Item> getWishList() {
+        return wishList;
+    }
+
+    public void addIntoWishList(Item item){
+        this.getWishList().add(item);
+    }
+
+    public void removeFromWishList(Item item){
+        this.getWishList().remove(item);
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", ip='" + ip + '\'' +
                 ", isAuth=" + isAuth +
                 ", role=" + role +
+                ", wishList=" + wishList +
                 '}';
     }
 }

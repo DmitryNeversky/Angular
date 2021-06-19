@@ -3,6 +3,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {ProductComponent} from "./templates/product/product.component";
 import {ProductResolver} from "./shared/resolvers/product.resolver";
 import {InfoResolver} from "./shared/resolvers/info.resolver";
+import {CurrentUserResolver} from "./shared/resolvers/current-user.resolver";
+import {WishlistComponent} from "./templates/wishlist/wishlist.component";
 
 const routes: Routes = [
     {
@@ -26,6 +28,13 @@ const routes: Routes = [
         loadChildren: () => import('./templates/contact/contact.module').then(m => m.ContactModule),
         resolve: {
             contacts: InfoResolver
+        }
+    },
+    {
+        path: 'wishlist',
+        component: WishlistComponent,
+        resolve: {
+            user: CurrentUserResolver
         }
     },
     {
