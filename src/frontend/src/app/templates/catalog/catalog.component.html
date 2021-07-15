@@ -24,8 +24,10 @@
                 <a *ngIf="breadcrumbs.size > 0" [routerLink]="breadcrumb.value">> {{breadcrumb.key}}</a>
             </li>
         </ul>
-        <app-preloader *ngIf="loading"></app-preloader>
-        <router-outlet></router-outlet>
+        <app-preloader *ngIf="loading; else content"></app-preloader>
+        <ng-template #content>
+            <router-outlet></router-outlet>
+        </ng-template>
     </div>
 </section>
 
