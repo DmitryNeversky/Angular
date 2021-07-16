@@ -28,16 +28,16 @@
             <div class="col-6 col-sm-2">
                 <p class="title">Контакты</p>
                 <ul class="nav flex-column" *ngIf="info">
-                    <li class="nav-item" *ngIf="info.email.length > 0">
+                    <li class="nav-item" *ngIf="info.email">
                         <a [href]="'mailto:' + info.email" class="nav-link"><fa-icon [icon]="icons.mail"></fa-icon> {{info.email}}</a>
                     </li>
-                    <li class="nav-item" *ngIf="info.phone.length > 0">
+                    <li class="nav-item" *ngIf="info.phone">
                         <a [href]="'tel:' + info.phone" class="nav-link"><fa-icon [icon]="icons.phone"></fa-icon> {{info.phone}}</a>
                     </li>
-                    <li class="nav-item" *ngIf="info.whatsapp.length > 0">
+                    <li class="nav-item" *ngIf="info.whatsapp">
                         <a [href]="'https://api.whatsapp.com/send?phone=' + info.whatsapp"><fa-icon [icon]="icons.whatsApp"></fa-icon> {{info.whatsapp}}</a>
                     </li>
-                    <li class="nav-item" *ngIf="info.address.length > 0">
+                    <li class="nav-item" *ngIf="info.address">
                         <fa-icon [icon]="icons.mark"></fa-icon> {{info.address}}
                     </li>
                 </ul>

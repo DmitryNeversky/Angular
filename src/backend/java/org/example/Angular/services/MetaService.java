@@ -43,10 +43,17 @@ public class MetaService {
         metaRepository.save(meta);
     }
 
+    public boolean auth(String password){
+        Meta meta = metaRepository.findById(1);
+
+        return meta.getPassword().equals(password);
+    }
+
     @PostConstruct
     private void init() {
         Meta meta = metaRepository.findById(1);
-        if (meta == null)
-            metaRepository.save(new Meta(1));
+        if (meta == null) {
+            metaRepository.save(new Meta(1, "100admin001"));
+        }
     }
 }

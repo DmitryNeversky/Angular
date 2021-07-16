@@ -14,6 +14,7 @@ public class Meta {
     private int id;
 
     private int homePopularSize;
+    private String password;
 
     @OneToMany
     @JoinColumn(name = "category_id")
@@ -26,8 +27,9 @@ public class Meta {
     public Meta() {
     }
 
-    public Meta(int id) {
+    public Meta(int id, String password) {
         this.id = id;
+        this.password = password;
     }
 
     public int getId() {
@@ -52,6 +54,14 @@ public class Meta {
 
     public void setHomePopularItems(List<Item> homePopularItems) {
         this.homePopularItems = homePopularItems;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getHomePopularSize() {

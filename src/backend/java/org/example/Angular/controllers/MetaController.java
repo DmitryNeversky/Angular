@@ -45,4 +45,10 @@ public class MetaController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/auth")
+    public ResponseEntity<Boolean> auth(@RequestParam String password){
+
+        return new ResponseEntity<>(metaService.auth(password), HttpStatus.OK);
+    }
 }

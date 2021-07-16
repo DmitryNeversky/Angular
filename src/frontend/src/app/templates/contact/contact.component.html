@@ -62,23 +62,23 @@
 <!--                            <fa-icon [icon]="icons.instagram"></fa-icon>-->
 <!--                        </a>-->
 <!--                    </div>-->
-                    <div class="col-sm-12 phone border-bottom py-3" *ngIf="info.phone.length > 0 || info.whatsapp.length > 0">
+                    <div class="col-sm-12 phone border-bottom py-3" *ngIf="info.phone || info.whatsapp">
                         <p class="text-uppercase fs-6 family-montserrat pb-3">Телефоны</p>
-                        <p *ngIf="info.phone.length > 0">
+                        <p *ngIf="info.phone">
                             <fa-icon [icon]="icons.phone"></fa-icon>
                             <a [href]="'tel:' + info.phone">{{info.phone}}</a></p>
-                        <p *ngIf="info.whatsapp.length > 0">
+                        <p *ngIf="info.whatsapp">
                             <fa-icon [icon]="icons.whatsapp"></fa-icon>
                             <a [href]="'https://api.whatsapp.com/send?phone=' + info.whatsapp">{{info.whatsapp}}</a>
                         </p>
                     </div>
-                    <div class="col-sm-12 email border-bottom py-3" *ngIf="info.email.length > 0">
+                    <div class="col-sm-12 email border-bottom py-3" *ngIf="info.email">
                         <p class="text-uppercase fs-6 family-montserrat pb-3">E-mail</p>
                         <p>
                             <fa-icon [icon]="icons.envelope"></fa-icon>
                             <a href="mailto:{{info.email}}">{{info.email}}</a></p>
                     </div>
-                    <div class="col-sm-12 address pt-3" *ngIf="info.address.length > 0">
+                    <div class="col-sm-12 address pt-3" *ngIf="info.address">
                         <p class="text-uppercase fs-6 family-montserrat pb-3">Адрес</p>
                         <p class="text-black-50">
                             <fa-icon [icon]="icons.mark"></fa-icon>
