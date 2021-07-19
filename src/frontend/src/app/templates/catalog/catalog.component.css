@@ -29,3 +29,12 @@
         top: 48px;
     }
 }
+
+@media(min-width: 1440px) {
+    .open-button{
+        top: 116px;
+    }
+    .content{
+        min-height: 41.7rem;
+    }
+}

@@ -1,37 +1,36 @@
 package org.example.Angular.config;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.util.Arrays;
 
 @Configuration
 @EnableWebMvc
-public class WebConfig implements Filter {
+public class WebConfig {
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        Filter.super.init(filterConfig);
-    }
+    @Bean
+    public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response,
-                         FilterChain chain) throws IOException, ServletException {
+        config.setAllowCredentials(true);
+        config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        config.setExposedHeaders(Arrays.asList("*"));
+        config.setAllowedMethods(Arrays.asList("*"));
+        config.setAllowedHeaders(Arrays.asList("*"));
 
-        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+        source.registerCorsConfiguration("/**", config);
 
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-        httpServletResponse.setHeader("Access-Control-Allow-Credentials", "false");
-        httpServletResponse.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-        httpServletResponse.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
+        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 
-        chain.doFilter(request, response);
-    }
-
-    @Override
-    public void destroy() {
-        Filter.super.destroy();
+        return bean;
     }
 }

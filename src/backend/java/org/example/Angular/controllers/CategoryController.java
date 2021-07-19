@@ -20,6 +20,7 @@ public class CategoryController {
     }
 
     @GetMapping("/all")
+    @CrossOrigin("http://localhost:8080")
     public ResponseEntity<List<Category>> getCategories() {
 
         return new ResponseEntity<>(categoryService.getAllCategories(), HttpStatus.OK);
