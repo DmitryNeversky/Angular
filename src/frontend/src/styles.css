@@ -30,6 +30,12 @@ ul{
     padding-bottom: 3rem;
 }
 
+@media (min-width: 1440px) {
+    .content{
+        min-height: 41.6rem;
+    }
+}
+
 @media (max-width: 576px) {
     header .logo img{
         width: 30%;
