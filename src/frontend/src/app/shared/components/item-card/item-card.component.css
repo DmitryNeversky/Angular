@@ -19,3 +19,12 @@
     transform: scale(1.2);
     transition: .3s;
 }
+
+@media (max-width: 600px) {
+    .card .preview{
+        height: 120px;
+    }
+    .p-3{
+        font-size: 10pt;
+    }
+}

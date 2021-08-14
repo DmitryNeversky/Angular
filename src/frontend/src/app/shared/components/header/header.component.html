@@ -2,21 +2,22 @@
     <div class="container">
         <div class="row h-100 align-items-center">
 
-            <div class="col-8 col-sm-2 logo d-flex">
+            <div class="col-8 col-sm-4 logo d-flex">
                 <a routerLink="/">
-                    <img src="../../../../assets/images/logo.png" alt="logo">
+<!--                    <img src="../../../../assets/images/logo.png" alt="logo">-->
+                    <h4>Обои • Двери • Ламинат</h4>
                 </a>
             </div>
 
             <div class="col-2 mobile favorite-mobile">
-                <a routerLink="/admin"><fa-icon [icon]="icons.heart"></fa-icon>Избранное</a>
+                <a routerLink="/wishlist" class="rounded-circle"><fa-icon [icon]="icons.heart"></fa-icon></a>
             </div>
 
             <div class="col-2 mobile">
                 <button class="btn color-main" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><fa-icon [icon]="icons.menu"></fa-icon></button>
             </div>
 
-            <div class="col-sm-8 menu">
+            <div class="col-sm-6 menu">
                 <ul class="nav justify-content-end">
                     <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Главная</a></li>
                     <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/catalog">Каталог</a></li>
@@ -26,7 +27,7 @@
             </div>
 
             <div class="col-sm-2 text-center favorite">
-                <a routerLink="/wishlist" class="d-flex align-items-center"><fa-icon [icon]="icons.heart" class="me-2"></fa-icon>Избранное</a>
+                <a routerLink="/wishlist" class="rounded-circle"><fa-icon [icon]="icons.heart"></fa-icon></a>
             </div>
         </div>
     </div>

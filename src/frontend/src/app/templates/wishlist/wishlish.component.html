@@ -2,7 +2,7 @@
 
 <div class="container content">
     <div class="row">
-        <div class="col-sm-3" *ngFor="let item of user.wishList">
+        <div class="col-sm-3 col-6" *ngFor="let item of user.wishList">
             <app-item-card [item]="item" [user]="user"></app-item-card>
         </div>
     </div>

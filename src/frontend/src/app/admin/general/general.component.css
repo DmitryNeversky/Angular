@@ -15,4 +15,10 @@ select option:focus,
 select option:active,
 select option:checked {
     background: linear-gradient(#f5f5f5, #f5f5f5);
+    color: black !important;
+    cursor: pointer;
+}
+
+.select-collection {
+    height: 90px;
 }

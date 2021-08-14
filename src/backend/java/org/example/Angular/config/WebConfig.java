@@ -7,13 +7,15 @@ import org.springframework.core.Ordered;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Arrays;
 
 @Configuration
-@EnableWebMvc
-public class WebConfig {
+public class WebConfig implements Filter {
 
     @Bean
     public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {
@@ -21,7 +23,7 @@ public class WebConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        config.setAllowedOrigins(Arrays.asList("http://62.109.14.97:4200"));
         config.setExposedHeaders(Arrays.asList("*"));
         config.setAllowedMethods(Arrays.asList("*"));
         config.setAllowedHeaders(Arrays.asList("*"));
@@ -32,5 +34,15 @@ public class WebConfig {
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 
         return bean;
+    }
+
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+
+        //response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+
+        filterChain.doFilter(request, response);
     }
 }

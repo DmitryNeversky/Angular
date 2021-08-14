@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:8080',
-  resourcePath: '/home/koshey/IdeaProjects/Angular/src/frontend/src/assets/'
+  resourcePath: '/home/koshey/IdeaProjects/Laminarium/src/frontend/src/assets/'
 };
 
 /*

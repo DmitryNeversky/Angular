@@ -60,3 +60,18 @@ input[type=checkbox].advanced-input{
 }
 
 /*#edeef0*/
+
+@media (max-width: 480px) {
+    .card-title {
+        font-size: 10pt;
+    }
+    .card-text {
+        font-size: 8pt;
+    }
+    .card-img-overlay, .card-img{
+        max-height: 100px;
+    }
+    .list-unstyled{
+        font-size: 8pt;
+    }
+}

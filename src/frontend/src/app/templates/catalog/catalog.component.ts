@@ -51,5 +51,12 @@ export class CatalogComponent {
                 this.openButton.nativeElement.style.top = '96px';
             }
         }
+        if(window.screen.availWidth > 1400) {
+            if (window.scrollY > 70) {
+                this.openButton.nativeElement.style.top = '80px';
+            } else if (window.scrollY < 70) {
+                this.openButton.nativeElement.style.top = '118px';
+            }
+        }
     }
 }

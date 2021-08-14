@@ -1,24 +1,28 @@
+<script src="items.component.ts"></script>
 <div class="row justify-content-sm-around border-bottom">
-    <div class="col-sm-3">
-        <input type="text" class="advanced-input" [(ngModel)]="search" placeholder="Search">
+    <div class="col-sm-3 col-4">
+        <label for="min">поиск</label>
+        <input type="text" class="advanced-input" [(ngModel)]="search">
     </div>
-    <div class="col-sm-2">
-        <input type="text" class="advanced-input" [(ngModel)]="min" placeholder="Min">
+    <div class="col-sm-2 col-4">
+        <label for="min">мин. цена</label>
+        <input id="min" type="text" class="advanced-input" [(ngModel)]="min">
     </div>
-    <div class="col-sm-2">
-        <input type="text" class="advanced-input" [(ngModel)]="max" placeholder="Max">
+    <div class="col-sm-2 col-4">
+        <label for="max">макс. цена</label>
+        <input id="max" type="text" class="advanced-input" [(ngModel)]="max">
     </div>
-    <div class="col-sm-2 d-flex align-items-center">
+    <div class="col-sm-2 col-4 d-flex align-items-center">
         <input type="checkbox" id="available" class="advanced-input" [(ngModel)]="available">
-        <label for="available">В наличии</label>
+        <label for="available"> Наличие</label>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-2 col-8">
         <button class="advanced-input p-0" (click)="filter()">Применить</button>
     </div>
 </div>
 
 <div class="row mt-2 mb-4">
-    <div class="col-sm-2">
+    <div class="col-sm-2 col-2">
         <ul class="d-flex list-unstyled size-list align-items-center m-0 p-0">
             <li class="mx-2" (click)="pageSize = 8" [ngClass]="pageSize == 8 ? 'active' : ''">8</li>
             <li class="mx-2" (click)="pageSize = 12" [ngClass]="pageSize == 12 ? 'active' : ''">12</li>
@@ -26,7 +30,7 @@
             <li class="mx-2" (click)="pageSize = 20" [ngClass]="pageSize == 20 ? 'active' : ''">20</li>
         </ul>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 col-10">
         <ul class="d-flex list-unstyled justify-content-end size-list my-0">
             <li class="mx-2" [ngClass]="sortName ? 'active' : ''" (click)="sortByName()">Название</li>
             <li class="mx-2" [ngClass]="sortPrice ? 'active' : ''" (click)="sortByPrice()">Цена</li>
@@ -38,7 +42,7 @@
 
 <div class="col-sm-12 border-bottom pb-4">
     <div class="row gy-3">
-        <div class="col-lg-3 col-sm-4" *ngFor="let item of paginatedItems">
+        <div class="col-lg-3 col-6" *ngFor="let item of paginatedItems">
             <ng-template [ngIf]="item != null">
                 <app-item-card [item]="item" [user]="user"></app-item-card>
             </ng-template>

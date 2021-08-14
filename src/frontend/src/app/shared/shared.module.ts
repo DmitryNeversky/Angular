@@ -31,7 +31,7 @@ import {ItemCardComponent} from './components/item-card/item-card.component';
         SliderComponent,
         SlideComponent,
         PreloaderComponent,
-        ItemCardComponent
+        ItemCardComponent,
     ],
     exports: [
         HeaderComponent,
@@ -45,7 +45,7 @@ import {ItemCardComponent} from './components/item-card/item-card.component';
         SliderComponent,
         SlideComponent,
         PreloaderComponent,
-        ItemCardComponent
+        ItemCardComponent,
     ],
     imports: [
         CommonModule,

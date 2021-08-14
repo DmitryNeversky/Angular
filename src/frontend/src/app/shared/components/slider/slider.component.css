@@ -10,6 +10,7 @@
 .slider {
     padding: 10px 0;
     align-items: center;
+    justify-content: center;
     display: flex;
     transition: .3s;
 }
@@ -28,4 +29,13 @@
 
 .arrow-right {
     right: -5%;
+}
+
+@media (max-width: 600px){
+    .arrow-left {
+        left: -1%;
+    }
+    .arrow-right {
+        right: 1%;
+    }
 }

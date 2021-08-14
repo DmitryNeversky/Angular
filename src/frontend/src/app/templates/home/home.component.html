@@ -56,8 +56,8 @@
     <div class="container">
         <div class="row">
             <div class="col-6 col-sm-6 m-auto">
-                <p class="h3">Немного о нас</p>
-                <p class="h5">Я и мои товарищи...</p>
+                <p class="h3 title">Немного о нас</p>
+                <p class="h5 subtitle">Я и мои товарищи...</p>
             </div>
             <div class="col-6 col-sm-6">
                 <img src="../../../assets/images/women.jpeg" class="d-block" alt="img.rector">
@@ -81,8 +81,9 @@
                          class="card-img-top" alt="item.image">
                     <div class="card-body">
                         <h5 class="card-title">{{item.name}}</h5>
-                        <p class="card-text">{{item.description}}</p>
-                        <a [routerLink]="['product', item.id]" class="advanced-input">Смотреть</a>
+<!--                        <p class="card-text pb-4">{{item.description}}</p>-->
+                        <p class="card-text pt-2 text-end fs-5">{{item.price}} руб.</p>
+                        <a [routerLink]="['product', item.id]" class="text-end d-block mt-2">Смотреть</a>
                     </div>
                 </div>
             </app-slide>

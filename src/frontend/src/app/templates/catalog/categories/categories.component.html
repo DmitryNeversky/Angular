@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-sm-4" *ngFor="let category of categories">
+<div class="row g-4">
+    <div class="col-sm-4 col-6" *ngFor="let category of categories">
         <a class="card-wrapper" [routerLink]="['./', category.name]">
             <div class="card bg-dark text-white">
                 <img *ngIf="category.image == null" src="assets/images/preview.jpg" class="card-img" alt="cat.img">

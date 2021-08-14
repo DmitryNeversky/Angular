@@ -1,0 +1,13 @@
+@media (max-width: 600px) {
+    .card-title {
+        font-size: 10pt;
+    }
+
+    .card-text {
+        font-size: 8pt;
+    }
+
+    .card-img-overlay, .card-img {
+        max-height: 100px;
+    }
+}

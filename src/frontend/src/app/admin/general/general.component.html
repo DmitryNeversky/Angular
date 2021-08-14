@@ -103,7 +103,7 @@
         <div class="row">
             <h2 class="mb-3">Виджет "Наша коллекция"</h2>
             <div class="col-sm-4">
-                <select class="advanced-input" [(ngModel)]="selects" multiple>
+                <select class="advanced-input select-collection" [(ngModel)]="selects" multiple>
                     <option *ngFor="let category of categories" (click)="test($event, category)"
                             [value]="category.id">{{category.name}}</option>
                 </select>

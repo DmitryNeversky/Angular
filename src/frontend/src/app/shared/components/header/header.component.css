@@ -34,8 +34,16 @@ header .favorite-mobile a{
     border-bottom: 2px solid rgb(255, 225, 134);
 }
 
-.mobile{
+.mobile {
     display: none;
+}
+
+.favorite a {
+    padding: 2% 6%;
+    box-shadow: 2px 5px 20px -10px rgba(0, 0, 0, .45);
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 @media (max-width: 500px) {
